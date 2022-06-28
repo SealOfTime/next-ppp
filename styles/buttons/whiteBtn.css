@@ -1,0 +1,8 @@
+.whiteBtn {
+	padding: 5px 10px 10px 10px;
+	background: #F3F3F3;
+	box-shadow: 2px 4px 0px #000000;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}

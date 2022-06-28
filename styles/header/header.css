@@ -1,0 +1,49 @@
+.header {
+	padding: 38px 0 38px 0;
+	background:#D4D6D7;
+}
+.header__container {
+	display: flex;
+	align-items: center;
+}
+
+.header__logo {
+	width: 105px;
+	height: 67px;
+	
+}
+
+.header__logo img {
+
+}
+
+.header__menu {
+	font-family: progresspixel;
+	font-size: 18px;
+	width: 700;
+	/* line-height: calc(30.6 / 700 * 100%); */
+	
+	
+}
+.menu {
+	flex: 1 1 100%;
+}
+.menu__list {
+	
+	display: flex;
+	gap: 42px;
+	justify-content: flex-end;
+
+	
+}
+.menu__item {
+	display: flex;
+	align-items: center;
+}
+
+.menu__link {
+	background: linear-gradient(90deg, #F45F89 0%, #8D0B93 50%, #321575 100%);
+	-webkit-text-fill-color: transparent;
+	-webkit-background-clip: text;
+	background-clip: text;
+}
