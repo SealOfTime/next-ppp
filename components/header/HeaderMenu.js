@@ -14,7 +14,9 @@ export default function HeaderMenu() {
 						<li className='menu__item'><a className="menu__link" href="">Вход</a></li>
 						<li className='menu__item '>
 							<div className="whiteBtn">
-								<a className="menu__link" href="">Регистрация</a>
+								<div className="whiteBtn__inner">
+									<a className="menu__link" href="">Регистрация</a>
+								</div>
 							</div>
 						</li>
 					</ul>

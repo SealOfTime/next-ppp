@@ -1,16 +1,37 @@
 // import Head from 'next/head'
-// import CallToAction from '../components/Call-To-Action'
-// import styles from '../styles/Home.module.css'
-
-// export async function getStaticProps() {
-
-// }
 
 import MainLayout from '../layouts/MainLayout'
+
+
+export async function getStaticProps() {
+	return {
+		props: {}
+	}
+}
+
+
 
 export default function LandingPage() {
 	return (
 		<MainLayout title='Первому Перваку Приготовиться!'>
+			<section className="welcome">
+				<div className="welcome__container container">
+					<h1 className='welcome__title main__title'>Добро пожаловать в игру!</h1>
+					<ul className='welcome__list'>
+						<li className="welcome__item whiteBtn">
+							<div className="whiteBtn__inner">
+								<a href="" className=" welcome__link whiteBtn_black-text">О проекте</a>	
+							</div>
+						</li>
+						<li className="welcome__item"><a href="" className="welcome__link">Как играть?</a></li>
+						<li className="welcome__item"><a href="" className="welcome__link">Важные даты</a></li>
+					</ul>
+
+					<button className='welcome__btn gradientBtn'>
+						<span className='gradientBtn__text'>Регистрация</span>
+					</button>
+				</div>
+			</section>
 		</MainLayout>
 
 	// <div className={styles.container}>

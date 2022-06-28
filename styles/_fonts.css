@@ -7,3 +7,13 @@
     font-style: normal;
     font-display: swap;
 }
+
+@font-face {
+    font-family: 'Pixel Font7';
+    src: local('Pixel Font7'), 
+        url('../src/fonts/PixelFont-7.woff2') format('woff2'),
+        url('../src/fonts/PixelFont-7.woff') format('woff');
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+}

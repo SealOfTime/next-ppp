@@ -1,8 +1,14 @@
 .whiteBtn {
-	padding: 5px 10px 10px 10px;
-	background: #F3F3F3;
+	padding: 3px;
 	box-shadow: 2px 4px 0px #000000;
-	display: flex;
-	align-items: center;
-	justify-content: center;
+	background: linear-gradient(90deg, #F45F89 0%, #8D0B93 50%, #321575 100%);
+}
+
+.whiteBtn__inner {
+	background: #F3F3F3;
+	padding: 1px 9px 1px 9px;
+}
+
+.whiteBtn_black-text {
+	color: #1A1B56;
 }

@@ -1,0 +1,56 @@
+.welcome {
+    padding: 100px 0 170px 0;
+    background-image: url('../../public/content/backgroung.jpg');
+    background-position: center;
+    background-size: cover;
+}
+
+.welcome__bg {
+    
+}
+.welcome__title {
+    max-width: 760px;
+    margin-bottom: 85px;
+}
+.welcome__list {
+    max-width: 360px;
+    margin-bottom: 124px;
+}
+
+/* maybe переделать логигу и обертку для белой кнопки */
+.welcome__item {
+    font-family: 'Pixel Font7';
+    font-size: 40px;
+    line-height: calc(40 / 40 * 100%);
+    color: #fff;
+    position: relative;
+    padding-left: 68px;
+}
+
+.whiteBtn  {
+    padding-left: 3px;
+}
+
+.welcome__item .whiteBtn__inner {
+    padding-left: 68px;
+}
+
+.welcome__item::before {
+    content: '';
+    position: absolute;
+    height: 23px;
+    width: 23px;
+    background: linear-gradient(90deg, #F45F89 0%, #8D0B93 50%, #321575 100%);
+    left: 19px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.welcome__item:not(:last-child) {
+    margin-bottom: 20px;
+}
+.welcome__btn {
+    padding: 24px 64px 24px 64px; 
+    font-size: 30px;
+    line-height: (51 / 30 * 100%);
+}
