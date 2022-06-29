@@ -7,7 +7,10 @@ import '../styles/buttons/whiteBtn.css'
 import '../styles/buttons/gradientBtn.css'
 
 import '../styles/PageHome/PageHome.css'
-
+import '../styles/boxGradient.css'
+import '../styles/PageHome/Gallery.css'
+import '../styles/PageHome/CartSteps.css'
+import '../styles/PageHome/DateItem.css'
 
 import {SessionProvider} from 'next-auth/react'
 

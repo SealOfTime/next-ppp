@@ -1,0 +1,18 @@
+.box-gradient {
+	border: 10px solid;
+	border-image: linear-gradient(90deg, #F45F89 0%, #8D0B93 50%, #321575 100%);
+	border-image-slice: 1;
+
+	filter: drop-shadow(2px 4px 0px #000000);
+	-webkit-filter: drop-shadow(2px 4px 0px #000000);
+}
+
+.box-gradient__inner {
+	padding: 48px 52px 48px 52px;
+	background-color: #fff;
+	height: 100%;
+}
+
+.box-gradient__text {
+	
+}

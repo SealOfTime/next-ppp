@@ -8,17 +8,11 @@
 }
 
 .header__logo {
-	width: 105px;
-	height: 67px;
-	
+	max-width: 105px;
+	max-height: 67px;
 }
 
 .header__menu {
-	font-family: progresspixel;
-	font-size: 18px;
-	width: 700;
-	line-height: calc(31 / 18 * 100%);
-	/* line-height: 31px; */
 }
 .menu {
 	flex: 1 1 100%;
@@ -33,6 +27,12 @@
 	align-items: center;
 }
 .menu__link {
+	font-family: progresspixel;
+	font-size: 18px;
+	width: 700;
+	line-height: calc(31 / 18 * 100%);
+	/* line-height: 31px; */
+
 	background: linear-gradient(90deg, #F45F89 0%, #8D0B93 50%, #321575 100%);
 	-webkit-text-fill-color: transparent;
 	-webkit-background-clip: text;

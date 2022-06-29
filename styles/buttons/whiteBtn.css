@@ -4,6 +4,10 @@
 	background: linear-gradient(90deg, #F45F89 0%, #8D0B93 50%, #321575 100%);
 }
 
+.whiteBtn > div {
+	/* background: #F3F3F3;
+	padding: 1px 9px 1px 9px; */
+}
 .whiteBtn__inner {
 	background: #F3F3F3;
 	padding: 1px 9px 1px 9px;

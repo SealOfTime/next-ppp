@@ -1,4 +1,4 @@
-// import mainLogo from '/mainLogo.png'
+import RegistrationButton from "../RegistrationButton"
 
 export default function HeaderMenu() {
 	return(
@@ -13,11 +13,11 @@ export default function HeaderMenu() {
 						<li className='menu__item'><a className="menu__link" href="">Участники</a></li>
 						<li className='menu__item'><a className="menu__link" href="">Вход</a></li>
 						<li className='menu__item '>
-							<div className="whiteBtn">
+							<RegistrationButton className="whiteBtn">
 								<div className="whiteBtn__inner">
-									<a className="menu__link" href="">Регистрация</a>
+										<span className="menu__link" href="">Регистрация</span>
 								</div>
-							</div>
+							</RegistrationButton>
 						</li>
 					</ul>
 				</nav>

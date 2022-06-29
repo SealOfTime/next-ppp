@@ -1,13 +1,20 @@
+/*welcome section*/
+
 .welcome {
     padding: 100px 0 170px 0;
-    background-image: url('../../public/content/backgroung.jpg');
-    background-position: center;
-    background-size: cover;
+    position: relative;
+	overflow: hidden;
+}
+.welcome__bg {
+	overflow: hidden;
+	position: absolute;
+	top: 0;
+	left: 0;
+	height: 100vh;
+	width: 100vw;
+	z-index: -1;
 }
 
-.welcome__bg {
-    
-}
 .welcome__title {
     max-width: 760px;
     margin-bottom: 85px;
@@ -17,7 +24,7 @@
     margin-bottom: 124px;
 }
 
-/* maybe переделать логигу и обертку для белой кнопки */
+/* maybe переделать логику обертки для белой кнопки */
 .welcome__item {
     font-family: 'Pixel Font7';
     font-size: 40px;
@@ -53,4 +60,111 @@
     padding: 24px 64px 24px 64px; 
     font-size: 30px;
     line-height: (51 / 30 * 100%);
+}
+
+/* About section*/
+
+.about-project {
+	padding: 100px 0 170px 0;
+}
+
+.about-project__title {
+	margin: 0 0 60px 0;
+}
+
+.about-project__text {
+	font-family: 'Pixel Font7';
+	font-size: 26px;
+	line-height: calc(36 / 26 * 100%);
+	color: #1A1B56;
+	font-weight: 250;
+	margin-bottom: 50px;
+}
+
+.about-project__gallery {
+
+}
+
+/* How to play section */
+
+.how-to-play {
+	padding: 0px 0 170px 0;
+}
+.how-to-play__container {
+}
+
+.how-to-plat__title {
+	margin: 0 0 68px 0;
+}
+
+.how-to-play__cart-step:nth-child(even) {
+	transform: translateX(14vw);
+}
+.how-to-play__cart-step:nth-child(even) .cart-step__box-text {
+	max-width: 800px;
+}
+
+/* Dates section*/
+
+.dates {
+	padding: 0 0 170px 0;
+}
+.dates__container {
+}
+
+.datas__title {
+	margin: 0 auto;
+	margin-bottom: 60px;
+	max-width: fit-content;
+	
+}
+
+.dates__content {
+	display: flex;
+	justify-content: space-around;
+}
+
+/* Start Section */
+.call-to-action {
+	padding: 0 0 170px 0;
+}
+.call-to-action__container {
+}
+
+.call-to-action__title {
+	max-width: fit-content;
+	margin: 0 auto;
+	margin-bottom: 116px;
+}
+
+.call-to-action__inner {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+/* Contacts */
+
+.contacts {
+	padding-bottom: 70px;
+}
+.contacts__text {
+	margin-right: 30px;
+
+	font-family: 'Pixel Font7';
+	font-weight: 250;
+	font-size: 40px;
+	line-height: calc(40 / 40 * 100%);
+	color: #1A1B56;	
+}
+
+.contacts__link {
+	display: flex;
+	align-items: center;
+	justify-content: flex-end;
+}
+.contactas__img {
+	position: relative;
+	width: 56px;
+	height: 56px;
 }
