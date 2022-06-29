@@ -138,48 +138,5 @@ export default function LandingPage({dates}) {
 				</div>
 			</div>			
 		</MainLayout>
-
-	// <div className={styles.container}>
-	// <Head>
-	// 	<title>Первому Перваку Приготовиться!</title>
-	// 	<meta name="description" content={
-	// 	"Первому Перваку Приготовиться - студенческий квест, организуемый на базе Университета ИТМО. " +
-	// 	"Нескольким командам студентов предстоит сразиться за право называть себя победителями! " +
-	// 	"Зови своих друзей и присоединяйся!"
-	// 	} />
-	// 	<link rel="icon" href="/favicon.ico" />
-	// </Head>
-
-	
-	
-	// <main className={styles.main}>
-	// 	<section className="welcome">
-	// 	<h1>Добро пожаловать в игру!</h1>
-	// 	<ul>
-	// 		<li>
-	// 		<a href="#about-project">О проекте</a>
-	// 		</li>
-	// 		<li>
-	// 		<a href="#how-to-play">Как играть?</a>
-	// 		</li>
-	// 		<li>
-	// 		<a href="#dates">Важные даты</a>
-	// 		</li>
-	// 	</ul>
-	// 	</section>
-
-	// 	<section id="about-project">
-
-	// 	</section>
-
-	
-
-	// 
-
-	// 	
-	// </main>
-
-	  
-	// </div>
 	)
 }
