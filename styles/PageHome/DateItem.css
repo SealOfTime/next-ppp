@@ -1,0 +1,31 @@
+.date-item {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+
+	font-family: 'progresspixel';
+	
+	font-weight: 700;
+	
+	
+/* identical to box height */
+
+
+color: #1A1B56;
+}
+.date-item__logo {
+	width: 248px;
+	height: 214px;
+	position: relative;
+	margin-bottom: 12px;
+}
+.date-item__title {
+	margin-bottom: 25px;
+	font-size: 30px;
+	line-height: calc(56 / 30 * 100%);
+}
+.date-item__date {
+	font-family: 'Pixel Font7';
+	font-size: 35px;
+	line-height: calc(35 / 35 * 100%);
+}
