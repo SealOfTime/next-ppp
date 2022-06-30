@@ -8,19 +8,25 @@ export default function HeaderMenu() {
 					<img src="/mainLogo.png" alt="logo" />
 				</div>
 				<nav className="header__menu menu">
-					<ul className='menu__list'>
-						<li className='menu__item'><a className="menu__link" href="">Профиль</a></li>
-						<li className='menu__item'><a className="menu__link" href="">Участники</a></li>
-						<li className='menu__item'><a className="menu__link" href="">Вход</a></li>
-						<li className='menu__item '>
-							<RegistrationButton className="whiteBtn">
-								<div className="whiteBtn__inner">
-										<span className="menu__link" href="">Регистрация</span>
-								</div>
-							</RegistrationButton>
-						</li>
-					</ul>
+					<div className="menu__body">
+						<ul className='menu__list'>
+							<li className='menu__item'><a className="menu__link" href="">Профиль</a></li>
+							<li className='menu__item'><a className="menu__link" href="">Участники</a></li>
+							<li className='menu__item'><a className="menu__link" href="">Вход</a></li>
+							<li className='menu__item '>
+								<RegistrationButton className="whiteBtn">
+									<div className="whiteBtn__inner">
+											<span className="menu__link" href="">Регистрация</span>
+									</div>
+								</RegistrationButton>
+							</li>
+						</ul>
+					</div>
+					
 				</nav>
+				<div className="header__burger burger">
+					<span className="burger__line"></span>
+				</div>
 			</div>
 		</header>
 	)

@@ -1,13 +1,16 @@
 .gallery {
 	display: flex;
+	flex-wrap: wrap;
 	justify-content: space-between;
+	gap: 20px
 }
 .gallery__item {
-	flex: 0 auto;
+	overflow: hidden;
+	flex: 1 auto;
 	border: 5px solid;
 	border-image-source: linear-gradient(90deg, #F45F89 0%, #8D0B93 50%, #321575 100%);
 	border-image-slice: 1;
-	width: 350px;
+	/* max-width: 350px; */
 	height: 350px;
 
 	overflow: hidden;

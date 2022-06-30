@@ -5,7 +5,7 @@ body {
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
   
-
+  
   /* cursor: url('../public/content/icons/cursor.png'), pointer; */
   
   /* z-index: -1; */
@@ -88,6 +88,12 @@ body::-webkit-scrollbar-button {
   /* Shadow */
   filter: drop-shadow(2px 4px 0px #000000);
   -webkit-filter: drop-shadow(2px 4px 0px #000000);
+}
+
+@media (max-width: 500px) {
+  .title-section {
+    font-size: 40px;
+  }
 }
 
 /* @mexin gradient-text {

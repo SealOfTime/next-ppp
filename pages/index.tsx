@@ -8,6 +8,9 @@ import Gallery from '../components/HomePage/Gallery.js'
 import StepPlay from '../components/HomePage/StepPlay.js'
 import DateItem from '../components/HomePage/DateItem.js'
 
+// interface  {
+	
+// }
 
 export async function getStaticProps() {
 	let dates = {
@@ -15,6 +18,7 @@ export async function getStaticProps() {
 		'event-time': '11.11 - 11.11',
 		'rewarding-time': '11.11 - 11.11',
 	}
+
 	return {
 		props: {
 			dates,
