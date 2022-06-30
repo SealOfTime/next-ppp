@@ -1,9 +1,9 @@
 // import Head from 'next/head'
 import Image from 'next/image'
 
-import MainLayout from '../layouts/MainLayout'
-import RegistrationBtn from '../components/RegistrationButton.js'
-import FullScreenImage from '../components/HomePage/HomePageFullScreenImage.js'
+import MainLayout from '../layouts/MainLayout';
+import RegistrationBtn from '../components/RegistrationButton.tsx';
+import FullScreenImage from '../components/HomePage/HomePageFullScreenImage.js';
 import Gallery from '../components/HomePage/Gallery.js'
 import StepPlay from '../components/HomePage/StepPlay.js'
 import DateItem from '../components/HomePage/DateItem.js'
@@ -43,10 +43,12 @@ export default function LandingPage({dates}) {
 							<li className="welcome__item"><a href="#how-to-play" className="welcome__link">Как играть?</a></li>
 							<li className="welcome__item"><a href="#dates" className="welcome__link">Важные даты</a></li>
 						</ul>
-
-						<RegistrationBtn className="welcome__btn gradientBtn">
-							<span className='gradientBtn__text'>Регистрация</span>
-						</RegistrationBtn>
+						<div className="welcome__block-btn">
+							<RegistrationBtn className="welcome__btn gradientBtn">
+								<span className='gradientBtn__text'>Регистрация</span>
+							</RegistrationBtn>
+						</div>
+						
 					</div>
 				</section>
 

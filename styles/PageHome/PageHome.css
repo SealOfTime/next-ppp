@@ -56,9 +56,14 @@
 .welcome__item:not(:last-child) {
     margin-bottom: 20px;
 }
-.welcome__btn {
+.welcome__block-btn {
 	display: flex;
-    padding: 24px 64px 24px 64px; 
+	
+}
+.welcome__btn {
+	/* display: flex; */
+    flex: 1 auto;
+	max-width: 388px;
     font-size: 30px;
     line-height: (51 / 30 * 100%);
 }
@@ -203,6 +208,7 @@
 	}
 	
 	.welcome__btn {
+		max-width: none;
 		font-size: 24px;
 		margin: 0 auto;
 	}
