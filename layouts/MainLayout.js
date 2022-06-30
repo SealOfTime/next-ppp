@@ -1,8 +1,7 @@
-import Link from 'next/link'
 import Head from 'next/head'
 
 //Components
-import HeaderMenu from '../components/header/HeaderMenu'
+import HeaderMenu from '../components/header/HeaderMenu.tsx'
 
 export default function MainLayout({children, title = 'title'}) {
 	return (

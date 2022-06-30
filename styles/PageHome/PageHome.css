@@ -56,8 +56,14 @@
 .welcome__item:not(:last-child) {
     margin-bottom: 20px;
 }
+.welcome__block-btn {
+	display: flex;
+	
+}
 .welcome__btn {
-    padding: 24px 64px 24px 64px; 
+	/* display: flex; */
+    flex: 1 auto;
+	max-width: 388px;
     font-size: 30px;
     line-height: (51 / 30 * 100%);
 }
@@ -109,14 +115,11 @@
 .dates {
 	padding: 0 0 170px 0;
 }
-.dates__container {
-}
 
 .datas__title {
 	margin: 0 auto;
 	margin-bottom: 60px;
 	max-width: fit-content;
-	
 }
 
 .dates__content {
@@ -135,6 +138,7 @@
 	max-width: fit-content;
 	margin: 0 auto;
 	margin-bottom: 116px;
+	text-align: center;
 }
 
 .call-to-action__inner {
@@ -167,4 +171,76 @@
 	position: relative;
 	width: 56px;
 	height: 56px;
+}
+
+@media(max-width: 1400px) {
+	.how-to-play__cart-step:nth-child(even) {
+		transform: none;		
+	}
+	.how-to-play__cart-step:nth-child(even) .cart-step__box-text {
+		max-width: 100%;
+	}
+}
+
+@media(max-width: 920px) {
+	
+}
+
+@media(max-width: 800px) {
+	.welcome__title {
+		font-size: 54px;
+	}
+}
+@media(max-width: 650px) {
+	.welcome__title {
+		font-size: 44px;
+	}
+}
+@media(max-width: 550px) {
+	.welcome__title {
+		font-size: 30px;
+	}
+}
+
+@media (max-width: 500px) {
+	.welcome {
+		padding-top: 64px;
+	}
+	
+	.welcome__btn {
+		max-width: none;
+		font-size: 24px;
+		margin: 0 auto;
+	}
+	.about-project {
+		padding-top: 50px;
+		padding-bottom: 100px;
+	}
+	.about-project__title {
+		margin-bottom: 24px;
+	}
+	.about-project__text {
+		font-size: 20px;
+	}
+	.how-to-play {
+		padding-bottom: 100px;
+	}
+	.how-to-plat__title {
+		margin-bottom: 34px;
+	}
+	.dates {
+		padding-bottom: 100px;
+	}
+	.dates__content {
+		flex-direction: column;
+	}	
+
+	.contacts {
+		padding-bottom: 24px;
+		/* text-align: center; */
+		/* margin: 0 auto; */
+	}
+	.contacts__text {
+		font-size: 34px;
+	}
 }

@@ -1,7 +1,10 @@
 import '../styles/_nullstyle.css'
 import '../styles/_fonts.css'
 import '../styles/globals.css'
+import '../styles/_vars.css'
+
 import '../styles/header/header.css'
+import '../styles/header/burger.css'
 
 import '../styles/buttons/whiteBtn.css'
 import '../styles/buttons/gradientBtn.css'

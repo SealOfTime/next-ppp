@@ -1,0 +1,28 @@
+.burger {
+	/* display: none; */
+	z-index: 99;
+	width: 60px;
+	height: 22px;
+	cursor: pointer;
+	position: relative;
+}
+.burger__line, .burger__line::before, .burger__line::after {
+	width: 100%;
+	position: absolute;
+	height: 4px;
+	display: block;
+	background: #000;
+	background: linear-gradient(90deg, #F45F89 0%, #8D0B93 50%, #321575 100%);
+	top: 50%;
+	transition: all 0.25s ease 0s;
+}
+
+.burger__line::before {
+	content: '';
+	top: -10px;
+}
+
+.burger__line::after {
+	content: '';
+	top: 10px;
+}

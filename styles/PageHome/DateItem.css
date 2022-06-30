@@ -29,3 +29,25 @@ color: #1A1B56;
 	font-size: 35px;
 	line-height: calc(35 / 35 * 100%);
 }
+
+@media (max-width: 920px) {
+	.date-item__logo {
+		width: 124px;
+		height: 107px;
+	}
+}
+@media (max-width: 720px) {
+	.date-item__title {
+		font-size: 20px;
+		margin-bottom: 12px;
+	}
+	.date-item__date {
+		font-size: 25px;
+	}
+}
+
+@media (max-width: 500px) {
+	.date-item {
+		margin-bottom: 32px;
+	}
+}
