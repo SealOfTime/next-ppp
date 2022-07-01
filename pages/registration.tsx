@@ -31,18 +31,24 @@ const Registration = ({data1}) => {
 				<div className="registartion__container container">
 					<h2 className="registration__title title-section">Регистрация</h2>
 					<form className="registration__form form-registration" action="">
-						<RegistrationInput type={InputType.text} placeholder="Название команды"/>
-						<RegistrationInput type={InputType.text} placeholder="ФИ капитана команды"/>
-						<RegistrationInput type={InputType.phone} placeholder="Телеофн капитана команды"/>
-						<RegistrationInput type={InputType.url} placeholder="vk.com/капитана команды"/>
+						<div className="form-registration__inputs">
+							<RegistrationInput type={InputType.text} placeholder="Название команды"/>
+							<RegistrationInput type={InputType.text} placeholder="ФИ капитана команды"/>
+							<RegistrationInput type={InputType.phone} placeholder="Телеофн капитана команды"/>
+							<RegistrationInput type={InputType.url} placeholder="vk.com/капитана команды"/>
+						</div>
+						
 						<div className="form-registration__dates">
 							<span className="form-registration__text">Выберите дату:</span>
-							{datesItem}
-							
+							<div className="form-registration__dates-radio">
+								{datesItem}
+							</div>
 						</div>
-						<button onClick={submitForm} className="form-registration__btn-submit gradientBtn">
-							<span>Готово</span>
-						</button>
+						<div className="form-registration__box-btn" >
+							<button onClick={submitForm} className="form-registration__btn-submit gradientBtn">
+								<span>Готово</span>
+							</button>
+						</div>
 					</form>
 				</div>
 			</div>

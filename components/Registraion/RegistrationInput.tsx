@@ -15,8 +15,7 @@ interface Iinput {
 
 const RegistrationInput: FC<Iinput> = ({placeholder, type}) => {
 	return(
-		<input placeholder={placeholder} type={type} >
-
+		<input className='form-registration__input input-gradient' placeholder={placeholder} type={type}>
 		</input>
 	)
 }

@@ -8,17 +8,12 @@ interface IRadioBtn {
 
 const RegistrationRadioBtn:FC<IRadioBtn> = ({date,groupName, onChecked}) => {
 	return (
-		<>
-		<span className="">
-			{date}
-		</span>
-		<label >
-			<input className="" type='radio' name={groupName} onChange={onChecked}>
-			
-			</input>
+		<label className="registration-radion-btn">
+			<input className="registration-radion-btn__input" type='radio' name={groupName} onChange={onChecked}/>
+			<span className="registration-radion-btn__text">
+				{date}
+			</span>
 		</label>
-		</>
-		
 	) 
 }
 

@@ -1,0 +1,45 @@
+.registration-radion-btn {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	min-width: 65px;
+	min-height: 65px;
+	max-height: 65px;
+
+	border: 3.68px solid;
+	border-image-source: linear-gradient(90deg, #F45F89 0%, #8D0B93 50%, #321575 100%);
+	border-image-slice: 1;
+
+	position: relative;
+	user-select: none;
+	padding: 12px;
+
+	background: #F3F3F3;
+
+}
+
+.registration-radion-btn:not(:last-child) {
+	margin-right: 22px;
+}
+
+.registration-radion-btn__text {
+	font-family: 'Pixel font7';
+	font-size: 42px;
+	line-height: calc(42 / 42 * 100%);
+	color: #85858F;
+}
+
+.registration-radion-btn__input {
+	visibility: hidden;
+	position: absolute;
+}
+
+input.registration-radion-btn__input:checked ~ .registration-radion-btn__text {
+	color: #1A1B56;	
+}
+
+@media (max-width: 550px) {
+	.registration-radion-btn__text {
+		/* font-size: 24px; */
+	}
+}

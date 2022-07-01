@@ -1,0 +1,15 @@
+.input-gradient {
+    padding: 16px 0 20px 0 ;
+    width: 100%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    /*gradient*/
+    border: 3.8px solid;
+    border-image-source: linear-gradient(90deg, #F45F89 0%, #8D0B93 50%, #321575 100%);
+    border-image-slice: 1;
+
+    box-shadow: 2px 4px 0px 0px rgba(0, 0, 0, 1);
+}
