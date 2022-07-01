@@ -15,6 +15,13 @@ import '../styles/PageHome/Gallery.css'
 import '../styles/PageHome/CartSteps.css'
 import '../styles/PageHome/DateItem.css'
 
+/*Registration page*/
+import '../styles/PageRegistration/Registration.css' 
+import '../styles/PageRegistration/RegistrationRadioBtn.css'
+import '../styles/PageRegistration/RegistrationInput.css'
+/* -------------------*/
+
+
 import {SessionProvider} from 'next-auth/react'
 
 function MyApp({ 

@@ -8,8 +8,9 @@ import Gallery from '../components/HomePage/Gallery.js'
 import StepPlay from '../components/HomePage/StepPlay.js'
 import DateItem from '../components/HomePage/DateItem.js'
 
-// interface  {
-	
+// interface  IInedexPage{
+// 	dates: object,
+
 // }
 
 export async function getStaticProps() {
@@ -29,7 +30,7 @@ export async function getStaticProps() {
 export default function LandingPage({dates}) {
 	return (
 		<MainLayout title='Первому Перваку Приготовиться!'>
-			<div className="wrapper">
+			
 				<section className="welcome">
 					<FullScreenImage className="welcome__bg" />
 					<div className="welcome__container container">
@@ -142,7 +143,7 @@ export default function LandingPage({dates}) {
 						</a>
 					</div>
 				</div>
-			</div>			
+				
 		</MainLayout>
 	)
 }

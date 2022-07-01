@@ -15,10 +15,6 @@
 	height: 100%;
 }
 
-.box-gradient__text {
-	
-}
-
 @media(max-width: 600px) {
 	.box-gradient {
 		--border-size: 5px;	

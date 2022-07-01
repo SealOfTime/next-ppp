@@ -1,0 +1,77 @@
+.registration {
+	padding: 100px 0 95px 0;
+}
+
+.registration__title {
+	margin: 0 auto;
+	margin-bottom: 70px;
+
+	width: fit-content;
+}
+
+.form-registration__inputs {
+	margin: 0 auto;
+	display: flex;
+	flex-direction: column;
+	gap: 32px;
+	max-width: 680px;
+
+	margin-bottom: 32px;
+}
+
+.form-registration__input {
+	font-family: 'Pixel Font7';
+	font-size: 42px;
+	line-height: calc(42 / 42 * 100%);
+	
+}
+
+.form-registration__dates {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+
+	margin-bottom: 160px;
+}
+
+.form-registration__dates-radio {
+	display: flex;
+}
+.form-registration__text {
+	font-family: 'Pixel Font7';
+	font-size: 42px;
+	line-height: calc(42 / 42 * 100%);
+	color: #1A1B56;
+	margin-right: 38px;
+}
+.form-registration__box-btn {
+	display: flex;
+	justify-content: center;
+
+}
+.form-registration__btn-submit {
+	max-width: 388px;
+
+	font-family: 'progresspixel';
+	font-size: 30px;
+	line-height: calc(51 / 30 * 100%);
+}
+
+
+@media (max-width: 600px) {
+	.form-registration__dates {
+		flex-direction: column;
+		gap: 16px;
+		margin-bottom: 100px;
+	}
+	.registration__title {
+		margin-bottom: 24px;
+	}
+	.form-registration__input {
+		font-size: 24px;
+	}
+	.form-registration__text {
+		font-size: 35px;
+		margin-right: 0;
+	}
+}
