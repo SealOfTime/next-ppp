@@ -2,7 +2,7 @@
 import Image from 'next/image'
 
 import MainLayout from '../layouts/MainLayout';
-import RegistrationBtn from '../components/RegistrationButton.tsx';
+import RegistrationBtn from '../components/RegistrationButton';
 import FullScreenImage from '../components/HomePage/HomePageFullScreenImage.js';
 import Gallery from '../components/HomePage/Gallery.js'
 import StepPlay from '../components/HomePage/StepPlay.js'
