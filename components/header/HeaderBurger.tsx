@@ -15,12 +15,3 @@ const Burger: FC<IBurger> = ({
 }
 
 export default Burger; 
-
-// export default function Burger<Burger>({onClick}):React.FunctionComponent {
-//     return(
-//         <div className="header__burger burger">
-//             <span className="burger__line"></span>
-//         </div>
-//     )
-// }
-

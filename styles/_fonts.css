@@ -5,7 +5,7 @@
         url('../src/fonts/progresspixel-bold.woff') format('woff');
     font-weight: bold;
     font-style: normal;
-    font-display: swap;
+    font-display: auto;
 }
 
 @font-face {
@@ -15,5 +15,5 @@
         url('../src/fonts/PixelFont-7.woff') format('woff');
     font-weight: 300;
     font-style: normal;
-    font-display: swap;
+    font-display: auto;
 }
