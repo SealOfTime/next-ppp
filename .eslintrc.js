@@ -1,3 +1,9 @@
+/* eslint-disable no-unused-vars */
+// Rules severity
+const Error = 2;
+const Warning = 1;
+const Off = 0;
+
 module.exports = {
   extends: ['next/core-web-vitals', 'airbnb'],
   globals: {
@@ -23,7 +29,7 @@ module.exports = {
       },
     ],
     'react/react-in-jsx-scope': 'off',
-    'react/function-component-definition': [2, { namedComponents: 'arrow-function' }],
+    'react/function-component-definition': [Error, { namedComponents: 'arrow-function' }],
     'react/prop-types': 'off', // IDK, we're using Typescript that should do smth I hope
   },
 };

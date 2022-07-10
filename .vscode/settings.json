@@ -3,5 +3,6 @@
         "source.fixAll.eslint": true, 
     },
     "eslint.validate": ["javascript"],
-    "editor.detectIndentation": true
+    "editor.detectIndentation": true,
+    "files.eol": "\n"
 }
