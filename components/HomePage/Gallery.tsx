@@ -1,4 +1,4 @@
-import GalleryItem from './GalleryItem.js'
+import GalleryItem from './GalleryItem'
 
 export default function Gallery({imgUrls}) {
     return(
