@@ -20,7 +20,8 @@ import '../styles/PageRegistration/Registration.css'
 import '../styles/PageRegistration/RegistrationRadioBtn.css'
 import '../styles/PageRegistration/RegistrationInput.css'
 /* -------------------*/
-
+/* Page team */
+import '../styles/PageTeam/Team.css'
 
 import {SessionProvider} from 'next-auth/react'
 
