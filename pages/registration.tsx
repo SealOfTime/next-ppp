@@ -17,7 +17,8 @@ export const getStaticProps = async() => {
 const Registration = ({data1}) => {
 	
 	const submitForm = (e) => {
-		e.preventDefault();
+		// e.preventDefault();
+
 	}
 
 	console.log(data1);
