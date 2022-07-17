@@ -1,18 +1,18 @@
-import Head from 'next/head'
+import Head from 'next/head';
 
-//Components
-import HeaderMenu from '../components/header/HeaderMenu'
+// Components
+import NavMenu from '../components/menu/NavMenu';
 
-export default function MainLayout({children, title = 'title'}) {
-	return (
-		<>
-			<Head>
-				<title>{title}</title>
-			</Head>
-			<HeaderMenu/>
-			<main>
-				{children}
-			</main>
-		</>
-	)
-}
+const MainLayout = ({ children, title = 'title' }) => (
+  <>
+    <Head>
+      <title>{title}</title>
+    </Head>
+    <NavMenu />
+    <main>
+      {children}
+    </main>
+  </>
+);
+
+export default MainLayout;

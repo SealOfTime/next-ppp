@@ -1,11 +1,11 @@
-import GalleryItem from './GalleryItem'
+import GalleryItem from './GalleryItem';
 
-export default function Gallery({imgUrls}) {
-    return(
-        <div className="gallery">
-            <GalleryItem imgUrl={imgUrls[0]}/>
-            <GalleryItem imgUrl={imgUrls[1]}/>
-            <GalleryItem imgUrl={imgUrls[2]}/>
-        </div>
-    )
-}
+const Gallery = ({ imgUrls }) => (
+  <div className="gallery">
+    {imgUrls.map((img) => (
+      <GalleryItem key={img} imgUrl={img} />
+    ))}
+  </div>
+);
+
+export default Gallery;
