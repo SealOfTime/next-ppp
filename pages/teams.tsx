@@ -1,13 +1,11 @@
-import styles from '../styles/Home.module.css'
-import { GetStaticProps, GetStaticPaths, GetServerSideProps } from 'next'
+import { GetStaticProps } from 'next';
+import styles from '../styles/Home.module.css';
 
-export const getStaticProps: GetStaticProps = (context) => {
-    return {
-        props: {
-            teams: [],
-        },
-    }
-}
+export const getStaticProps: GetStaticProps = () => ({
+  props: {
+    teams: [],
+  },
+});
 
 type Team = {
     Id: Number,
@@ -18,16 +16,16 @@ type TeamsPageProps = {
     teams: Team[],
 }
 
-export default function TeamsPage({ teams }: TeamsPageProps) {
-    return (
-        <div className={styles.container}>
-            <main>
-                {teams.map((team, i) => (
-                    <div key={i}>
-                        { String(team) }
-                    </div>
-                ))}
-            </main>
+const TeamsPage = ({ teams }: TeamsPageProps) => (
+  <div className={styles.container}>
+    <main>
+      {teams.map((team) => (
+        <div key={String(team.Id)}>
+          { String(team) }
         </div>
-    )
-}
+      ))}
+    </main>
+  </div>
+);
+
+export default TeamsPage;

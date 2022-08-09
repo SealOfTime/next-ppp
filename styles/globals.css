@@ -55,21 +55,12 @@ body::-webkit-scrollbar-button {
 .fix-position {
   overflow: hidden;
 }
-/* main {
-  min-height: 100%;
-}
 
-#__next {
-  min-height: 100%;
-} */
-
-.wrapper {
-  min-height: 100%;
+main {
   position: relative;
   background-color: #D4D6D7;
   background-image: url('../public/content/backgroungBase.jpg');
   z-index: 0;
-  
 }
 
 /* Main container */
