@@ -9,6 +9,8 @@ const FullScreenImage = ({className}) => {
 				src = {background}
 				layout='fill'
 				objectFit='cover'
+                placeholder='blur'
+				blurDataURL="url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkOAMAANIAzr59FiYAAAAASUVORK5CYII=)"
 				priority
 			/>
 		</div>
