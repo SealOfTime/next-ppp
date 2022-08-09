@@ -28,9 +28,9 @@ export async function getStaticProps() {
 }
 
 export default function LandingPage({dates}) {
+
 	return (
-		<MainLayout title='Первому Перваку Приготовиться!'>
-			
+		<MainLayout title='Первому Перваку Приготовиться!'>		
 				<section className="welcome">
 					<FullScreenImage className="welcome__bg" />
 					<div className="welcome__container container">

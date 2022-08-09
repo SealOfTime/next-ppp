@@ -3,12 +3,21 @@ import { useState } from 'react';
 import HeaderMenuBody from './HeaderMenuBody';
 import HeaderBurger from "./HeaderBurger";
 
+interface IHeader {
+
+}
+
 const HeaderMenu = () => {
 	let [isOpen, setIsOpen] = useState(false);
 
 	const atctiveMenu = () => {
 		setIsOpen(!isOpen);
 		document.body.classList.toggle('fix-position');
+	}
+	
+	const handleClickAuth = (e) => {
+		e.preventDefault();
+		console.log('start reg');
 	}
 
 	return(
@@ -18,7 +27,7 @@ const HeaderMenu = () => {
 					<img src="/mainLogo.png" alt="logo" />
 				</div>
 				<nav className="header__menu menu">
-					<HeaderMenuBody classActive='active-menu' isOpen={isOpen}/>
+					<HeaderMenuBody onClickAuth={handleClickAuth} classActive='active-menu' isOpen={isOpen}/>
 				</nav>
 				<HeaderBurger onClick={() => atctiveMenu()}/>
 			</div>
