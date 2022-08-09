@@ -10,7 +10,9 @@ const MainLayout = ({ children, title = 'title' }) => (
     </Head>
     <NavMenu />
     <main>
-      {children}
+      <div className="wrapper">
+        {children}
+      </div>
     </main>
   </>
 );

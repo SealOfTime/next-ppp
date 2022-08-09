@@ -17,7 +17,7 @@ const NavMenu = () => {
     <header className="header">
       <div className="header__container container">
         <div className="header__logo">
-          <Image src="/mainLogo.png" alt="logo" />
+          <Image src="/mainLogo.png" alt="logo" width={105} height={60}/>
         </div>
         <nav className="header__menu menu">
           <HeaderMenuBody classActive="active-menu" isOpen={isOpen} items={[{ name: 'Войти', link: '/login' }]} />

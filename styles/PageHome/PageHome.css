@@ -152,6 +152,13 @@
 .contacts {
 	padding-bottom: 70px;
 }
+
+.contacts__container {
+	justify-content: flex-end;
+	display: flex;
+	align-items: center;
+}
+
 .contacts__text {
 	margin-right: 30px;
 
