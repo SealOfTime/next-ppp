@@ -24,7 +24,7 @@ const NavMenu = () => {
   const onAuth = () => {
 
     if(session) signOut()
-    else window.open("/login", '', `width=${settingsWindows.width}, height=${settingsWindows.height}, top=${window.screen.availHeight / 2 - (settingsWindows.height / 2)}, left=${window.screen.availWidth / 2 - (settingsWindows.width / 2)}`);
+    else window.open("/login", 'login', `width=${settingsWindows.width}, height=${settingsWindows.height}, top=${window.screen.availHeight / 2 - (settingsWindows.height / 2)}, left=${window.screen.availWidth / 2 - (settingsWindows.width / 2)}`);
     
   }
 
