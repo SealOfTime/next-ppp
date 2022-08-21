@@ -8,4 +8,5 @@ export default NextAuth({
       clientSecret: process.env.VK_CLIENT_SECRET,
     }),
   ],
+  secret: process.env.JWT_SECRET,
 });

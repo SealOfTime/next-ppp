@@ -21,8 +21,6 @@ const Registration = ({data1}) => {
 
 	}
 
-	console.log(data1);
-
 	const datesItem = data1.dates.map((date: number, index:number) => 
 		<RegistrationRadioBtn key={index} date={date} groupName='dates'/>
 	);

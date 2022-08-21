@@ -2,7 +2,8 @@ import { FC } from 'react';
 
 type MenuItem = {
   name: string;
-  link: string;
+  link?: string;
+  callback?: () => void;
 }
 
 interface IMenuBody {
@@ -16,7 +17,7 @@ const HeaderMenuBody: FC<IMenuBody> = ({ classActive, isOpen, items }) => (
     <ul className="menu__list">
       { items.map((item) => (
         <li key={item.name} className="menu__item">
-          <a className="menu__link" href={item.link}>
+          <a className="menu__link" href={item.link} onClick={item.callback} >
             {item.name}
           </a>
         </li>
