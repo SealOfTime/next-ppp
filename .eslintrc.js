@@ -31,5 +31,15 @@ module.exports = {
     'react/react-in-jsx-scope': 'off',
     'react/function-component-definition': [Error, { namedComponents: 'arrow-function' }],
     'react/prop-types': 'off', // IDK, we're using Typescript that should do smth I hope
+    'jsx-a11y/label-has-associated-control': ['error', {
+      required: {
+        some: ['nesting', 'id'],
+      },
+    }],
+    'jsx-a11y/label-has-for': ['error', {
+      required: {
+        some: ['nesting', 'id'],
+      },
+    }],
   },
 };
