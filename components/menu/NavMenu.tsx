@@ -1,20 +1,26 @@
-import { useCallback, useEffect, useState } from 'react';
-import { useSession, signOut } from "next-auth/react";
+import { useCallback, useState } from 'react';
+import { useSession, signOut } from 'next-auth/react';
+import { useRouter } from 'next/router';
 
 import Image from 'next/image';
 
 import HeaderMenuBody from './HeaderMenuBody';
 import HeaderBurger from './Burger';
 
+interface modalWindow {
+  width: Number,
+  height: Number,
+}
+
 const NavMenu = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [isAuth, setIsAuth] = useState(false);
-  const {data: session} = useSession();
+  const { data: session } = useSession();
+  const router = useRouter();
 
-  const settingsWindows = {
+  const settingsWindows:modalWindow = {
     width: 600,
     height: 400,
-  }
+  };
 
   const toggleMenu = useCallback(() => {
     setIsOpen((s) => !s);
@@ -22,20 +28,44 @@ const NavMenu = () => {
   }, []);
 
   const onAuth = () => {
+    if (session) {
+      signOut();
+    } else window.open('/login', 'login', `width=${settingsWindows.width}, height=${settingsWindows.height}, top=${window.screen.availHeight / 2 - (settingsWindows.height / 2)}, left=${window.screen.availWidth / 2 - (settingsWindows.width / 2)}`);
+  };
 
-    if(session) signOut()
-    else window.open("/login", 'login', `width=${settingsWindows.width}, height=${settingsWindows.height}, top=${window.screen.availHeight / 2 - (settingsWindows.height / 2)}, left=${window.screen.availWidth / 2 - (settingsWindows.width / 2)}`);
-    
-  }
+  const navList = ():Array<any> => {
+    if (session) {
+      return [
+        {
+          name: 'Профиль',
+        },
+        {
+          name: 'Участники',
+        },
+        {
+          name: 'Выход',
+          callback: onAuth,
+        },
+        {
+          name: 'Крутая кнопка зарегестрироваться',
+          callback: () => { router.push('/registration'); },
+        },
+      ];
+    }
+    return [{
+      name: 'Вход',
+      callback: onAuth,
+    }];
+  };
 
   return (
     <header className="header">
       <div className="header__container container">
-        <div className="header__logo">
-          <Image src="/mainLogo.png" alt="logo" width={105} height={60}/>
+        <div className="header__logo" onClick={() => { router.push('/'); }}>
+          <Image src="/mainLogo.png" alt="logo" width={105} height={60} />
         </div>
         <nav className="header__menu menu">
-          <HeaderMenuBody classActive="active-menu" isOpen={isOpen} items={[{ name: session? 'Выход ': 'Войти', callback: onAuth }]} />
+          <HeaderMenuBody classActive="active-menu" isOpen={isOpen} items={navList()} />
         </nav>
         <HeaderBurger onClick={toggleMenu} />
       </div>

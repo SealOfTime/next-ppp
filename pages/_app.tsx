@@ -15,7 +15,27 @@ import '../styles/PageHome/Gallery.css';
 import '../styles/PageHome/CartSteps.css';
 import '../styles/PageHome/DateItem.css';
 
-import { SessionProvider } from 'next-auth/react';
+import '../styles/PageRegistration/Registration.css';
+import '../styles/PageRegistration/RegistrationInput.css';
+import '../styles/PageRegistration/RegistrationRadioBtn.css';
+
+import { SessionProvider, useSession } from 'next-auth/react';
+import { useEffect } from 'react';
+import { useRouter } from 'next/router';
+
+const Auth = ({ children }) => {
+  const { data: session, status } = useSession();
+  const router = useRouter();
+  const isUser = !!session?.user;
+  useEffect(() => {
+    if (status === 'loading') return;
+    if (!isUser) router.push('/');
+  }, [isUser, status, router]);
+  if (isUser) {
+    return children;
+  }
+  return <> loading </>;
+};
 
 const App = ({
   Component,
@@ -23,7 +43,16 @@ const App = ({
 }) => (
   <SessionProvider session={session}>
     {/* eslint-disable-next-line react/jsx-props-no-spreading */}
-    <Component {...pageProps} />
+    {
+      Component.auth ? (
+        <Auth>
+          <Component {...pageProps} />
+        </Auth>
+      ) : (
+        <Component {...pageProps} />
+      )
+    }
+
   </SessionProvider>
 );
 
