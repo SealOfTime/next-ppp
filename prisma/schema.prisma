@@ -17,10 +17,22 @@ model User {
   role Role @default(PLAYER)
   phone String
   urlVK String
+  team Team? @relation("teamRelataion", fields: [teamID], references: [id])
+  captain Team? @relation("captainRelation", fields: [id], references: [id])
+  teamID String?
+}
+
+model Team {
+  id String @id @default(uuid())
+  name String
+  dataStart DateTime 
+  captain User? @relation("captainRelation")
+  members User[] @relation("teamRelataion")
 }
 
 enum Role {
   PLAYER
+  CAPTAIN
   ADAPTER
   ADMIN
 }
