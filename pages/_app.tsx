@@ -34,7 +34,7 @@ const Auth = ({ children }) => {
   if (isUser) {
     return children;
   }
-  return <> loading </>;
+  return null;
 };
 
 const App = ({

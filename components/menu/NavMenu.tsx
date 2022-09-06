@@ -1,4 +1,4 @@
-import { useCallback, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { useSession, signOut } from 'next-auth/react';
 import { useRouter } from 'next/router';
 
@@ -14,6 +14,7 @@ interface modalWindow {
 
 const NavMenu = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [navList, setNavList] = useState([]);
   const { data: session } = useSession();
   const router = useRouter();
 
@@ -27,15 +28,14 @@ const NavMenu = () => {
     document.body.classList.toggle('fix-position');
   }, []);
 
-  const onAuth = () => {
+  useEffect(() => {
+    const onAuth = () => {
+      if (session) {
+        signOut();
+      } else window.open('/login', 'login', `width=${settingsWindows.width}, height=${settingsWindows.height}, top=${window.screen.availHeight / 2 - (+settingsWindows.height / 2)}, left=${window.screen.availWidth / 2 - (+settingsWindows.width / 2)}`);
+    };
     if (session) {
-      signOut();
-    } else window.open('/login', 'login', `width=${settingsWindows.width}, height=${settingsWindows.height}, top=${window.screen.availHeight / 2 - (settingsWindows.height / 2)}, left=${window.screen.availWidth / 2 - (settingsWindows.width / 2)}`);
-  };
-
-  const navList = ():Array<any> => {
-    if (session) {
-      return [
+      setNavList([
         {
           name: 'Профиль',
         },
@@ -50,13 +50,16 @@ const NavMenu = () => {
           name: 'Крутая кнопка зарегестрироваться',
           callback: () => { router.push('/registration'); },
         },
-      ];
+      ]);
+    } else {
+      setNavList([
+        {
+          name: 'Вход ',
+          callback: onAuth,
+        },
+      ]);
     }
-    return [{
-      name: 'Вход',
-      callback: onAuth,
-    }];
-  };
+  }, [session]);
 
   return (
     <header className="header">
@@ -65,7 +68,7 @@ const NavMenu = () => {
           <Image src="/mainLogo.png" alt="logo" width={105} height={60} />
         </div>
         <nav className="header__menu menu">
-          <HeaderMenuBody classActive="active-menu" isOpen={isOpen} items={navList()} />
+          <HeaderMenuBody classActive="active-menu" isOpen={isOpen} items={navList} />
         </nav>
         <HeaderBurger onClick={toggleMenu} />
       </div>

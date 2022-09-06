@@ -3,6 +3,7 @@ import { useEffect } from 'react';
 
 const Login = () => {
   const { data: session } = useSession();
+
   useEffect(() => {
     if (session) {
       window.close();
@@ -10,7 +11,6 @@ const Login = () => {
       signIn('vk');
     }
   }, [session]);
-  return null;
 };
 
 export default Login;
