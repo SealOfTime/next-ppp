@@ -1,0 +1,15 @@
+@font-face {
+  font-family: "heading";
+  src: url("../fonts/PressStart2P-Regular.woff") format("woff");
+  font-weight: bold;
+  font-style: normal;
+  font-display: auto;
+}
+
+@font-face {
+  font-family: "main";
+  src: url("../fonts/basis33.woff") format("woff");
+  font-weight: 300;
+  font-style: normal;
+  font-display: auto;
+}

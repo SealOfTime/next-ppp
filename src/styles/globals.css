@@ -63,7 +63,6 @@ body {
 .wrapper {
   position: relative;
   background-color: #030306;
-  /* background-image: url('../public/content/backgroungBase.jpg'); */
   z-index: 1;
   min-height: 100%;
 }
@@ -71,7 +70,7 @@ body {
 main {
   position: relative;
   background-color: #d4d6d7;
-  background-image: url("../public/content/backgroungBase.jpg");
+  background-image: url("/content/backgroungBase.jpg");
   z-index: 1;
   min-height: 100%;
 }
