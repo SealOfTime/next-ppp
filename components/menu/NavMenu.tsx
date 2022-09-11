@@ -64,7 +64,7 @@ const NavMenu = () => {
   return (
     <header className="header">
       <div className="header__container container">
-        <div className="header__logo" onClick={() => { router.push('/'); }}>
+        <div tabIndex={0} role="button" className="header__logo" onClick={() => { router.push('/'); }} onKeyDown={() => {}}>
           <Image src="/mainLogo.png" alt="logo" width={105} height={60} />
         </div>
         <nav className="header__menu menu">

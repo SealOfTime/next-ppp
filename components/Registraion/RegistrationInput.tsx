@@ -11,10 +11,14 @@ export enum InputType {
 interface Iinput {
   placeholder?: string;
   type: InputType,
+  defaultValue: string | number | '',
+  name: string,
 }
 
-const RegistrationInput: FC<Iinput> = ({ placeholder, type }) => (
-  <input className="form-registration__input input-gradient" placeholder={placeholder} type={type} />
+const RegistrationInput: FC<Iinput> = ({
+  placeholder, type, defaultValue, name,
+}) => (
+  <input className="form-registration__input input-gradient" placeholder={placeholder} type={type} required name={name} defaultValue={defaultValue} />
 );
 
 export default RegistrationInput;

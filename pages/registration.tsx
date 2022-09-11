@@ -1,3 +1,4 @@
+import { useSession } from 'next-auth/react';
 import MainLayout from '../layouts/MainLayout';
 import RegistrationInput, { InputType } from '../components/Registraion/RegistrationInput';
 import RegistrationRadioBtn from '../components/Registraion/RegistrationRadioBtn';
@@ -14,6 +15,7 @@ export const getStaticProps = async () => {
 };
 
 const Registration = ({ data1 }) => {
+  const { data: session } = useSession();
   const submitForm = (e) => {
     e.preventDefault();
   };
@@ -26,10 +28,10 @@ const Registration = ({ data1 }) => {
           <h2 className="registration__title title-section">Регистрация</h2>
           <form className="registration__form form-registration" action="">
             <div className="form-registration__inputs">
-              <RegistrationInput type={InputType.text} placeholder="Название команды" />
-              <RegistrationInput type={InputType.text} placeholder="ФИ капитана команды" />
-              <RegistrationInput type={InputType.phone} placeholder="Телеофн капитана команды" />
-              <RegistrationInput type={InputType.url} placeholder="vk.com/капитана команды" />
+              <RegistrationInput type={InputType.text} placeholder="Название команды" defaultValue="" name="name_team" />
+              <RegistrationInput type={InputType.text} placeholder="ФИ капитана команды" defaultValue={session.user.name} name="name_captain" />
+              <RegistrationInput type={InputType.phone} placeholder="Телеофн капитана команды" defaultValue="" name="phone" />
+              <RegistrationInput type={InputType.url} placeholder="vk.com/капитана команды" defaultValue="" name="urlVK" />
             </div>
 
             <div className="form-registration__dates">

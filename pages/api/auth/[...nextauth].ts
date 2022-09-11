@@ -9,4 +9,13 @@ export default NextAuth({
     }),
   ],
   secret: process.env.JWT_SECRET,
+
+  callbacks: {
+    async jwt({ token, account }) {
+      if (account) {
+        token.accessToken = account.access_token;
+      }
+      return token;
+    },
+  },
 });
