@@ -31,17 +31,11 @@
 }
 .menu__link {
   cursor: pointer;
-  font-family: progresspixel;
-  font-size: 18px;
+  font-family: main;
+  font-size: 32px;
   width: 700;
   line-height: calc(31 / 18 * 100%);
   color: #edeef2;
-  /* line-height: 31px; */
-
-  /* background: linear-gradient(90deg, #f45f89 0%, #8d0b93 50%, #321575 100%); */
-  /* -webkit-text-fill-color: transparent;
-  -webkit-background-clip: text;
-  background-clip: text; */
 }
 
 @media (max-width: 800px) {

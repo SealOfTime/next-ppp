@@ -1,7 +1,10 @@
 .whiteBtn {
 	padding: 3px;
 	box-shadow: 2px 4px 0px #000000;
-	background: linear-gradient(90deg, #F45F89 0%, #8D0B93 50%, #321575 100%);
+	/* background: linear-gradient(90deg, #F45F89 0%, #8D0B93 50%, #321575 100%);
+ */
+
+ background: #030306;
 }
 
 .whiteBtn > div {

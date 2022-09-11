@@ -1,4 +1,4 @@
-.box-gradient {
+/* .box-gradient {
 	--border-size: 10px;
 	border: var(--border-size) solid;
 	
@@ -10,10 +10,10 @@
 }
 
 .box-gradient__inner {
-	padding: 48px 52px 48px 52px;
-	background-color: #fff;
-	height: 100%;
-}
+	/* padding: 48px 52px 48px 52px; */
+	/* background-color: #fff; */
+	/* height: 100%; */
+/* }
 
 @media(max-width: 600px) {
 	.box-gradient {
@@ -22,4 +22,4 @@
 	.box-gradient__inner {
 		padding: 24px;
 	}
-}
+}  */

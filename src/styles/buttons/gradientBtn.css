@@ -3,12 +3,14 @@
 	align-items: center;
 	justify-content: center;
 	flex-wrap: wrap;
-	background: linear-gradient(90deg, #F45F89 0%, #8D0B93 50%, #321575 100%);
+	/* background: linear-gradient(90deg, #F45F89 0%, #8D0B93 50%, #321575 100%);
+	 */
+	background: #030306;
 	border: 5px solid #FFFFFF;
 	box-shadow: 2px 4px 0px #000000;
-	font-family: progresspixel;
+	font-family: main;
 	color: #fff;
 
-	padding: 24px 0; 
+	padding: 16px 0; 
 	width: 100%;
 }

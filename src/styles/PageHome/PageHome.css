@@ -1,8 +1,7 @@
 /*welcome section*/
-
 .welcome {
-    padding: 100px 0 170px 0;
-    position: relative;
+  padding: 148px 0 324px 0;
+  position: relative;
 	overflow: hidden;
 }
 .welcome__bg {
@@ -16,26 +15,26 @@
 }
 
 .welcome__title {
-    max-width: 760px;
-    margin-bottom: 85px;
+	/* max-width: 760px; */
+	margin-bottom: 85px;
 }
 .welcome__list {
-    max-width: 360px;
-    margin-bottom: 124px;
+	max-width: 360px;
+	margin-bottom: 124px;
 }
 
 /* maybe переделать логику обертки для белой кнопки */
 .welcome__item {
-    font-family: 'Pixel Font7';
-    font-size: 40px;
-    line-height: calc(40 / 40 * 100%);
-    color: #fff;
-    position: relative;
-    padding-left: 68px;
+	font-family: main;
+	font-size: 40px;
+	line-height: calc(40 / 40 * 100%);
+	color: #fff;
+	position: relative;
+	padding-left: 68px;
 }
 
 .whiteBtn  {
-    padding-left: 3px;
+	padding-left: 3px;
 }
 
 .welcome__item .whiteBtn__inner {
@@ -47,7 +46,7 @@
     position: absolute;
     height: 23px;
     width: 23px;
-    background: linear-gradient(90deg, #F45F89 0%, #8D0B93 50%, #321575 100%);
+    background: #030306;
     left: 19px;
     top: 50%;
     transform: translateY(-50%);
@@ -62,10 +61,10 @@
 }
 .welcome__btn {
 	/* display: flex; */
-    flex: 1 auto;
+	flex: 1 auto;
 	max-width: 388px;
-    font-size: 30px;
-    line-height: (51 / 30 * 100%);
+	font-size: 56px;
+	line-height: (51 / 30 * 100%);
 }
 
 /* About section*/
@@ -79,28 +78,26 @@
 }
 
 .about-project__text {
-	font-family: 'Pixel Font7';
-	font-size: 26px;
+	font-family: main;
+	font-size: 32px;
 	line-height: calc(36 / 26 * 100%);
-	color: #1A1B56;
-	font-weight: 250;
-	margin-bottom: 50px;
-}
-
-.about-project__gallery {
-
+	color: #EDEEF2;
+	font-weight: 400;
+	margin-bottom: 64px;
 }
 
 /* How to play section */
 
 .how-to-play {
-	padding: 0px 0 170px 0;
-}
-.how-to-play__container {
+	padding: 0px 0 0px 0;
 }
 
-.how-to-plat__title {
-	margin: 0 0 68px 0;
+.how-to-play__content {
+	padding: 40px;
+}
+
+.how-to-play__title {
+	margin: 0 0 48px 0;
 }
 
 .how-to-play__cart-step:nth-child(even) {
@@ -130,8 +127,6 @@
 /* Start Section */
 .call-to-action {
 	padding: 0 0 170px 0;
-}
-.call-to-action__container {
 }
 
 .call-to-action__title {
@@ -192,22 +187,6 @@
 @media(max-width: 920px) {
 	
 }
-/* 
-@media(max-width: 800px) {
-	.welcome__title {
-		font-size: 54px;
-	}
-}
-@media(max-width: 650px) {
-	.welcome__title {
-		font-size: 44px;
-	}
-}
-@media(max-width: 550px) {
-	.welcome__title {
-		font-size: 30px;
-	}
-} */
 
 @media (max-width: 500px) {
 	.welcome {
@@ -244,8 +223,6 @@
 
 	.contacts {
 		padding-bottom: 24px;
-		/* text-align: center; */
-		/* margin: 0 auto; */
 	}
 	.contacts__text {
 		font-size: 34px;

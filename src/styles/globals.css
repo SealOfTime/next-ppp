@@ -76,7 +76,6 @@ main {
 }
 
 /* Main container */
-
 .container {
   max-width: 1210px;
   margin: 0 auto;
@@ -85,30 +84,32 @@ main {
 
 /* h1 title */
 .main-title {
-  font-family: progresspixel;
-  font-size: 64px;
+  font-family: heading;
+  font-size: 48px;
   font-weight: 700;
   line-height: calc(93 / 64 * 100%);
   color: #f3f3f3;
+  text-shadow: 8px 8px 0px #030306;
 }
 
 /* h2 title*/
 .title-section {
-  font-family: progresspixel;
-  font-size: 48px;
+  font-family: heading;
+  font-size: 40px;
   line-height: calc(82 / 48 * 100%);
 
+  color: #EDEEF2;
   /* Gradient */
-  background: linear-gradient(90deg, #f45f89 0%, #8d0b93 50%, #321575 100%);
-  background-clip: text;
+  /* background: linear-gradient(90deg, #f45f89 0%, #8d0b93 50%, #321575 100%); */
+  /* background-clip: text;
   -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  -webkit-text-fill-color: transparent; */
   /* Shadow */
-  filter: drop-shadow(2px 4px 0px #000000);
-  -webkit-filter: drop-shadow(2px 4px 0px #000000);
+  /* filter: drop-shadow(2px 4px 0px #000000); */
+  /* -webkit-filter: drop-shadow(2px 4px 0px #000000); */
 }
 .title-section-white {
-  font-family: "progresspixel";
+  font-family: "heading";
   font-style: normal;
   font-weight: 700;
   font-size: 48px;

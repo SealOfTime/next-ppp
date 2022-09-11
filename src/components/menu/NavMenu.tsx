@@ -8,8 +8,8 @@ import HeaderMenuBody from './HeaderMenuBody';
 import HeaderBurger from './Burger';
 
 interface modalWindow {
-  width: Number,
-  height: Number,
+  width: Number;
+  height: Number;
 }
 
 const NavMenu = () => {
@@ -18,7 +18,7 @@ const NavMenu = () => {
   const { data: session } = useSession();
   const router = useRouter();
 
-  const settingsWindows:modalWindow = {
+  const settingsWindows: modalWindow = {
     width: 600,
     height: 400,
   };
@@ -32,7 +32,21 @@ const NavMenu = () => {
     const onAuth = () => {
       if (session) {
         signOut();
-      } else window.open('/login', 'login', `width=${settingsWindows.width}, height=${settingsWindows.height}, top=${window.screen.availHeight / 2 - (+settingsWindows.height / 2)}, left=${window.screen.availWidth / 2 - (+settingsWindows.width / 2)}`);
+      } else {
+        const w = window.open(
+          '/login',
+          'login',
+          `width=${settingsWindows.width}, height=${
+            settingsWindows.height
+          }, top=${
+            window.screen.availHeight / 2 - +settingsWindows.height / 2
+          }, left=${window.screen.availWidth / 2 - +settingsWindows.width / 2}`,
+        );
+        w.addEventListener('message', () => {
+          // console.log('bruh');
+          router.reload();
+        });
+      }
     };
     if (session) {
       setNavList([
@@ -47,8 +61,10 @@ const NavMenu = () => {
           callback: onAuth,
         },
         {
-          name: 'Крутая кнопка зарегестрироваться',
-          callback: () => { router.push('/registration'); },
+          name: 'Регистрация',
+          callback: () => {
+            router.push('/registration');
+          },
         },
       ]);
     } else {
@@ -64,11 +80,23 @@ const NavMenu = () => {
   return (
     <header className="header">
       <div className="header__container container">
-        <div tabIndex={0} role="button" className="header__logo" onClick={() => { router.push('/'); }} onKeyDown={() => {}}>
+        <div
+          tabIndex={0}
+          role="button"
+          className="header__logo"
+          onClick={() => {
+            router.push('/');
+          }}
+          onKeyDown={() => {}}
+        >
           <Image src="/mainLogo.png" alt="logo" width={105} height={60} />
         </div>
         <nav className="header__menu menu">
-          <HeaderMenuBody classActive="active-menu" isOpen={isOpen} items={navList} />
+          <HeaderMenuBody
+            classActive="active-menu"
+            isOpen={isOpen}
+            items={navList}
+          />
         </nav>
         <HeaderBurger onClick={toggleMenu} />
       </div>
