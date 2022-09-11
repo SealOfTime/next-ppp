@@ -3,12 +3,10 @@ export interface Props {
 }
 
 const StepPlay: React.FC<Props> = ({ children }) => (
-  <div className="how-to-play__cart-step cart-step">
-    <div className="cart-step__box-text">
-      <div className="box-gradient__inner">
-        {children}
-      </div>
-    </div>
+  <div className=" cart-step">
+    <p className="cart-step__box-text">
+      {children}
+    </p>
   </div>
 );
 

@@ -1,11 +1,15 @@
 import Image from 'next/image';
-import background from '../../assets/background.jpg';
 
-const FullScreenImage = ({ className }) => (
+export interface Props {
+  className: string;
+  backGroundImg: any;
+}
+
+const FullScreenImage: React.FC<Props> = ({ className, backGroundImg }) => (
   <div className={`${className}`}>
     <Image
       alt="bg"
-      src={background}
+      src={backGroundImg}
       layout="fill"
       objectFit="cover"
       placeholder="blur"

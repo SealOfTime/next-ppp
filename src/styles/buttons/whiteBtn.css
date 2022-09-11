@@ -1,21 +1,11 @@
 .whiteBtn {
-	padding: 3px;
-	box-shadow: 2px 4px 0px #000000;
-	/* background: linear-gradient(90deg, #F45F89 0%, #8D0B93 50%, #321575 100%);
- */
-
- background: #030306;
-}
-
-.whiteBtn > div {
-	/* background: #F3F3F3;
-	padding: 1px 9px 1px 9px; */
-}
-.whiteBtn__inner {
+	color: #030306;
 	background: #F3F3F3;
-	padding: 1px 9px 1px 9px;
+	outline: 3px solid #030306;
+	box-shadow: 2px 4px 0px #000000;
 }
 
-.whiteBtn_black-text {
-	color: #1A1B56;
+.whiteBtn > a {
+	color: #030306;
+	margin-left: 63px;
 }

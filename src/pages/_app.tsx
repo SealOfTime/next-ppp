@@ -1,3 +1,6 @@
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
+
 import '../styles/_nullstyle.css';
 import '../styles/_fonts.css';
 import '../styles/globals.css';

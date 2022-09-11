@@ -11,8 +11,8 @@
 	position: absolute;
 	height: 4px;
 	display: block;
-	background: #000;
-	background: linear-gradient(90deg, #F45F89 0%, #8D0B93 50%, #321575 100%);
+	/* background: #EDEEF2; */
+	
 	top: 50%;
 	transition: all 0.25s ease 0s;
 }

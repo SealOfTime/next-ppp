@@ -1,16 +1,17 @@
-// import Head from 'next/head'
 import { GetStaticProps } from 'next';
-import Image from 'next/image';
 import MainLayout from '../layouts/MainLayout';
 import FullScreenImage from '../components/HomePage/HomePageFullScreenImage';
 import Gallery from '../components/HomePage/Gallery';
 import StepPlay from '../components/HomePage/StepPlay';
 import DateItem from '../components/HomePage/DateItem';
+import WelcomListItem from '../components/HomePage/WelcomeListItem';
 
-type Dates = {registration: string, event: string, rewards: string}
+import backgroundMain from '../assets/background.jpg';
+
+type Dates = { registration: string; event: string; rewards: string };
 type LandingPageProps = {
-  dates: Dates,
-}
+  dates: Dates;
+};
 
 export const getStaticProps: GetStaticProps<LandingPageProps> = () => {
   const dates = {
@@ -34,7 +35,7 @@ const CallToActionBtn = () => (
 
 const WelcomeSection = () => (
   <section className="welcome">
-    <FullScreenImage className="welcome__bg" />
+    <FullScreenImage className="welcome__bg" backGroundImg={backgroundMain} />
     <div className="welcome__container container">
       <h1 className="welcome__title main-title">
         Добро пожаловать
@@ -42,13 +43,9 @@ const WelcomeSection = () => (
         в игру!
       </h1>
       <ul className="welcome__list">
-        <li className="welcome__item whiteBtn">
-          <div className="whiteBtn__inner">
-            <a href="#about" className=" welcome__link whiteBtn_black-text">О проекте</a>
-          </div>
-        </li>
-        <li className="welcome__item"><a href="#how-to-play" className="welcome__link">Как играть?</a></li>
-        <li className="welcome__item"><a href="#dates" className="welcome__link">Важные даты</a></li>
+        <WelcomListItem> О проекте </WelcomListItem>
+        <WelcomListItem> Как играть </WelcomListItem>
+        <WelcomListItem> Важные даты </WelcomListItem>
       </ul>
       <div className="welcome__block-btn">
         <CallToActionBtn />
@@ -69,11 +66,26 @@ const AboutSection = () => (
                   Захватывающие и увлекательные задания приведут тебя к победе. ППП - это 
                   замечательный повод выбраться из дома и провести чудесные выходные.`}
         </p>
-        <p className="box-gradient__text">Так исторически сложилось, что раньше квест проводился только для первокурсников КТУ. Но в этом году мы решились расширить свои рамки. Поэтому будем рады открыть свои двери для ВСЕХ первокурсников университета.</p>
+        <p className="box-gradient__text">
+          Так исторически сложилось, что раньше квест проводился только для
+          первокурсников КТУ. Но в этом году мы решились расширить свои рамки.
+          Поэтому будем рады открыть свои двери для ВСЕХ первокурсников
+          университета.
+        </p>
       </div>
 
       <div className="about-project__gallery">
-        <Gallery imgList={['/content/gallery/1.jpg', '/content/gallery/2.jpg', '/content/gallery/3.jpg']} />
+        <Gallery
+          imgList={[
+            '/content/gallery/1.jpg',
+            '/content/gallery/2.jpg',
+            '/content/gallery/3.jpg',
+            '/content/gallery/4.jpg',
+            '/content/gallery/5.jpg',
+            '/content/gallery/6.jpg',
+            '/content/gallery/7.jpg',
+          ]}
+        />
       </div>
     </div>
   </section>
@@ -82,11 +94,9 @@ const AboutSection = () => (
 const HowToPlaySection = () => (
   <section className="how-to-play">
     <div className="how-to-play__container container">
-      <h2 className="how-to-play__title title-section">
-        Как играть?
-      </h2>
+      <h2 className="how-to-play__title title-section">Как играть?</h2>
       <ul className="how-to-play__content">
-        <li>
+        <li className="how-to-play__li">
           <StepPlay>
             {`Собрал команду из 4-6 человек? Тогда приготовься - мы начинаем игру. 
             Наверху справа кнопка регистрации. Смело нажимай на нее и заполняй все данные о 
@@ -95,33 +105,35 @@ const HowToPlaySection = () => (
             Регистрируйся и становись одним из участников нашей большой игры.`}
           </StepPlay>
         </li>
-        <li>
-          <StepPlay step="2" img="/content/gallery/step-2.jpg">
+        <li className="how-to-play__li">
+          <StepPlay>
             {`Информация о стартовой точке и времени начала будут доступны в личном кабинете команды 
             в день игры. Не опаздывай и не теряй членов своей команды. Вас ждет захватывающая игра. 
             И пусть удача всегда будет с вами.`}
           </StepPlay>
         </li>
-        <li>
-          <StepPlay step="3" img="/content/gallery/step-3.jpg">
+        <li className="how-to-play__li">
+          <StepPlay>
             {`На каждой станции хранитель четко фиксирует время, за которое вы смогли выполнить его задания. 
             Но помни, что отсчет начинается с указанного в личном кабинете времени начала станции. 
             Во время переходов между точками вам будут доступны к выполнению дополнительные задания. 
             Они сократят ваше итоговое время в зачёте.`}
           </StepPlay>
         </li>
-
-        <StepPlay step="4" img="/content/gallery/step-4.jpg">
-          {`Помни - это игра. И в ней будет победитель. Будет ли это твоя команда? 
+        <li className="how-to-play__li">
+          <StepPlay>
+            {`Помни - это игра. И в ней будет победитель. Будет ли это твоя команда? 
             Все зависит только от вас. Кто же заберет главный приз, узнаем на награждении 
             25 октября.`}
-        </StepPlay>
+          </StepPlay>
+        </li>
+
       </ul>
     </div>
   </section>
 );
 
-const DatesSection: React.FC<{dates: Dates}> = ({ dates }) => (
+const DatesSection: React.FC<{ dates: Dates }> = ({ dates }) => (
   <section className="dates">
     <div className="dates__container container">
       <h2 className="datas__title title-section">Важные даты</h2>
@@ -143,30 +155,14 @@ const DatesSection: React.FC<{dates: Dates}> = ({ dates }) => (
 const CallToActionSection = () => (
   <section className="call-to-action">
     <div className="call-to-action__container container">
-      <h2 className="call-to-action__title title-section">Начни свое приключение сейчас!</h2>
+      <h2 className="call-to-action__title title-section">
+        Начни свое приключение сейчас!
+      </h2>
       <div className="call-to-action__inner">
         <CallToActionBtn />
       </div>
     </div>
   </section>
-);
-
-const ContactsSection = () => (
-  <footer className="contacts">
-    <div className="contacts__container container">
-      <span className="contacts__text">Наши контакты:</span>
-      <div className="contactas__img">
-        <a href="https://vk.com/first_student_ready">
-          <Image
-            alt="vk-icon"
-            src="/content/icons/vk.png"
-            layout="fill"
-            objectFit="cover"
-          />
-        </a>
-      </div>
-    </div>
-  </footer>
 );
 
 const LandingPage: React.FC<LandingPageProps> = ({ dates }) => (
@@ -176,7 +172,6 @@ const LandingPage: React.FC<LandingPageProps> = ({ dates }) => (
     <HowToPlaySection />
     <DatesSection dates={dates} />
     <CallToActionSection />
-    <ContactsSection />
   </MainLayout>
 );
 
