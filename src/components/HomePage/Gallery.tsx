@@ -16,17 +16,19 @@ const Gallery: React.FC<Props> = ({ imgList }) => {
     slidesToScroll: 1,
   };
   return (
-    <div>
-      <Slider {...settings}>
-        {
-          imgList.map((item) => (
-            <div key={item}>
-              <Image src={item} layout="fill" />
-            </div>
-          ))
-        }
-      </Slider>
-    </div>
+
+    // eslint-disable-next-line react/jsx-props-no-spreading
+    <Slider {...settings}>
+      {
+        imgList.map((item) => (
+          <div key={item}>
+            {/* <img src={item} /> */}
+            <h1 style={{ color: 'white' }}>123</h1>
+          </div>
+        ))
+      }
+    </Slider>
+
   );
 };
 
