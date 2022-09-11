@@ -12,7 +12,7 @@ datasource db {
 
 model User {
   id String @id @default(uuid())
-  firsName String
+  firstName String
   lastName String
   role Role @default(PLAYER)
   phone String @unique
