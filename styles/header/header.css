@@ -35,12 +35,13 @@
   font-size: 18px;
   width: 700;
   line-height: calc(31 / 18 * 100%);
+  color: #edeef2;
   /* line-height: 31px; */
 
-  background: linear-gradient(90deg, #f45f89 0%, #8d0b93 50%, #321575 100%);
-  -webkit-text-fill-color: transparent;
+  /* background: linear-gradient(90deg, #f45f89 0%, #8d0b93 50%, #321575 100%); */
+  /* -webkit-text-fill-color: transparent;
   -webkit-background-clip: text;
-  background-clip: text;
+  background-clip: text; */
 }
 
 @media (max-width: 800px) {
