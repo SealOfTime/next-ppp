@@ -8,8 +8,8 @@ type MenuItem = {
 }
 
 interface IMenuBody {
-  classActive: string;
-  isOpen: boolean;
+  classActive?: string;
+  isOpen?: boolean;
   items: MenuItem[];
 }
 

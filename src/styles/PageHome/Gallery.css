@@ -21,3 +21,7 @@
   color: #EDEEF2;
   background-color: #EDEEF2;
 }
+
+element.style {
+  object-fit: cover;
+}

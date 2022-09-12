@@ -24,7 +24,7 @@ const NavMenu = () => {
   };
 
   const toggleMenu = useCallback(() => {
-    setIsOpen((s) => !s);
+    // setIsOpen((s) => !s);
     document.body.classList.toggle('fix-position');
   }, []);
 
@@ -89,12 +89,12 @@ const NavMenu = () => {
           }}
           onKeyDown={() => {}}
         >
-          <Image src="/mainLogo.png" alt="logo" width={105} height={60} />
+          <Image src="/mainLogo.svg" alt="logo" width={65} height={64} />
         </div>
         <nav className="header__menu menu">
           <HeaderMenuBody
-            classActive="active-menu"
-            isOpen={isOpen}
+            // classActive="active-menu"
+            // isOpen={isOpen}
             items={navList}
           />
         </nav>

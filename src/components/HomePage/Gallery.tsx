@@ -16,18 +16,16 @@ const Gallery: React.FC<Props> = ({ imgList }) => {
     slidesToShow: 1,
     slidesToScroll: 1,
     arrows: false,
-    // autoplaySpeed: 3000,
-    // autoplay: true,
+
   };
   return (
     <div className="Slider">
       <Slider {...settings}>
         {
           imgList.map((item) => (
-            <div>
+            <div key={item}>
               {/* <img src={item} alt={item} /> */}
-
-              <Image src={item} width={1170} height={627} layout="fill" />
+              <Image src={item} width={1170} height={627} />
             </div>
           ))
         }

@@ -8,4 +8,9 @@
     --media-600: 600;
     --media-500: 500;
     --media-400: 400;
+
+    /* colors */
+    --text-white: #EDEEF2;
+    --background: #030306;
+
 }

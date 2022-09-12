@@ -1,36 +1,69 @@
 .cart-step {
+	color: #EDEEF2;
+	position: relative;
 	display: flex;
 	align-items: center;
-	max-width: fit-content;
-	color: #EDEEF2;
+	gap: 64px;
 }
+.cart-step__label-line {
+	content: '';
+	position: absolute;
+	width: 16px;
+	height: 100%;
+	background-color: #EDEEF2;
+	top: 10;
+	left: 16px;
+}
+.how-to-play__li:not(:last-child, :first-child) .cart-step__label-line{
+	height: calc(100% + 40px)
+}
+
+.how-to-play__li:last-child .cart-step__label-line {
+	height: 100%;
+	top: -50%;
+}
+
+.how-to-play__li:first-child .cart-step__label-line {
+	top: 50%;
+}
+
 .cart-step__label {
-	display: flex;
-	/* gap: 15px; */
 	position: relative;
+	flex: 48px 0;
+	width: 48px;
+	height: 48px;
+	background-color: #EDEEF2;
+	min-width: 48px;
 }
+
 .cart-step__box-text {
-	/* flex: 1 auto; */
+	flex: 100% 0;
 	font-family: main;
 	font-size: 32px;
-	line-height: calc(36 / 26 * 100%);
+	line-height: calc(32 / 32 * 100%);
 }
 
 @media(max-width: 920px) {
-	.cart-step {
-		flex-direction: column;
-		align-items: flex-start;
-	}
-	.cart-step__label {
-		/* margin-bottom: 24px; */
-	}
-	.cart-step__box-text {
-		margin-left: 0;
-	}
 }
 
 @media(max-width: 500px) {
+	.cart-step__label {
+		flex: 48px 0;
+		width: 24px;
+		height: 24px;
+		background-color: #EDEEF2;
+		min-width: 24px;
+		max-width: 24px;
+	}
+
+	.cart-step {
+		gap: 1em;
+	}
 	.cart-step__box-text {
-		font-size: 20px;
+		font-size: 28px;
+	}
+	.cart-step__label-line {
+		width: 10px;
+		left: 7px;
 	}
 }

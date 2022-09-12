@@ -1,10 +1,10 @@
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 
+import '../styles/_vars.css';
 import '../styles/_nullstyle.css';
 import '../styles/_fonts.css';
 import '../styles/globals.css';
-import '../styles/_vars.css';
 
 import '../styles/header/header.css';
 import '../styles/header/burger.css';
