@@ -7,6 +7,7 @@ import DateItem from '../components/HomePage/DateItem';
 import WelcomListItem from '../components/HomePage/WelcomeListItem';
 
 import backgroundMain from '../assets/background.jpg';
+import Background from '../components/HomePage/Background';
 
 type Dates = { registration: string; event: string; rewards: string };
 type LandingPageProps = {
@@ -43,8 +44,10 @@ const WelcomeSection = () => (
       </h1>
       <ul className="welcome__list">
         <WelcomListItem> О проекте </WelcomListItem>
-        <WelcomListItem> Как играть </WelcomListItem>
-        <WelcomListItem> Важные даты </WelcomListItem>
+        <Background imageURL="/src/assets/background2.jpg">
+          <WelcomListItem> Как играть </WelcomListItem>
+          <WelcomListItem> Важные даты </WelcomListItem>
+        </Background>
       </ul>
       <div className="welcome__block-btn">
         <CallToActionBtn />
@@ -89,16 +92,14 @@ const AboutSection = () => (
   </section>
 );
 
-const HowToPlaySection: React.FC<{dates : Dates}> = ({ dates }) => {
-  const ref = [];
-  return (
-    <section className="how-to-play">
-      <div className="how-to-play__container container">
-        <h2 className="how-to-play__title title-section">Как играть?</h2>
-        <ul className="how-to-play__content">
-          <li className="how-to-play__li">
-            <StepPlay>
-              {`Собрал команду из 5-6 человек? 
+const HowToPlaySection: React.FC<{dates : Dates}> = ({ dates }) => (
+  <section className="how-to-play">
+    <div className="how-to-play__container container">
+      <h2 className="how-to-play__title title-section">Как играть?</h2>
+      <ul className="how-to-play__content">
+        <li className="how-to-play__li">
+          <StepPlay>
+            {`Собрал команду из 5-6 человек? 
             Тогда приготовься к путешествию по Питеру 90-х.
              Наверху справа кнопка регистрации. Скорее нажимай 
              на нее и заполняй все данные о своей команде. 
@@ -106,41 +107,40 @@ const HowToPlaySection: React.FC<{dates : Dates}> = ({ dates }) => {
              Если твоя команда потеряется, мы сможем с вами связаться.
              Поторопись, ведь количество мест ограничено. 
              Не упусти свою возможность получить большое наследство - регистрируйся!`}
-            </StepPlay>
-          </li>
-          <li className="how-to-play__li">
-            <StepPlay>
-              {`
+          </StepPlay>
+        </li>
+        <li className="how-to-play__li">
+          <StepPlay>
+            {`
             Информация о стартовой точке
              и времени начала будут доступны в личном кабинете команды
               в день игры. Не опаздывай и не теряй членов своей команды.
                Вас ждет увлекательное погружение в атмосферу бандитского Петербурга.
             `}
-            </StepPlay>
-          </li>
-          <li className="how-to-play__li">
-            <StepPlay>
-              {`На каждой станции хранитель четко
+          </StepPlay>
+        </li>
+        <li className="how-to-play__li">
+          <StepPlay>
+            {`На каждой станции хранитель четко
              фиксирует время, за которое вы смогли
               выполнить его задания. 
               Но помни, что отсчет начинается с указанного в личном кабинете времени начала станции.
                Во время переходов между точками вам будут доступны к выполнению дополнительные задания.
                 Они сократят ваше итоговое время в зачёте.
 `}
-            </StepPlay>
-          </li>
-          <li className="how-to-play__li">
-            <StepPlay>
-              {`Чья же команда сможет разгадать завещание почившей старушки?
+          </StepPlay>
+        </li>
+        <li className="how-to-play__li">
+          <StepPlay>
+            {`Чья же команда сможет разгадать завещание почившей старушки?
              Кто же все-таки получит наследство, узнаем на награждении ${dates.rewards} октября.`}
-            </StepPlay>
-          </li>
+          </StepPlay>
+        </li>
 
-        </ul>
-      </div>
-    </section>
-  );
-};
+      </ul>
+    </div>
+  </section>
+);
 
 const DatesSection: React.FC<{ dates: Dates }> = ({ dates }) => (
   <section className="dates">
