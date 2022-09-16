@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-props-no-spreading */
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 
@@ -22,6 +23,8 @@ import '../styles/PageRegistration/Registration.css';
 import '../styles/PageRegistration/RegistrationInput.css';
 import '../styles/PageRegistration/RegistrationRadioBtn.css';
 
+import '../styles/PageTeam/Team.css';
+
 import { SessionProvider, useSession } from 'next-auth/react';
 import { useEffect } from 'react';
 import { useRouter } from 'next/router';
@@ -45,7 +48,6 @@ const App = ({
   pageProps: { session, ...pageProps },
 }) => (
   <SessionProvider session={session}>
-    {/* eslint-disable-next-line react/jsx-props-no-spreading */}
     {
       Component.auth ? (
         <Auth>

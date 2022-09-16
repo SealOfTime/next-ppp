@@ -94,6 +94,10 @@ body {
   color: #ffffff;
   text-shadow: 2px 4px 0px #000000;
 }
+/* move to separate file */
+.background {
+  z-index: 100;
+}
 
 @media (max-width: 800px) {
   .main-title {

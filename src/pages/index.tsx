@@ -44,10 +44,8 @@ const WelcomeSection = () => (
       </h1>
       <ul className="welcome__list">
         <WelcomListItem> О проекте </WelcomListItem>
-        <Background imageURL="/src/assets/background2.jpg">
-          <WelcomListItem> Как играть </WelcomListItem>
-          <WelcomListItem> Важные даты </WelcomListItem>
-        </Background>
+        <WelcomListItem> Как играть </WelcomListItem>
+        <WelcomListItem> Важные даты </WelcomListItem>
       </ul>
       <div className="welcome__block-btn">
         <CallToActionBtn />
@@ -178,8 +176,10 @@ const LandingPage: React.FC<LandingPageProps> = ({ dates }) => (
   <MainLayout title="Первому Перваку Приготовиться!">
     <WelcomeSection />
     <AboutSection />
-    <HowToPlaySection dates={dates} />
-    <DatesSection dates={dates} />
+    <Background imageURL="/src/assets/background2.jpg">
+      <HowToPlaySection dates={dates} />
+      <DatesSection dates={dates} />
+    </Background>
     <CallToActionSection />
   </MainLayout>
 );

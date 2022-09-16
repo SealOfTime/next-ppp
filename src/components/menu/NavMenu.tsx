@@ -13,7 +13,7 @@ interface modalWindow {
 }
 
 const NavMenu = () => {
-  const [isOpen, setIsOpen] = useState(false);
+  // const [isOpen, setIsOpen] = useState(false);
   const [navList, setNavList] = useState([]);
   const { data: session } = useSession();
   const router = useRouter();
@@ -43,7 +43,6 @@ const NavMenu = () => {
           }, left=${window.screen.availWidth / 2 - +settingsWindows.width / 2}`,
         );
         w.addEventListener('message', () => {
-          // console.log('bruh');
           router.reload();
         });
       }
@@ -51,10 +50,10 @@ const NavMenu = () => {
     if (session) {
       setNavList([
         {
-          name: 'Профиль',
-        },
-        {
-          name: 'Участники',
+          name: 'Команда',
+          callback: () => {
+            router.push('team-cart');
+          },
         },
         {
           name: 'Выход',

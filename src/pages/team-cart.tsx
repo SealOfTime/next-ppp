@@ -1,4 +1,4 @@
-import React, { FC, useState } from 'react';
+import { FC, useState } from 'react';
 import MainLayout from '../layouts/MainLayout';
 
 interface ITeam {
@@ -27,7 +27,11 @@ export const getStaticProps = async () => {
   };
 };
 
-const teamCart = ({ team }) => (
+interface Props {
+  team: ITeam,
+}
+
+const teamCart: FC<Props> = ({ team }) => (
 // const [team, setTeam] = useState<ITeam>();
   <MainLayout>
     <section className="page-cart-team">
@@ -39,10 +43,9 @@ const teamCart = ({ team }) => (
             </h3>
           </div>
           <div className="teamCart__inner">
-
             <div className="teamCart__item">
               <div className="teamCart__team-name">
-                <h4 className="teamCart__title-h4 gradient-title">Название команды:</h4>
+                <h4 className="teamCart__title-h4">Название команды:</h4>
                 {team.nameTeam}
               </div>
               <div className="teamCart__members">
@@ -70,9 +73,7 @@ const teamCart = ({ team }) => (
                 <h4 className="teamCart__title-h4 gradient-title">Ссылка-приглашение:</h4>
                 <div className="teamCart__invite-link-box">
                   <span className="teamCart__link whiteBtn_black-text">
-                    {' '}
                     {team.inviteLink}
-                    {' '}
                   </span>
                   <button type="button" className="teamCart__btn-invite gradientBtn">Поделиться</button>
                 </div>
