@@ -7,7 +7,7 @@ import DateItem from '../components/HomePage/DateItem';
 import WelcomListItem from '../components/HomePage/WelcomeListItem';
 
 import backgroundMain from '../assets/background.jpg';
-import Background from '../components/HomePage/Background';
+import backgroundBlock from '../assets/background2.jpg';
 
 type Dates = { registration: string; event: string; rewards: string };
 type LandingPageProps = {
@@ -176,10 +176,11 @@ const LandingPage: React.FC<LandingPageProps> = ({ dates }) => (
   <MainLayout title="Первому Перваку Приготовиться!">
     <WelcomeSection />
     <AboutSection />
-    <Background imageURL="/src/assets/background2.jpg">
+    <div className="background">
+      <FullScreenImage className="background__big" backGroundImg={backgroundBlock} />
       <HowToPlaySection dates={dates} />
       <DatesSection dates={dates} />
-    </Background>
+    </div>
     <CallToActionSection />
   </MainLayout>
 );

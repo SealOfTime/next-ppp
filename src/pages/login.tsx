@@ -2,11 +2,10 @@ import { useSession, signIn } from 'next-auth/react';
 import { useEffect, useState } from 'react';
 
 const Login = () => {
-  const { data: session, status } = useSession();
+  const { data: session } = useSession();
   const [authenticated, setAuthenticated] = useState(false);
 
   useEffect(() => {
-    if (status === 'loading') return;
     if (authenticated) return;
     if (session) {
       setAuthenticated(true);

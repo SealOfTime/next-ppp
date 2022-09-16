@@ -9,9 +9,11 @@
   position: absolute;
   top: 0;
   left: 0;
-  height: 100%;
-  width: 100%;
-  z-index: -1;
+  /* height: 100%; */
+  /* width: 100%; */
+  right: 0;
+  bottom: 0;
+  z-index: -2;
 }
 
 .welcome__title {
@@ -94,6 +96,7 @@
 .how-to-play__content {
   padding: 40px;
   background: rgba(21, 25, 31, 0.8);
+  /* z-index: 1; */
 }
 
 .how-to-play__title {
@@ -105,9 +108,7 @@
 }
 /* Dates section*/
 
-.dates {
-  
-}
+.dates {}
 
 .datas__title {
   /* margin: 0 auto; */
@@ -122,7 +123,7 @@
 
 /* Start Section */
 .call-to-action {
-  padding: 310px 0 333px 0;
+  padding: 150px 0 333px 0;
 }
 
 .call-to-action__title {
@@ -136,6 +137,14 @@
   justify-content: center;
 }
 
+.background__big {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  z-index: -2;
+}
 @media (max-width: 1400px) {
   .how-to-play__cart-step:nth-child(even) {
     transform: none;

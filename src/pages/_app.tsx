@@ -33,7 +33,9 @@ const Auth = ({ children }) => {
   const { data: session, status } = useSession();
   const router = useRouter();
   const isUser = !!session?.user;
+
   useEffect(() => {
+    // if (!Component.private) return;
     if (status === 'loading') return;
     if (!isUser) router.push('/');
   }, [isUser, status, router]);

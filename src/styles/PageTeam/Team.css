@@ -1,39 +1,40 @@
 .page-cart-team {
 	padding: 75px 0 126px 0;
 	color: #fff;
+	position: relative;
 }
 .page-cart-team__container {
 }
 .page-cart-item__body {
-	
+	background: rgba(21, 25, 31, 0.8);	
 }
 
+.teamCart__title-h4 {
+	font-weight: 900;
+	font-size: 37px;
+}
 
 .teamCart {
-	border: 10px solid;
+	padding: 50px 100px;
 }   
 
 .teamCart__title-box {
-	margin: 72px 0 52px 0;
-	padding: 8px 0 8px 0 ;
+	/* margin-bottom: 10px; */
 }
 .teamCart__title {
 	margin: 0 auto;
 	width: fit-content;
 	text-align: center;
+	margin-bottom: 1em;
 }
 
 
 .teamCart__inner {
-	padding: 0 105px;
-	padding-bottom: 177px;
+	/* padding-bottom: 177px; */
+	font-family: main;
+	font-size: 32px;
+	line-height: calc(32 / 32 * 100%);
 
-
-	/* font-family: 'Pixel Font7'; */
-	/* font-size: 35px;
-	line-height: calc(35 / 35 * 100%);*/
-	
-   
 }
 .teamCart__item {
 	display: grid;
@@ -44,8 +45,6 @@
 .teamCart__team-name {
 	grid-column: 1;
 }
-
-
 
 .teamCart__members {
 	grid-column: 2;

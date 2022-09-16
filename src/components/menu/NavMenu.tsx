@@ -62,7 +62,8 @@ const NavMenu = () => {
         {
           name: 'Регистрация',
           callback: () => {
-            router.push('/registration');
+            // router.push('/registration');
+            window.location.href = 'https://vk.com/im?sel=-205795381';//
           },
         },
       ]);

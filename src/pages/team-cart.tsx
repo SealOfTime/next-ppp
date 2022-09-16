@@ -1,5 +1,7 @@
 import { FC, useState } from 'react';
+import FullScreenImage from '../components/HomePage/HomePageFullScreenImage';
 import MainLayout from '../layouts/MainLayout';
+import Background from '../assets/background3.jpg';
 
 interface ITeam {
   id: number,
@@ -35,6 +37,7 @@ const teamCart: FC<Props> = ({ team }) => (
 // const [team, setTeam] = useState<ITeam>();
   <MainLayout>
     <section className="page-cart-team">
+      <FullScreenImage className="background__big" backGroundImg={Background} />
       <div className="page-cart-team__container container">
         <div className="page-cart-item__body teamCart">
           <div className="teamCart__title-box">
@@ -69,7 +72,7 @@ const teamCart: FC<Props> = ({ team }) => (
                 <h4 className="teamCart__title-h4 gradient-title">Следующая станция:</h4>
                 {team.nextStation}
               </div>
-              <div className="teamCart__invite-link">
+              {/* <div className="teamCart__invite-link">
                 <h4 className="teamCart__title-h4 gradient-title">Ссылка-приглашение:</h4>
                 <div className="teamCart__invite-link-box">
                   <span className="teamCart__link whiteBtn_black-text">
@@ -77,7 +80,7 @@ const teamCart: FC<Props> = ({ team }) => (
                   </span>
                   <button type="button" className="teamCart__btn-invite gradientBtn">Поделиться</button>
                 </div>
-              </div>
+              </div> */}
             </div>
           </div>
         </div>
@@ -86,3 +89,4 @@ const teamCart: FC<Props> = ({ team }) => (
   </MainLayout>
 );
 export default teamCart;
+teamCart.auth = true;
