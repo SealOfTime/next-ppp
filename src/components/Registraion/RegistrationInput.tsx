@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import { FC } from 'react';
 
 export enum InputType {
   text='text',
@@ -8,14 +8,15 @@ export enum InputType {
   email='email',
 }
 
-interface Iinput {
+export interface Props {
+  // eslint-disable-next-line react/require-default-props
   placeholder?: string;
   type: InputType,
-  defaultValue: string | number | '',
+  defaultValue: string | number,
   name: string,
 }
 
-const RegistrationInput: FC<Iinput> = ({
+const RegistrationInput: FC<Props> = ({
   placeholder, type, defaultValue, name,
 }) => (
   <input className="form-registration__input input-gradient" placeholder={placeholder} type={type} required name={name} defaultValue={defaultValue} />

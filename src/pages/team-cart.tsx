@@ -21,7 +21,6 @@ export const getStaticProps = async () => {
     inviteLink: 'https://ppps.live/',
     members: ['Петров Николай', 'Николаев Владислав', 'Смирнова Ангелина', 'Синицына Екатерина', 'Королев Валерий'],
   };
-
   return {
     props: {
       team,
@@ -31,6 +30,7 @@ export const getStaticProps = async () => {
 
 interface Props {
   team: ITeam,
+  // auth: any,
 }
 
 const teamCart: FC<Props> = ({ team }) => (

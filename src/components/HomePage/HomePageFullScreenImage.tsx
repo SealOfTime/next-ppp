@@ -1,7 +1,7 @@
 import Image from 'next/image';
 
 export interface Props {
-  className: string;
+  className?: string;
   backGroundImg: any;
 }
 
