@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useState } from 'react';
-import { useSession, signOut } from 'next-auth/react';
+import { useSession, signOut, getSession } from 'next-auth/react';
 import { useRouter } from 'next/router';
 
 import Image from 'next/image';
@@ -17,7 +17,7 @@ const NavMenu = () => {
   const [navList, setNavList] = useState([]);
   const { data: session } = useSession();
   const router = useRouter();
-
+  const [auth, setAuth] = useState(false);
   const settingsWindows: modalWindow = {
     width: 600,
     height: 400,
@@ -29,9 +29,15 @@ const NavMenu = () => {
   }, []);
 
   useEffect(() => {
+    const reloadSession = () => {
+      const event = new Event('visibilitychange');
+      document.dispatchEvent(event);
+    };
+
     const onAuth = () => {
       if (session) {
         signOut();
+        setAuth(false);
       } else {
         const w = window.open(
           '/login',
@@ -42,9 +48,22 @@ const NavMenu = () => {
             window.screen.availHeight / 2 - +settingsWindows.height / 2
           }, left=${window.screen.availWidth / 2 - +settingsWindows.width / 2}`,
         );
-        w.addEventListener('message', () => {
-          router.reload();
-        });
+
+        if (w.closed) {
+          console.log('closed');
+          setAuth(true);
+          reloadSession();
+        }
+        const timer = setInterval(() => {
+          w.onbeforeunload = async () => {
+            reloadSession();
+          };
+          if (w.closed) {
+            clearInterval(timer);
+            setAuth(true);
+            reloadSession();
+          }
+        }, 100);
       }
     };
     if (session) {
@@ -62,8 +81,7 @@ const NavMenu = () => {
         {
           name: 'Регистрация',
           callback: () => {
-            // router.push('/registration');
-            window.location.href = 'https://vk.com/im?sel=-205795381';//
+            window.location.href = 'https://vk.com/im?media=&sel=-171647377';
           },
         },
       ]);
