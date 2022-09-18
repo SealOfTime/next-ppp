@@ -58,7 +58,7 @@ export async function handleConfirmLeaving(req: BotRequest){
 
   switch (req.message) {
   case 'Да':
-    Prisma.user.update({
+    await Prisma.user.update({
       where: {
         vkId: req.user.vkId,
       },
@@ -68,8 +68,31 @@ export async function handleConfirmLeaving(req: BotRequest){
         botData: {},
       },
     })
-    Bot.sendMessage(req.user, UserWithoutTeamInitialKeyboard, 
+    
+    const team = await Prisma.team.findFirst({
+      where: {
+        id: req.user.teamID,
+      },
+      include: {
+        _count: {
+          select: {
+            members: true,
+          },
+        }
+      },
+    })
+
+    if(team._count.members === 0) {
+      await Prisma.team.delete({
+        where: {
+          id: team.id,
+        }
+      })
+    }
+
+    await Bot.sendMessage(req.user, UserWithoutTeamInitialKeyboard, 
       `Вы больше не состоите в команде`)
+    Bot.forward('INITIAL', req)
     break;
   case 'Нет':{
     Bot.forward('INITIAL', req);
