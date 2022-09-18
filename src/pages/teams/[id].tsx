@@ -77,7 +77,7 @@ const TeamCard: FC<Props> = ({ team }) => (
                   {
                     team.members.map(m => (
                       <li key={m.vkUrl} className="teamCart__list-item">
-                        <a href={m.vkUrl}>${m.name}</a>
+                        <a href={m.vkUrl}>{m.name}</a>
                       </li>
                     ))
                   }
