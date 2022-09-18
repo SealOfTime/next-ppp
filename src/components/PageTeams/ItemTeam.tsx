@@ -1,26 +1,22 @@
 import Link from 'next/link';
 
-type itemType = {
-  id: string,
-  name: string,
-  members: string[]
-}
-
 type Props = {
-  item: itemType;
+  item: any;
 }
 
 const ItemTeam = ({ item }: Props) => (
   <Link href={`/teams/${item.id}`}>
     <div className="team-item">
-      <span>
+      <h4>
         {item.name.toUpperCase()}
-      </span>
+      </h4>
+      <span>Дата старта: {item.participationDate} </span>
+      <h5>Участники</h5>
       <ul>
         {
           item.members.map((member) => (
             <li key={member}>
-              {member}
+              {member.firstName} {member.lastName}
             </li>
           ))
         }

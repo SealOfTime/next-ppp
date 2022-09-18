@@ -65,7 +65,7 @@ const NavMenu = () => {
         {
           name: 'Список участников',
           callback: ()=>{
-            router.push('teams')
+            router.push('/teams')
           },
         },
         {

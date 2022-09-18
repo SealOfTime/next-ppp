@@ -1,66 +1,40 @@
 import ItemTeam from '../../components/PageTeams/ItemTeam';
 import MainLayout from '../../layouts/MainLayout';
-import { GetStaticProps } from 'next';
-import styles from '../../styles/Home.module.css';
+import { GetServerSideProps } from 'next';
+import Prisma from '../../Prisma';
+import { formatDate } from '../../Util';
 
-interface Team {
-  id: string,
-  name: string,
-  members: string[],
-}
-
-export const getStaticProps = async () => {
-  const teams:Team[] = [
-    {
-      id: '1',
-      name: 'team1',
-      members: ['Иванов Иван', 'Боба Алекс', 'Биба Степа', 'ДонДон Александрович', 'Покемон Гоша', 'Традиционные отношения'],
-    },
-    {
-      id: '3',
-      name: 'team2',
-      members: ['Иванов Иван', 'Боба Алекс', 'Биба Степа', 'ДонДон Александрович', 'Покемон Гоша', 'Традиционные отношения'],
-    },
-    {
-      id: '4',
-      name: 'team2',
-      members: ['Иванов Иван', 'Боба Алекс', 'Биба Степа', 'ДонДон Александрович', 'Покемон Гоша', 'Традиционные отношения'],
-    },
-    {
-      id: '5',
-      name: 'team2',
-      members: ['Иванов Иван', 'Боба Алекс', 'Биба Степа', 'ДонДон Александрович', 'Покемон Гоша', 'Традиционные отношения'],
-    },
-    {
-      id: '6',
-      name: 'team2',
-      members: ['Иванов Иван', 'Боба Алекс', 'Биба Степа', 'ДонДон Александрович', 'Покемон Гоша', 'Традиционные отношения'],
-    },
-    {
-      id: '7',
-      name: 'team2',
-      members: ['Иванов Иван', 'Боба Алекс', 'Биба Степа', 'ДонДон Александрович', 'Покемон Гоша', 'Традиционные отношения'],
-    },
-    {
-      id: '8',
-      name: 'team2',
-      members: ['Иванов Иван', 'Боба Алекс', 'Биба Степа', 'ДонДон Александрович', 'Покемон Гоша', 'Традиционные отношения'],
-    },
-    {
-      id: '9',
-      name: 'team2',
-      members: ['Иванов Иван', 'Боба Алекс', 'Биба Степа', 'ДонДон Александрович', 'Покемон Гоша', 'Традиционные отношения'],
-    },
-
-  ];
+export const getServerSideProps: GetServerSideProps<Props> = async({params}) => {
+  const teams = await Prisma.team.findMany({
+    include: {
+      members: true,
+    }
+  });
   return {
     props: {
-      teams,
-    },
-  };
-};
+      teams: teams.map(team => ({
+        id: team.id,
+        name: team.name,
+        participationDate: formatDate(team.participationDate),
+        members: team.members,
+      })), 
+    }
+  }
+}
+type Person = {
+  name: string
+  vkUrl: string
+}
+type Team = {
+  id: string,
+  name: string
+  code?: string
+  participationDate: string
+  captain: Person
+  members: Person[]
+}
 
-interface Props {
+type Props = {
   teams: Team[],
 }
 
