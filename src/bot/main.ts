@@ -92,7 +92,6 @@ export async function handleConfirmLeaving(req: BotRequest){
 
     await Bot.sendMessage(req.user, UserWithoutTeamInitialKeyboard, 
       `Вы больше не состоите в команде`)
-    Bot.forward('INITIAL', req)
     break;
   case 'Нет':{
     Bot.forward('INITIAL', req);
