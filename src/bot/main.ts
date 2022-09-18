@@ -86,6 +86,15 @@ export async function handleConfirmLeaving(req: BotRequest){
       return
     }
 
+    if(team.members.length === 0) {
+      await Prisma.team.delete({
+        where: {
+          id: team.id,
+        }
+      })
+      return
+    } 
+
     if(req.user.role==='CAPTAIN') {
       const leftMembers = team.members.map(m=>m.vkId)
       await Prisma.user.updateMany({
@@ -103,15 +112,6 @@ export async function handleConfirmLeaving(req: BotRequest){
       await Bot.broadcastMessage(leftMembers, UserWithoutTeamInitialKeyboard, "Ваша команда распалась...");
       return;
     }
-
-    if(team.members.length === 0) {
-      await Prisma.team.delete({
-        where: {
-          id: team.id,
-        }
-      })
-      return
-    } 
 
     break;
   case 'Нет':{
