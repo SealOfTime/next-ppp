@@ -57,7 +57,7 @@ const WelcomeSection = () => (
 const AboutSection = () => (
   <section className="about-project">
     <div className="about-project__container container" >
-      <a name='about' />
+      <a id='about' />
       <h2 className="about-project__title title-section">О проекте</h2>
       <div className="about-project__text">
         <p className="">
@@ -94,7 +94,7 @@ const AboutSection = () => (
 const HowToPlaySection: React.FC<{dates : Dates}> = ({ dates }) => (
   <section className="how-to-play">
     <div className="how-to-play__container container">
-      <a name='howToPlay'/>
+      <a id='howToPlay'/>
       <h2 className="how-to-play__title title-section">Как играть?</h2>
       <ul className="how-to-play__content">
         <li className="how-to-play__li">
@@ -145,7 +145,7 @@ const HowToPlaySection: React.FC<{dates : Dates}> = ({ dates }) => (
 const DatesSection: React.FC<{ dates: Dates }> = ({ dates }) => (
   <section className="dates">
     <div className="dates__container container">
-      <a name='dates' />
+      <a id='dates' />
       <h2 className="datas__title title-section">Важные даты</h2>
       <div className="dates__content">
         <DateItem urlLogo="/content/icons/reg.png" date={dates.registration}>
