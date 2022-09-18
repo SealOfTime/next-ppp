@@ -109,6 +109,12 @@ export async function handleConfirmLeaving(req: BotRequest){
         }
       })
 
+      await Prisma.team.delete({
+        where: {
+          id: team.id,
+        }
+      })
+
       await Bot.broadcastMessage(leftMembers, UserWithoutTeamInitialKeyboard, "Ваша команда распалась...");
       return;
     }
