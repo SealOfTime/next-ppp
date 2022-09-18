@@ -44,6 +44,7 @@ const Bot = {
 
   async forward(state: string, req: BotRequest){
     await this.changeState(req.user, state)
+    req.user.botState = state;
     await this.handleMessage(req)
   },
 

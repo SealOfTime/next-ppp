@@ -6,7 +6,7 @@ import { TeamCodeLength } from "./new_team";
 
 export async function handleJoinTeamCode(req: BotRequest) {
   if (req.message === 'К началу') {
-    await Bot.forward('INITIAL', req)
+    await Bot.forward('', req)
     return;
   }
 

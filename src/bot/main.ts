@@ -52,7 +52,7 @@ async function handleUserWithTeam(req: BotRequest) {
 
 export async function handleConfirmLeaving(req: BotRequest){
   if (req.message === 'К началу') {
-    await Bot.forward('INITIAL', req);
+    await Bot.forward('', req);
     return;
   }
 
@@ -94,7 +94,7 @@ export async function handleConfirmLeaving(req: BotRequest){
       `Вы больше не состоите в команде`)
     break;
   case 'Нет':{
-    Bot.forward('INITIAL', req);
+    Bot.forward('', req);
     break;
   }
   default:

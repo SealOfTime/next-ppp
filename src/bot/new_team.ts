@@ -10,7 +10,7 @@ export const TeamCodeLength = 8;
 
 export async function handleNewTeamName(req: BotRequest) {
   if (req.message === 'К началу') {
-    await Bot.forward('INITIAL', req);
+    await Bot.forward('', req);
     return;
   }
 
@@ -40,7 +40,7 @@ export async function handleNewTeamName(req: BotRequest) {
 
 export async function handleNewTeamPhone(req: BotRequest) {
   if (req.message === 'К началу') {
-    await Bot.forward('INITIAL', req);
+    await Bot.forward('', req);
     return;
   }
 
@@ -73,7 +73,7 @@ const HardcodedDates = [
 
 export async function handleNewTeamLegionaries(req: BotRequest) {
   if (req.message === 'К началу') {
-    await Bot.forward('INITIAL', req);
+    await Bot.forward('', req);
     return;
   }
 
@@ -116,7 +116,7 @@ export async function handleNewTeamLegionaries(req: BotRequest) {
 
 export async function handleNewTeamDate(req: BotRequest) {
   if (req.message === 'К началу') {
-    await Bot.forward('INITIAL', req);
+    await Bot.forward('', req);
     return;
   }
 
