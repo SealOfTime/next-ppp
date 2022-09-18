@@ -87,10 +87,11 @@ const TeamCard: FC<Props> = ({ team }) => (
                 <h4 className="teamCart__title-h4 gradient-title">Капитан:</h4>
                 <a href={team.captain.vkUrl}>{team.captain.name}</a>
               </div>
-              {/* <div className="teamCart__next-station">
-                <h4 className="teamCart__title-h4 gradient-title">Следующая станция:</h4>
-                {team.nextStation}
-              </div> */}
+              <div className="teamCart__next-station">
+                <h4 className="teamCart__title-h4 gradient-title">Дата начала:</h4>
+                {team.participationDate}
+                {/* {team.nextStation} */}
+              </div>
               {/* <div className="teamCart__invite-link">
                 <h4 className="teamCart__title-h4 gradient-title">Ссылка-приглашение:</h4>
                 <div className="teamCart__invite-link-box">
