@@ -43,9 +43,9 @@ const WelcomeSection = () => (
         в игру!
       </h1>
       <ul className="welcome__list">
-        <WelcomListItem> О проекте </WelcomListItem>
-        <WelcomListItem> Как играть </WelcomListItem>
-        <WelcomListItem> Важные даты </WelcomListItem>
+        <WelcomListItem to='about'> О проекте </WelcomListItem>
+        <WelcomListItem to='howToPlay'> Как играть </WelcomListItem>
+        <WelcomListItem to="dates"> Важные даты </WelcomListItem>
       </ul>
       <div className="welcome__block-btn">
         <CallToActionBtn />
@@ -56,7 +56,8 @@ const WelcomeSection = () => (
 
 const AboutSection = () => (
   <section className="about-project">
-    <div className="about-project__container container">
+    <div className="about-project__container container" >
+      <a name='about' />
       <h2 className="about-project__title title-section">О проекте</h2>
       <div className="about-project__text">
         <p className="">
@@ -93,6 +94,7 @@ const AboutSection = () => (
 const HowToPlaySection: React.FC<{dates : Dates}> = ({ dates }) => (
   <section className="how-to-play">
     <div className="how-to-play__container container">
+      <a name='howToPlay'/>
       <h2 className="how-to-play__title title-section">Как играть?</h2>
       <ul className="how-to-play__content">
         <li className="how-to-play__li">
@@ -143,6 +145,7 @@ const HowToPlaySection: React.FC<{dates : Dates}> = ({ dates }) => (
 const DatesSection: React.FC<{ dates: Dates }> = ({ dates }) => (
   <section className="dates">
     <div className="dates__container container">
+      <a name='dates' />
       <h2 className="datas__title title-section">Важные даты</h2>
       <div className="dates__content">
         <DateItem urlLogo="/content/icons/reg.png" date={dates.registration}>

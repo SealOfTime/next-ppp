@@ -2,9 +2,10 @@ import { useState } from 'react';
 
 export interface Props {
   children: React.ReactNode;
+  to: string,
 }
 
-const WelcomListItem: React.FC<Props> = ({ children }) => {
+const WelcomListItem: React.FC<Props> = ({ children, to }) => {
   const [isHover, setIsHover] = useState(false);
   const handleMouseOver = () => {
     setIsHover(true);
@@ -18,7 +19,7 @@ const WelcomListItem: React.FC<Props> = ({ children }) => {
       onMouseOut={handleMouseOut}
       className={`welcome__item ${isHover ? 'whiteBtn' : ''}`}
     >
-      <a href="#about" className=" welcome__link">
+      <a href={`#${to}`} className=" welcome__link">
         {children}
       </a>
     </li>
