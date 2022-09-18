@@ -1,0 +1,33 @@
+version: '3.9'
+services:
+  app:
+    build: .
+    env_file:
+      - .env.prod
+    environment:
+      - PORT=443
+      - PPP_URL="https://ppp.itmo.online"
+    volumes:
+      - type: bind
+        source: /etc/letsencrypt/live
+        target: /app/certs
+        read_only: true
+    depends_on:
+      - db
+    ports:
+      - '443:443'
+  db:
+    image: postgres:latest
+    restart: always    
+    expose:
+      - '5432'
+    environment:
+      - POSTGRES_USER=ppp
+      - POSTGRES_PASSWORD=ppp
+      - POSTGRES_DATABASE=ppp
+    volumes:
+      - postgres:/var/lib/postgresql/data  
+      
+volumes:
+  postgres:
+      name: "ppp-postgres"
