@@ -29,4 +29,3 @@ const TeamsPage = ({ teams }: TeamsPageProps) => (
 );
 
 export default TeamsPage;
-TeamsPage.auth = true;

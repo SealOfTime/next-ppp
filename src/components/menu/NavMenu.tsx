@@ -1,11 +1,11 @@
 import { useCallback, useEffect, useState } from 'react';
-import { useSession, signOut, getSession } from 'next-auth/react';
 import { useRouter } from 'next/router';
 
 import Image from 'next/image';
 
 import HeaderMenuBody from './HeaderMenuBody';
 import HeaderBurger from './Burger';
+import { useAuth } from '../../Auth.client';
 
 interface modalWindow {
   width: Number;
@@ -15,7 +15,7 @@ interface modalWindow {
 const NavMenu = () => {
   // const [isOpen, setIsOpen] = useState(false);
   const [navList, setNavList] = useState([]);
-  const { data: session } = useSession();
+  const { session } = useAuth();
   const router = useRouter();
   const [auth, setAuth] = useState(false);
   const settingsWindows: modalWindow = {
@@ -35,43 +35,23 @@ const NavMenu = () => {
     };
 
     const onAuth = () => {
-      if (session) {
-        signOut();
-        setAuth(false);
-      } else {
-        const w = window.open(
-          '/api/auth/vk',
-          'login',
-          `width=${settingsWindows.width}, height=${
-            settingsWindows.height
-          }, top=${
-            window.screen.availHeight / 2 - +settingsWindows.height / 2
-          }, left=${window.screen.availWidth / 2 - +settingsWindows.width / 2}`,
-        );
-
-        if (w.closed) {
-          console.log('closed');
-          setAuth(true);
-          reloadSession();
-        }
-        const timer = setInterval(() => {
-          w.onbeforeunload = async () => {
-            reloadSession();
-          };
-          if (w.closed) {
-            clearInterval(timer);
-            setAuth(true);
-            reloadSession();
-          }
-        }, 100);
-      }
-    };
+      const w = window.open(
+        '/api/auth/vk',
+        'login',
+        `width=${settingsWindows.width}, height=${
+          settingsWindows.height
+        }, top=${
+          window.screen.availHeight / 2 - +settingsWindows.height / 2
+        }, left=${window.screen.availWidth / 2 - +settingsWindows.width / 2}`,
+      ); 
+    }
+  
     if (session) {
       setNavList([
         {
           name: 'Команда',
           callback: () => {
-            router.push('team-cart');
+            router.push('team-card');
           },
         },
         {
