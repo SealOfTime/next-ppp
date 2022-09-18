@@ -1,0 +1,39 @@
+.teams {
+
+}
+.teams__title {
+
+}
+
+.teams__list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 30px;
+}
+
+.team-item {
+  min-width: 300px;
+  flex: 300px 0;
+
+  color: #F3F3F3;
+  font-family: main;
+  font-size: 32px;
+  cursor: pointer;
+
+  border: 10px solid #F3F3F3;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  
+  background-color: #15191F;
+  /* max-width: 600px; */
+  padding: 10px;
+
+}
+
+.team-item:hover {
+  border-color: #564B9C;
+}

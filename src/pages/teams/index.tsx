@@ -1,31 +1,88 @@
-import { GetStaticProps } from 'next';
-import styles from '../styles/Home.module.css';
+import ItemTeam from '../../components/PageTeams/ItemTeam';
+import MainLayout from '../../layouts/MainLayout';
+// import styles from '../styles/Home.module.css';
 
-export const getStaticProps: GetStaticProps = () => ({
-  props: {
-    teams: [],
-  },
-});
-
-type Team = {
-    Id: Number,
-    Name: string,
+interface Team {
+  id: string,
+  name: string,
+  members: string[],
 }
 
-type TeamsPageProps = {
-    teams: Team[],
+export const getStaticProps = async () => {
+  const teams:Team[] = [
+    {
+      id: '1',
+      name: 'team1',
+      members: ['Иванов Иван', 'Боба Алекс', 'Биба Степа', 'ДонДон Александрович', 'Покемон Гоша', 'Традиционные отношения'],
+    },
+    {
+      id: '3',
+      name: 'team2',
+      members: ['Иванов Иван', 'Боба Алекс', 'Биба Степа', 'ДонДон Александрович', 'Покемон Гоша', 'Традиционные отношения'],
+    },
+    {
+      id: '4',
+      name: 'team2',
+      members: ['Иванов Иван', 'Боба Алекс', 'Биба Степа', 'ДонДон Александрович', 'Покемон Гоша', 'Традиционные отношения'],
+    },
+    {
+      id: '5',
+      name: 'team2',
+      members: ['Иванов Иван', 'Боба Алекс', 'Биба Степа', 'ДонДон Александрович', 'Покемон Гоша', 'Традиционные отношения'],
+    },
+    {
+      id: '6',
+      name: 'team2',
+      members: ['Иванов Иван', 'Боба Алекс', 'Биба Степа', 'ДонДон Александрович', 'Покемон Гоша', 'Традиционные отношения'],
+    },
+    {
+      id: '7',
+      name: 'team2',
+      members: ['Иванов Иван', 'Боба Алекс', 'Биба Степа', 'ДонДон Александрович', 'Покемон Гоша', 'Традиционные отношения'],
+    },
+    {
+      id: '8',
+      name: 'team2',
+      members: ['Иванов Иван', 'Боба Алекс', 'Биба Степа', 'ДонДон Александрович', 'Покемон Гоша', 'Традиционные отношения'],
+    },
+    {
+      id: '9',
+      name: 'team2',
+      members: ['Иванов Иван', 'Боба Алекс', 'Биба Степа', 'ДонДон Александрович', 'Покемон Гоша', 'Традиционные отношения'],
+    },
+
+  ];
+  return {
+    props: {
+      teams,
+    },
+  };
+};
+
+interface Props {
+  teams: Team[],
 }
 
-const TeamsPage = ({ teams }: TeamsPageProps) => (
-  <div className={styles.container}>
-    <main>
-      {teams.map((team) => (
-        <div key={String(team.Id)}>
-          { String(team) }
+const TeamsPage: React.FC<Props> = ({ teams }) => (
+  <MainLayout>
+    <section className="teams">
+      <div className="teams__container container">
+        <h3 className="teams__title title-section-white">Команды</h3>
+        <div className="teams__content">
+          <ul className="teams__list">
+            {
+              teams.map((item) => (
+                <li key={item.id} className="teams__item">
+                  <ItemTeam item={item} />
+                </li>
+              ))
+            }
+          </ul>
         </div>
-      ))}
-    </main>
-  </div>
+      </div>
+    </section>
+  </MainLayout>
 );
 
 export default TeamsPage;
+// TeamsPage.auth = true;

@@ -24,6 +24,7 @@ import '../styles/PageRegistration/RegistrationInput.css';
 import '../styles/PageRegistration/RegistrationRadioBtn.css';
 
 import '../styles/PageTeam/Team.css';
+import '../styles/PageTeams/PageTeams.css';
 
 import { useEffect, useState } from 'react';
 import { AuthProvider, Session } from '../Auth.client';
