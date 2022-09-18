@@ -123,15 +123,15 @@ export async function handleNewTeamDate(req: BotRequest) {
   const dateString = req.message;
   let date;
   switch (req.message) {
-  case '2 октября':
+  case '02 октября':
     date = new Date(2022, 10, 2);
     break;
-  case '9 октября':
+  case '09 октября':
     date = new Date(2022, 10, 9);
     break;
   default:
     await Bot.sendMessage(req.user, NewTeamDateKeyboard(HardcodedDates),
-      'Выбор прост: "2 октября" или "9 октября"')
+      'Выбор прост: "02 октября" или "09 октября"')
     return;
   }
 

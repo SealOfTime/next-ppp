@@ -93,8 +93,5 @@ async function handleUserWithoutTeam(req: BotRequest) {
       'Введи код входа, который тебе прислал капитан команды')
     await Bot.changeState(req.user, 'JOIN_TEAM/CODE')
     break;
-  default:
-    await Bot.sendMessage(req.user, UserWithTeamInitialKeyboard,
-      'Пожалуйста выбери один из вариантов: "Новая команда!" или "Присоединиться к команде".')
   }
 }
