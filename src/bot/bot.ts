@@ -66,7 +66,7 @@ const Bot = {
       keyboard: keyboard,
       message: message,
     })
-  }
+  },
 
   async changeState(user: User, newState: string, newData?: Record<string, any>) {
     await Prisma.user.update({
