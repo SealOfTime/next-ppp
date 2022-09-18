@@ -64,34 +64,55 @@ export async function handleConfirmLeaving(req: BotRequest){
       },
       data: {
         teamID: null,
+        role: 'PLAYER',
         botState: 'INITIAL',
         botData: {},
       },
     })
+
+    await Bot.sendMessage(req.user, UserWithoutTeamInitialKeyboard, 
+      `Вы больше не состоите в команде`)
 
     const team = await Prisma.team.findFirst({
       where: {
         id: req.user.teamID,
       },
       include: {
-        _count: {
-          select: {
-            members: true,
-          },
-        }
+        members: true,
       },
     })
 
-    if(team !== null && team._count.members === 0) {
+    if(team === null) {
+      return
+    }
+
+    if(req.user.role==='CAPTAIN') {
+      const leftMembers = team.members.map(m=>m.vkId)
+      await Prisma.user.updateMany({
+        where: {
+          vkId: {
+            in: leftMembers,
+          },
+        },
+        data: {
+          teamID: null,
+          botState: '',
+        }
+      })
+
+      await Bot.broadcastMessage(leftMembers, UserWithoutTeamInitialKeyboard, "Ваша команда распалась...");
+      return;
+    }
+
+    if(team.members.length === 0) {
       await Prisma.team.delete({
         where: {
           id: team.id,
         }
       })
-    }
+      return
+    } 
 
-    await Bot.sendMessage(req.user, UserWithoutTeamInitialKeyboard, 
-      `Вы больше не состоите в команде`)
     break;
   case 'Нет':{
     Bot.forward('', req);

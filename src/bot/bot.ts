@@ -58,6 +58,16 @@ const Bot = {
     })
   },
 
+  async broadcastMessage(userIds: string[], keyboard?: KeyboardBuilder, message: string) {
+    await Vk.api.messages.send({
+      random_id: Math.random() * MAX_RANDOM_ID,
+      group_id: this.groupID,
+      user_ids: userIds.map(i => parseInt(i, 10)),
+      keyboard: keyboard,
+      message: message,
+    })
+  }
+
   async changeState(user: User, newState: string, newData?: Record<string, any>) {
     await Prisma.user.update({
       where: {
