@@ -25,42 +25,26 @@ import '../styles/PageRegistration/RegistrationRadioBtn.css';
 
 import '../styles/PageTeam/Team.css';
 
-import { SessionProvider, useSession } from 'next-auth/react';
-import { useEffect } from 'react';
-import { useRouter } from 'next/router';
-
-const Auth = ({ children }) => {
-  const { data: session, status } = useSession();
-  const router = useRouter();
-  const isUser = !!session?.user;
-
-  useEffect(() => {
-    // if (!Component.private) return;
-    if (status === 'loading') return;
-    if (!isUser) router.push('/');
-  }, [isUser, status, router]);
-  if (isUser) {
-    return children;
-  }
-  return null;
-};
+import { useEffect, useState } from 'react';
+import { AuthProvider, Session } from '../Auth.client';
 
 const App = ({
   Component,
-  pageProps: { session, ...pageProps },
-}) => (
-  <SessionProvider session={session}>
-    {
-      Component.auth ? (
-        <Auth>
-          <Component {...pageProps} />
-        </Auth>
-      ) : (
-        <Component {...pageProps} />
-      )
-    }
+  pageProps,
+}) => {
+  const [session, setSession] = useState<Session>();
 
-  </SessionProvider>
-);
+  useEffect(() => {
+    (window as any).OnLoggedIn = () => {
+
+    };
+  });
+
+  return (
+    <AuthProvider value={{ session, setSession }}>
+      <Component {...pageProps} />
+    </AuthProvider>
+  );
+};
 
 export default App;

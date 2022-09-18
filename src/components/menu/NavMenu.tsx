@@ -40,7 +40,7 @@ const NavMenu = () => {
         setAuth(false);
       } else {
         const w = window.open(
-          '/login',
+          '/api/auth/vk',
           'login',
           `width=${settingsWindows.width}, height=${
             settingsWindows.height

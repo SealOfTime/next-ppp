@@ -5,7 +5,7 @@ const Warning = 1;
 const Off = 0;
 
 module.exports = {
-  extends: ['next/core-web-vitals', 'airbnb'],
+  extends: ['next/core-web-vitals'],
   globals: {
     React: true,
     JSX: true,

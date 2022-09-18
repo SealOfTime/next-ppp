@@ -1,38 +1,40 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
-generator client {
-  provider = "prisma-client-js"
-}
-
 datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
 
+generator client {
+  provider = "prisma-client-js"
+}
+
 model User {
-  id String @id @default(uuid())
+  vkId      String  @id
   firstName String
-  lastName String
+  lastName  String
+  vkUrl     String  @unique
+  phone     String? @unique
+
   role Role @default(PLAYER)
-  phone String @unique
-  urlVK String @unique
-  team Team? @relation("teamRelataion", fields: [teamID], references: [id])
-  captain Team? @relation("captainRelation", fields: [id], references: [id])
+
+  team   Team?   @relation("teamRelation", fields: [teamID], references: [id])
   teamID String?
+
+  botState String @default("")
+  botData  Json?
 }
 
 model Team {
-  id String @id @default(uuid())
-  name String
-  dataStart DateTime 
-  captain User? @relation("captainRelation")
-  members User[] @relation("teamRelataion")
+  id                 String   @id @default(uuid())
+  code               String
+  name               String
+  legionariesAllowed Boolean
+  participationDate  DateTime
+  members            User[]   @relation("teamRelation")
 }
 
 enum Role {
   PLAYER
   CAPTAIN
-  ADAPTER
+  ZOOKEEPER
   ADMIN
 }

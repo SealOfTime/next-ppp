@@ -1,39 +1,69 @@
 /* eslint-disable no-use-before-define */
 import { NextApiRequest, NextApiResponse } from 'next';
-import { VK } from 'vk-io';
-
-const vk = new VK({
-  token: process.env.VK_TOKEN,
-});
+import { stderr } from 'process';
+import Bot from '../../../bot/bot';
+import Prisma from '../../../Prisma';
+import Vk from '../../../Vk';
 
 const eventHandlers = {
-  message_new: (b: any) => handleNewMessage(
-    b.group_id,
-    b.object.user_id,
-    b.object.body,
-    b.object.attachments,
-  ),
+  confirmation: handleConfirmation,
+  message_new: handleNewMessage,
 };
 
-export default function handler(req: NextApiRequest, res: NextApiResponse) {
+export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   const handleEvent = eventHandlers[req.body.type];
-  console.log(req.body);
-  console.log(req.body.object.attachments);
-  if (handleEvent !== undefined) {
-    handleEvent(req.body);
+  if (handleEvent === undefined) {
+    stderr.write(`Неизвестное событие ${req.body.type}`);
+    res.status(404).send('Not found');
+    return;
   }
 
-  res.status(200).send('ok');
+  await handleEvent(req, res);
 }
 
-const MAX_RANDOM_ID = 2 ** 32 - 1;
+async function handleConfirmation(req: NextApiRequest, res: NextApiResponse) {
+  res.status(200);
+  res.send(process.env.VK_CONFIRMATION_CODE);
+}
 
-function handleNewMessage(groupId: number, userId: number, message: string) {
-  console.log(userId, message);
-  vk.api.messages.send({
-    random_id: Math.random() * MAX_RANDOM_ID,
-    group_id: groupId,
-    user_id: userId,
-    message,
-  });
+async function handleNewMessage(req: NextApiRequest, res: NextApiResponse) {
+  try{
+    const userId = req.body.object.message.from_id;
+
+    let user = await Prisma.user.findFirst({
+      where: {
+        vkId: userId.toString(),
+      },
+    });
+
+    if (user === null) {
+      const userResp = await Vk.api.users.get({ user_ids: [userId], fields: ['domain'] });
+      const vkUser = userResp[0];
+
+      user = await Prisma.user.create({
+        data: {
+          vkId: userId.toString(),
+          firstName: vkUser.first_name,
+          lastName: vkUser.last_name,
+          vkUrl: `https://vk.com/${vkUser.domain}`,
+        },
+      });
+    }
+
+    let payload = {};
+    try {
+      payload = JSON.parse(req.body.object.message.payload)
+    } catch(err){}
+
+    await Bot.handleMessage({
+      groupID: req.body.group_id,
+      message: req.body.object.message.text,
+      payload: payload,
+      user: user,
+    });
+  } catch(err) {
+    console.error(err)
+  }
+
+  res.status(200).send('Ok');
 }

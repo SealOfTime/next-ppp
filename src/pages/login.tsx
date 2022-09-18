@@ -1,20 +1,16 @@
-import { useSession, signIn } from 'next-auth/react';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 
 const Login = () => {
-  const { data: session } = useSession();
-  const [authenticated, setAuthenticated] = useState(false);
-
   useEffect(() => {
-    if (authenticated) return;
-    if (session) {
-      setAuthenticated(true);
-      window.opener.postMessage('close buddy');
-      window.close();
-    } else {
-      signIn('vk');
-    }
-  }, [session]);
+    const urlParams = new URLSearchParams(window.location.search);
+    const code = urlParams.get('code');
+    console.log(code);
+    fetch(`/api/auth/code?code=${code}`, {
+      method: 'POST',
+    })
+      .then(window.opener.OnLoggedIn)
+      .then(window.close);
+  }, []);
 };
 
 export default Login;
