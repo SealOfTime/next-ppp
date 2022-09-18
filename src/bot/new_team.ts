@@ -1,5 +1,4 @@
-import { User } from "@prisma/client";
-import { group } from "console";
+import slug from 'limax';
 import Prisma from "../Prisma";
 import { makeid } from "../Util";
 import Bot, { BotRequest } from "./bot";
@@ -17,6 +16,18 @@ export async function handleNewTeamName(req: BotRequest) {
 
   if (UnicodeCharacterRegex.exec(req.message).length > 40) {
     await Bot.sendMessage(req.user, BasicKeyboard, 'В названии команды должно быть не более 40 символов')
+    return;
+  }
+
+  const teamWithSameSlug = await Prisma.team.findFirst({
+    where: {
+      id: slug(req.message),
+    },
+  })
+  if(teamWithSameSlug !== null) {
+    const response = `Команда с похожим именем уже существует, пожалуйста, выбери другое или слегка подкорректируй это`;
+
+    await Bot.sendMessage(req.user, BasicKeyboard, response);
     return;
   }
 
@@ -91,7 +102,7 @@ export async function handleNewTeamLegionaries(req: BotRequest) {
   })
 
   //TODO: предусмотреть отсутствие дней
-  
+
   const occupiedDays = teamsByDays.filter(d=>d._count >= 32).map(d=>d.participationDate)
   const freeDays = HardcodedDates.filter((d) => !occupiedDays.includes(d))
 
@@ -143,6 +154,7 @@ export async function handleNewTeamDate(req: BotRequest) {
 
   const team = await Prisma.team.create({
     data: {
+      id: slug(name),
       name,
       legionariesAllowed: withLegionaries,
       participationDate: date,

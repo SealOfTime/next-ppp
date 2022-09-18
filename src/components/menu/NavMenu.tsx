@@ -29,12 +29,7 @@ const NavMenu = () => {
   }, []);
 
   useEffect(() => {
-    const reloadSession = () => {
-      const event = new Event('visibilitychange');
-      document.dispatchEvent(event);
-    };
-
-    const onAuth = () => {
+    const login = () => {
       const w = window.open(
         '/api/auth/vk',
         'login',
@@ -49,27 +44,39 @@ const NavMenu = () => {
     if (session) {
       setNavList([
         {
+          name: 'Список участников',
+          callback: ()=>{
+            router.push('teams')
+          },
+        },
+        {
           name: 'Команда',
           callback: () => {
-            router.push('team-card');
+            router.push('teams/my');
           },
         },
         {
           name: 'Выход',
-          callback: onAuth,
-        },
-        {
-          name: 'Регистрация',
-          callback: () => {
-            window.location.href = 'https://vk.com/im?media=&sel=-171647377';
-          },
+          callback: login,
         },
       ]);
     } else {
       setNavList([
         {
+          name: 'Список участников',
+          callback: ()=>{
+            router.push('teams')
+          },
+        },
+        {
+          name: 'Регистрация',
+          callback: () => {
+            window.location.href = 'https://vk.com/im?sel=-171647377';
+          },
+        },
+        {
           name: 'Вход ',
-          callback: onAuth,
+          callback: login,
         },
       ]);
     }

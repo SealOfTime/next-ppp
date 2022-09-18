@@ -1,6 +1,7 @@
 import ItemTeam from '../../components/PageTeams/ItemTeam';
 import MainLayout from '../../layouts/MainLayout';
-// import styles from '../styles/Home.module.css';
+import { GetStaticProps } from 'next';
+import styles from '../../styles/Home.module.css';
 
 interface Team {
   id: string,
