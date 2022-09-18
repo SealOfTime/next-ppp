@@ -28,7 +28,7 @@ export const getStaticProps: GetStaticProps<LandingPageProps> = () => {
 };
 
 const CallToActionBtn = () => (
-  <button type="button" className="welcome__btn gradientBtn">
+  <button type="button" className="welcome__btn gradientBtn" onClick={() => {window.location.href = 'https://vk.com/im?sel=-171647377'}}>
     <span className="gradientBtn__text">Регистрация</span>
   </button>
 );
