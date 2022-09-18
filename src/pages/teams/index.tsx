@@ -16,22 +16,29 @@ export const getServerSideProps: GetServerSideProps<Props> = async({params}) => 
         id: team.id,
         name: team.name,
         participationDate: formatDate(team.participationDate),
-        members: team.members,
+        members: team.members.map(m=>({
+          name: `${m.firstName} ${m.lastName}`,
+          vkUrl: m.vkUrl,
+          vkId: m.vkId,
+          isCaptain: m.role === 'CAPTAIN',
+        })),
       })), 
     }
   }
 }
+
 type Person = {
   name: string
   vkUrl: string
   vkId: string
+  isCaptain: boolean
 }
-type Team = {
+
+export type Team = {
   id: string,
   name: string
   code?: string
   participationDate: string
-  captain: Person
   members: Person[]
 }
 

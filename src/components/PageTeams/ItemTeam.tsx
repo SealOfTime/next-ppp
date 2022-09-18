@@ -1,7 +1,8 @@
 import Link from 'next/link';
+import { Team } from '../../pages/teams';
 
 type Props = {
-  item: any;
+  item: Team;
 }
 
 const ItemTeam = ({ item }: Props) => (
@@ -16,7 +17,9 @@ const ItemTeam = ({ item }: Props) => (
         {
           item.members.map((member) => (
             <li key={member.vkId}>
-              {member.firstName} {member.lastName}
+              <a href={member.vkUrl}>
+                {member.isCaptain && (<span role="img" aria-label="crown">👑</span>)} {member.name}
+              </a>
             </li>
           ))
         }
