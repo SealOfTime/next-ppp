@@ -58,7 +58,7 @@ const Bot = {
     })
   },
 
-  async broadcastMessage(userIds: string[], keyboard?: KeyboardBuilder, message: string) {
+  async broadcastMessage(userIds: string[], keyboard: KeyboardBuilder, message: string) {
     await Vk.api.messages.send({
       random_id: Math.random() * MAX_RANDOM_ID,
       group_id: this.groupID,
