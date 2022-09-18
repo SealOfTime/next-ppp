@@ -68,7 +68,7 @@ export async function handleConfirmLeaving(req: BotRequest){
         botData: {},
       },
     })
-    
+
     const team = await Prisma.team.findFirst({
       where: {
         id: req.user.teamID,
@@ -82,7 +82,7 @@ export async function handleConfirmLeaving(req: BotRequest){
       },
     })
 
-    if(team._count.members === 0) {
+    if(team !== null && team._count.members === 0) {
       await Prisma.team.delete({
         where: {
           id: team.id,
