@@ -4,6 +4,8 @@ services:
     build: .
     env_file:
       - .env.prod
+    networks:
+      - ppp-net
     environment:
       - PORT=443
       - PPP_URL="https://ppp.itmo.online"
@@ -15,10 +17,13 @@ services:
     depends_on:
       - db
     ports:
+      - '80:80'
       - '443:443'
   db:
     image: postgres:latest
     restart: always    
+    networks:
+      - ppp-net
     expose:
       - '5432'
     environment:
@@ -27,7 +32,10 @@ services:
       - POSTGRES_DATABASE=ppp
     volumes:
       - postgres:/var/lib/postgresql/data  
-      
+
+networks:
+  ppp-net:
+
 volumes:
   postgres:
       name: "ppp-postgres"
