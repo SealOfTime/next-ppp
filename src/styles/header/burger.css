@@ -5,13 +5,14 @@
 	height: 22px;
 	cursor: pointer;
 	position: relative;
+	background: transparent;
 }
 .burger__line, .burger__line::before, .burger__line::after {
 	width: 100%;
 	position: absolute;
 	height: 4px;
 	display: block;
-	/* background: #EDEEF2; */
+	background: #f3f3f3;
 	
 	top: 50%;
 	transition: all 0.25s ease 0s;

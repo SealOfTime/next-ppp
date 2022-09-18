@@ -13,7 +13,7 @@ interface modalWindow {
 }
 
 const NavMenu = () => {
-  // const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
   const [navList, setNavList] = useState([]);
   const { session } = useAuth();
   const router = useRouter();
@@ -24,7 +24,7 @@ const NavMenu = () => {
   };
 
   const toggleMenu = useCallback(() => {
-    // setIsOpen((s) => !s);
+    setIsOpen((s) => !s);
     document.body.classList.toggle('fix-position');
   }, []);
 
@@ -98,8 +98,8 @@ const NavMenu = () => {
         </div>
         <nav className="header__menu menu">
           <HeaderMenuBody
-            // classActive="active-menu"
-            // isOpen={isOpen}
+            classActive="active-menu"
+            isOpen={isOpen}
             items={navList}
           />
         </nav>
