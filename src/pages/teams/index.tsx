@@ -24,6 +24,7 @@ export const getServerSideProps: GetServerSideProps<Props> = async({params}) => 
 type Person = {
   name: string
   vkUrl: string
+  vkId: string
 }
 type Team = {
   id: string,

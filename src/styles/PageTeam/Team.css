@@ -87,6 +87,7 @@
 
 	.teamCart {
 		border-image-slice: 1;
+		padding: 1em;
 	} 
 
 	.teamCart__inner {

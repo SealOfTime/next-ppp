@@ -13,12 +13,11 @@
 }
 .teams__item {
   flex: 31%;
-  
 }
 
 @media (max-width: 820px) {
   .teams__item {
-    flex: 45%;
+    /* flex: 45%; */
   }
 }
 .team-item {

@@ -68,6 +68,7 @@ const NavMenu = () => {
           name: 'Список участников',
           callback: ()=>{
             setIsOpen(false);
+            document.body.classList.remove('fix-position');
             router.push('/teams')
           },
         },
@@ -75,6 +76,7 @@ const NavMenu = () => {
           name: 'Регистрация',
           callback: () => {
             setIsOpen(false);
+            document.body.classList.remove('fix-position');
             window.location.href = 'https://vk.com/im?sel=-171647377';
           },
         },

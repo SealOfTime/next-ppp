@@ -15,7 +15,7 @@ const ItemTeam = ({ item }: Props) => (
       <ul>
         {
           item.members.map((member) => (
-            <li key={member}>
+            <li key={member.vkId}>
               {member.firstName} {member.lastName}
             </li>
           ))

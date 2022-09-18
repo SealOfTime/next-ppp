@@ -16,9 +16,9 @@ type LandingPageProps = {
 
 export const getStaticProps: GetStaticProps<LandingPageProps> = () => {
   const dates = {
-    registration: '11.11 - 11.11',
-    event: '11.11 - 11.11',
-    rewards: '11.11 - 11.11',
+    registration: '19.09 - 06.10',
+    event: '02.10 и 09.10',
+    rewards: '10.10 - 20.10',
   };
   return {
     props: {
