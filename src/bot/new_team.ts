@@ -142,7 +142,7 @@ export async function handleNewTeamDate(req: BotRequest) {
   
   console.log(teamsByDays)
 
-  if(teamsByDays.find(td=>td.participationDate===date)._count >= 32) {
+  if(teamsByDays.length > 0 && teamsByDays.find(td=>td.participationDate===date)._count >= 32) {
     const occupiedDays = teamsByDays.filter(d=>d._count >= 32).map(d=>d.participationDate)
     const freeDays = HardcodedDates.filter((d) => !occupiedDays.includes(d))
     await Bot.sendMessage(req.user, NewTeamDateKeyboard(freeDays),
