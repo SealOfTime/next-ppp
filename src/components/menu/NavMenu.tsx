@@ -46,13 +46,15 @@ const NavMenu = () => {
         {
           name: 'Список участников',
           callback: ()=>{
-            router.push('teams')
+            
+            router.push('/teams');
           },
         },
         {
           name: 'Команда',
           callback: () => {
-            router.push('teams/my');
+            
+            router.push('/teams/my');
           },
         },
         {
@@ -65,12 +67,14 @@ const NavMenu = () => {
         {
           name: 'Список участников',
           callback: ()=>{
+            setIsOpen(false);
             router.push('/teams')
           },
         },
         {
           name: 'Регистрация',
           callback: () => {
+            setIsOpen(false);
             window.location.href = 'https://vk.com/im?sel=-171647377';
           },
         },
