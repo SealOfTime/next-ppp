@@ -26,9 +26,8 @@ export async function handleJoinTeamCode(req: BotRequest) {
   });
 
   if(team === null) {
-    await Bot.sendMessage(req.user, UserWithoutTeamInitialKeyboard,
-      `Извини друг, но команды с таким кодом нет)`);
-      
+    await Bot.sendMessage(req.user, BasicKeyboard,
+      `Извини друг, но команды с таким кодом нет.`);
     return;
   }
 
