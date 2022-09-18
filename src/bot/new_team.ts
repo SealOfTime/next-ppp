@@ -154,7 +154,7 @@ export async function handleNewTeamDate(req: BotRequest) {
 
   const team = await Prisma.team.create({
     data: {
-      id: slug(name),
+      id: makeTeamID(name),
       name,
       legionariesAllowed: withLegionaries,
       participationDate: date,
@@ -187,4 +187,13 @@ export async function handleNewTeamDate(req: BotRequest) {
   Ищи списки своей команды на сайте - https://ppp.itmo.online`;
 
   await Bot.sendMessage(req.user, UserWithTeamInitialKeyboard, response);
+}
+
+const makeTeamID = (teamName: string) => {
+  const s = slug(teamName);
+  if(s !== "") {
+    return s;
+  }
+
+  return makeid(12);
 }

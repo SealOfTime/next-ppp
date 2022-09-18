@@ -25,6 +25,13 @@ export async function handleJoinTeamCode(req: BotRequest) {
     },
   });
 
+  if(team === null) {
+    await Bot.sendMessage(req.user, UserWithoutTeamInitialKeyboard,
+      `Извини друг, но команды с таким кодом нет)`);
+      
+    return;
+  }
+
   if (team.members.length >= 6) {
     await Bot.sendMessage(req.user, UserWithoutTeamInitialKeyboard,
       `Извини друг, но это команда уже заполнена. Попробуй создать свою или присоединиться к другой ;-)`);
