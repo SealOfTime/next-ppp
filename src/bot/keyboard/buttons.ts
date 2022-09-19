@@ -9,6 +9,13 @@ export const MyTeamButton = Keyboard.textButton({
   color: Keyboard.PRIMARY_COLOR,
 })
 
+// export const EditTeamButton =Keyboard.textButton({
+//   label: 'Изменить команду',
+//   payload: {
+//     button: 'edit_team',
+//   },
+// })
+
 export const LeaveTeamButton =Keyboard.textButton({
   label: 'Покинуть команду',
   payload: {

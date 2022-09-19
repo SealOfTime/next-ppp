@@ -186,7 +186,7 @@ export async function handleNewTeamDate(req: BotRequest) {
 }
   Ищи списки своей команды на сайте - https://ppp.itmo.online`;
 
-  await Bot.sendMessage(req.user, UserWithTeamInitialKeyboard, response);
+  await Bot.sendMessage(req.user, UserWithTeamInitialKeyboard(req.user.role), response);
 }
 
 const makeTeamID = (teamName: string) => {

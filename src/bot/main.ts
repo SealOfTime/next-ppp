@@ -1,4 +1,3 @@
-import { User } from "@prisma/client";
 import Prisma from "../Prisma";
 import { formatDate } from "../Util";
 import { BasicKeyboard, ConfirmationKeyboard, UserWithoutTeamInitialKeyboard, UserWithTeamInitialKeyboard } from "./keyboard/keyboard";
@@ -7,9 +6,10 @@ import Bot, { BotRequest } from "./bot";
 export default async function handleInitial(req: BotRequest) {
   if (req.user.teamID !== null) {
     handleUserWithTeam(req)
-  } else {
-    handleUserWithoutTeam(req)
+    return;
   }
+
+  handleUserWithoutTeam(req)
 }
 
 async function handleUserWithTeam(req: BotRequest) {
@@ -36,7 +36,7 @@ async function handleUserWithTeam(req: BotRequest) {
     ? 'В твоей команде в ближайшее время могут появиться новые участники ;-)' 
     : ''}`
 
-    await Bot.sendMessage(req.user, UserWithTeamInitialKeyboard, response)
+    await Bot.sendMessage(req.user, UserWithTeamInitialKeyboard(req.user.role), response)
     break;
   }
   case 'Покинуть команду':{
