@@ -6,7 +6,7 @@ import Bot, { BotRequest } from "./bot";
 export default async function handlePreInitial(req: BotRequest) {
   let keyboard = req.user.teamID === null
     ? UserWithoutTeamInitialKeyboard
-    : UserWithTeamInitialKeyboard;
+    : UserWithTeamInitialKeyboard(req.user.role);
 
   const response = `
   Привет игрок!
