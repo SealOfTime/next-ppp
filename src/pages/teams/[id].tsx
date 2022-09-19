@@ -55,7 +55,7 @@ type Props =  {
 
 const TeamCard: FC<Props> = ({ team }) => (
 // const [team, setTeam] = useState<ITeam>();
-  <MainLayout>
+  <MainLayout title='Моя команда'>
     <section className="page-cart-team">
       <FullScreenImage className="background__big" backGroundImg={Background} />
       <div className="page-cart-team__container container">

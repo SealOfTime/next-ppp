@@ -47,7 +47,7 @@ type Props = {
 }
 
 const TeamsPage: React.FC<Props> = ({ teams }) => (
-  <MainLayout>
+  <MainLayout title='Команды'>
     <section className="teams">
       <div className="teams__container container">
         <h3 className="teams__title title-section-white">Команды</h3>
