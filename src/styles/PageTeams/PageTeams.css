@@ -8,11 +8,12 @@
 .teams__list {
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
+  justify-content: flex-start;
   gap: 30px;
 }
 .teams__item {
   flex: 31%;
+  max-width: 31%;
 }
 
 @media (max-width: 820px) {
