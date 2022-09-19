@@ -22,7 +22,7 @@ const Gallery: React.FC<Props> = ({ imgList }) => {
         {
           imgList.map((item) => (
             <div key={item}>
-              <Image src={item} width={1170} height={627} loading="lazy" />
+              <Image src={item} width={1170} height={627} loading="lazy" objectFit='cover' objectPosition="center"/>
             </div>
           ))
         }
