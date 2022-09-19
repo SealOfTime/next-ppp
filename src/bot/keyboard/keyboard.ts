@@ -1,15 +1,18 @@
 import { Role } from "@prisma/client";
 import { Keyboard } from "vk-io";
 import { formatDate } from "../../Util";
-import { BackButton, JoinTeamButton, LeaveTeamButton, MyTeamButton, NewTeamButton, NoButton, YesButton } from "./buttons";
-
+import { ResetButton, HelpMeButton, JoinTeamButton, LeaveTeamButton, MyTeamButton, NewTeamButton, NoButton, YesButton, BackButton } from "./buttons";
 
 export const BasicKeyboard = Keyboard.keyboard([
-  [BackButton],
+  [HelpMeButton, ResetButton],
 ])
 
 export const ConfirmationKeyboard = Keyboard.keyboard([
   [YesButton, NoButton], 
+  [ResetButton],
+])
+
+export const CancelHelpKeyboard = Keyboard.keyboard([
   [BackButton],
 ])
 
@@ -34,5 +37,5 @@ export const NewTeamDateKeyboard = (dates: Date[]) => Keyboard.keyboard([
         color: 'primary',
       }))
   ],
-  [BackButton],
+  [ResetButton],
 ]).oneTime(true);

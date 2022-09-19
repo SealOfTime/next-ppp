@@ -7,6 +7,7 @@ import Vk from '../../../Vk';
 
 const eventHandlers = {
   confirmation: handleConfirmation,
+  message_event: handleCallbackButton,
   message_new: handleNewMessage,
 };
 
@@ -57,6 +58,7 @@ async function handleNewMessage(req: NextApiRequest, res: NextApiResponse) {
 
     await Bot.handleMessage({
       groupID: req.body.group_id,
+      peerID: req.body.object.message.peer_id,
       message: req.body.object.message.text,
       payload: payload,
       user: user,
@@ -66,4 +68,40 @@ async function handleNewMessage(req: NextApiRequest, res: NextApiResponse) {
   }
 
   res.status(200).send('Ok');
+}
+
+
+async function handleCallbackButton(req: NextApiRequest, res: NextApiResponse) {
+  try{
+    const userId = req.body.object.user_id;
+
+    let user = await Prisma.user.findFirst({
+      where: {
+        vkId: userId.toString(),
+      },
+    });
+
+    if (user === null) {
+      const userResp = await Vk.api.users.get({ user_ids: [userId], fields: ['domain'] });
+      const vkUser = userResp[0];
+
+      user = await Prisma.user.create({
+        data: {
+          vkId: userId.toString(),
+          firstName: vkUser.first_name,
+          lastName: vkUser.last_name,
+          vkUrl: `https://vk.com/${vkUser.domain}`,
+        },
+      });
+    }
+
+    await Bot.handleMessage({
+      groupID: req.body.group_id,
+      peerID: req.body.object.peer_id,
+      message: "",
+      payload: req.body.object.payload,
+      user: user,
+    })
+  }catch(err){console.error(err)}
+  res.status(200).send('Ok')
 }

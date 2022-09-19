@@ -3,7 +3,9 @@ import { timeStamp } from 'console';
 import { KeyboardBuilder } from 'vk-io';
 import Prisma from '../Prisma';
 import Vk from '../Vk';
+import { handleHelpMe, initHelpMe } from './help_me';
 import { handleJoinTeamCode } from './join_team';
+import { HelpMeButton } from './keyboard/buttons';
 import handleInitial, { handleConfirmLeaving } from './main';
 import { handleNewTeamDate, handleNewTeamLegionaries, handleNewTeamName, handleNewTeamPhone } from './new_team';
 import handlePreInitial from './welcome';
@@ -13,6 +15,7 @@ const MAX_RANDOM_ID = 2 ** 32 - 1;
 const botHandlers: Record<string, (req: BotRequest) => void> = {
   '': handlePreInitial,
   INITIAL: handleInitial,
+  'HELP_ME': handleHelpMe,
   'NEW_TEAM/NAME': handleNewTeamName,
   'NEW_TEAM/PHONE': handleNewTeamPhone,
   'NEW_TEAM/LEGIONARIES': handleNewTeamLegionaries,
@@ -23,6 +26,7 @@ const botHandlers: Record<string, (req: BotRequest) => void> = {
 
 export type BotRequest = {
   groupID: number,
+  peerID: number,
   user: User,
   message: string,
   payload: Record<string, any>,
@@ -35,6 +39,11 @@ const Bot = {
   },
 
   async handleMessage(req: BotRequest) {
+    if(req.payload?.button === 'help_me') {
+      await initHelpMe(req)
+      return;
+    }
+
     if(this.groupID === 0) {
       this.setGroupID(req.groupID);
     }

@@ -38,8 +38,25 @@ export const NewTeamButton = Keyboard.textButton({
   },
   color: Keyboard.SECONDARY_COLOR,
 });
-  
+
+
+export const HelpMeButton = Keyboard.callbackButton({
+  label: 'Задать вопрос',
+  payload: {
+    button: 'help_me',
+  },
+  color: Keyboard.SECONDARY_COLOR,
+});
+
 export const BackButton = Keyboard.textButton({
+  label: "Назад",
+  payload: {
+    button: 'back',
+  },
+  color: Keyboard.SECONDARY_COLOR,
+})
+
+export const ResetButton = Keyboard.textButton({
   label: 'К началу',
   payload: {
     button: 'restart',
