@@ -1,11 +1,9 @@
 import slug from 'limax';
 import Prisma from "../Prisma";
-import { makeid } from "../Util";
+import { isPhone, makeid, unicodeLength } from "../Util";
 import Bot, { BotRequest } from "./bot";
-import { BasicKeyboard, ConfirmationKeyboard, NewTeamDateKeyboard, UserWithTeamInitialKeyboard } from "./keyboard/keyboard";
+import { BasicKeyboard, ConfirmationKeyboard, ChooseDateKeyboard, UserWithTeamInitialKeyboard } from "./keyboard/keyboard";
 
-const UnicodeCharacterRegex = /[\p{Alphabetic}\p{Mark}\p{Decimal_Number}\p{Connector_Punctuation}\p{Join_Control}]|\p{Emoji_Modifier_Base}\p{Emoji_Modifier}?|\p{Emoji_Presentation}|\p{Emoji}\uFE0F|[ `!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/gu;
-const PhoneRegex = /^((8|\+7)[\- ]?)?(\(?\d{3}\)?[\- ]?)?[\d\- ]{7,10}$/;
 export const TeamCodeLength = 8;
 
 export async function handleNewTeamName(req: BotRequest) {
@@ -14,7 +12,7 @@ export async function handleNewTeamName(req: BotRequest) {
     return;
   }
 
-  if (UnicodeCharacterRegex.exec(req.message).length > 40) {
+  if (unicodeLength(req.message) > 40) {
     await Bot.sendMessage(req.user, BasicKeyboard, 'В названии команды должно быть не более 40 символов')
     return;
   }
@@ -44,7 +42,7 @@ export async function handleNewTeamPhone(req: BotRequest) {
     return;
   }
 
-  if (!PhoneRegex.test(req.message)) {
+  if (!isPhone(req.message)) {
     const response = `Пожалуйста, введите номер телефона. 
     Например, +7 (012) 345-67-89`;
     await Bot.sendMessage(req.user, BasicKeyboard, response)
@@ -106,7 +104,7 @@ export async function handleNewTeamLegionaries(req: BotRequest) {
   const occupiedDays = teamsByDays.filter(d=>d._count >= 32).map(d=>d.participationDate)
   const freeDays = HardcodedDates.filter((d) => !occupiedDays.includes(d))
 
-  await Bot.sendMessage(req.user, NewTeamDateKeyboard(freeDays), response, )
+  await Bot.sendMessage(req.user, ChooseDateKeyboard(freeDays), response, )
   await Bot.changeState(req.user, 'NEW_TEAM/DATE', {
     name: (req.user.botData as any).name,
     withLegionaries,
@@ -130,7 +128,7 @@ export async function handleNewTeamDate(req: BotRequest) {
     date = new Date(2022, 10, 9);
     break;
   default:
-    await Bot.sendMessage(req.user, NewTeamDateKeyboard(HardcodedDates),
+    await Bot.sendMessage(req.user, ChooseDateKeyboard(HardcodedDates),
       'Выбор прост: "02 октября" или "09 октября"')
     return;
   }
@@ -145,7 +143,7 @@ export async function handleNewTeamDate(req: BotRequest) {
   if(teamsByDays.length > 0 && teamsAtSelectedDay >= 32) {
     const occupiedDays = teamsByDays.filter(d=>d._count >= 32).map(d=>d.participationDate)
     const freeDays = HardcodedDates.filter((d) => !occupiedDays.includes(d))
-    await Bot.sendMessage(req.user, NewTeamDateKeyboard(freeDays),
+    await Bot.sendMessage(req.user, ChooseDateKeyboard(freeDays),
       'Извини, в этот день участвует уже слишком много команд, попробуй выбрать другой')
     return;
   }

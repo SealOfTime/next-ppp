@@ -1,4 +1,15 @@
 
+
+const PhoneRegex = /^((8|\+7)[\- ]?)?(\(?\d{3}\)?[\- ]?)?[\d\- ]{7,10}$/;
+export function isPhone(s: string): boolean {
+  return PhoneRegex.test(s);
+}
+
+const UnicodeCharacterRegex = /[\p{Alphabetic}\p{Mark}\p{Decimal_Number}\p{Connector_Punctuation}\p{Join_Control}]|\p{Emoji_Modifier_Base}\p{Emoji_Modifier}?|\p{Emoji_Presentation}|\p{Emoji}\uFE0F|[ `!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/gu;
+export function unicodeLength(s: string): number {
+  return UnicodeCharacterRegex.exec(s).length
+}
+
 export function formatDate(date: Date): string {
   const months = [
     'января', 'февраля',

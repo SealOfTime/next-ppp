@@ -6,6 +6,7 @@ import Vk from '../Vk';
 import { handleHelpMe, initHelpMe } from './help_me';
 import { handleJoinTeamCode } from './join_team';
 import { HelpMeButton } from './keyboard/buttons';
+import { handleJoinLegionaries, handleJoinLegionariesDate, handleJoinLegionariesPhone } from './legionaries';
 import handleInitial, { handleConfirmLeaving } from './main';
 import { handleNewTeamDate, handleNewTeamLegionaries, handleNewTeamName, handleNewTeamPhone } from './new_team';
 import handlePreInitial from './welcome';
@@ -21,6 +22,9 @@ const botHandlers: Record<string, (req: BotRequest) => void> = {
   'NEW_TEAM/LEGIONARIES': handleNewTeamLegionaries,
   'NEW_TEAM/DATE': handleNewTeamDate,
   'JOIN_TEAM/CODE': handleJoinTeamCode,
+  'JOIN_LEGIONARIES': handleJoinLegionaries,
+  'JOIN_LEGIONARIES/PHONE': handleJoinLegionariesPhone,
+  'JOIN_LEGIONARIES/DATE': handleJoinLegionariesDate,
   'LEAVE_TEAM/CONFIRMATION': handleConfirmLeaving,
 };
 
