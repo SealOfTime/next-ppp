@@ -136,9 +136,8 @@ export async function handleNewTeamDate(req: BotRequest) {
   const teamsByDays = await Prisma.team.groupBy({
     by: ['participationDate'],
     _count: true,
-  })
+  }) || []
   const teamsAtSelectedDay = teamsByDays.find(td=>td.participationDate===date)?._count || 0;
-  console.log(teamsByDays)
 
   if(teamsByDays.length > 0 && teamsAtSelectedDay >= 32) {
     const occupiedDays = teamsByDays.filter(d=>d._count >= 32).map(d=>d.participationDate)
