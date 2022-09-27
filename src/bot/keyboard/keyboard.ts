@@ -17,7 +17,7 @@ export const CancelHelpKeyboard = Keyboard.keyboard([
 ])
 
 export const UserWithoutTeamInitialKeyboard = Keyboard.keyboard([
-  [JoinLegionariesButton],
+  // [JoinLegionariesButton],
   [JoinTeamButton, NewTeamButton],
 ]);
 
