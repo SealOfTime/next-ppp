@@ -5,11 +5,6 @@ import { MAX_PLAYERS_IN_TEAM } from "./join_team";
 import { BasicKeyboard, ChooseDateKeyboard, UserWithTeamInitialKeyboard } from "./keyboard/keyboard";
 
 export async function handleJoinLegionaries(req: BotRequest) {
-  if (req.message === 'К началу') {
-    await Bot.forward('', req)
-    return;
-  }
-
   await Bot.sendMessage(req.user, BasicKeyboard, 
     "Введи свой номер телефона, чтобы капитан команды, которую мы тебе подберём, смог связаться с тобой: ");
   await Bot.changeState(req.user, 'JOIN_LEGIONARIES/PHONE');

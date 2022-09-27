@@ -2,6 +2,7 @@ import Prisma from "../Prisma";
 import { formatDate } from "../Util";
 import { BasicKeyboard, ConfirmationKeyboard, UserWithoutTeamInitialKeyboard, UserWithTeamInitialKeyboard } from "./keyboard/keyboard";
 import Bot, { BotRequest } from "./bot";
+import { handleJoinLegionaries } from "./legionaries";
 
 export default async function handleInitial(req: BotRequest) {
   if (req.user.teamID !== null) {
@@ -141,6 +142,9 @@ async function handleUserWithoutTeam(req: BotRequest) {
     await Bot.sendMessage(req.user, BasicKeyboard,
       'Введи код входа, который тебе прислал капитан команды')
     await Bot.changeState(req.user, 'JOIN_TEAM/CODE')
+    break;
+  case 'Стать легионером':
+    await handleJoinLegionaries(req);
     break;
   }
 }
