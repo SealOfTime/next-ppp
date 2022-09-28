@@ -10,19 +10,7 @@ export async function handleJoinLegionaries(req: BotRequest) {
   await Bot.changeState(req.user, 'JOIN_LEGIONARIES/PHONE');
 }
 
-export async function handleJoinLegionariesPhone(req: BotRequest) {
-  if (req.message === 'К началу') {
-    await Bot.forward('', req)
-    return;
-  }
-
-  if (!isPhone(req.message)) {
-    const response = `Пожалуйста, введите номер телефона. 
-    Например, +7 (012) 345-67-89`;
-    await Bot.sendMessage(req.user, BasicKeyboard, response)
-    return;
-  }
-
+async function findTeamsWithVacantSpace() {
   const teams = await Prisma.team.findMany({
     include: {
       _count: {
@@ -38,7 +26,32 @@ export async function handleJoinLegionariesPhone(req: BotRequest) {
   });
 
   const teamsWithVacantSpaces = teams.filter(t => t._count.members < MAX_PLAYERS_IN_TEAM);
-  const daysWithTeamsWithVacantSpaces = teamsWithVacantSpaces.map(t => t.participationDate);
+
+  console.log(teams);
+  console.log(teamsWithVacantSpaces);
+
+  return teamsWithVacantSpaces
+}
+
+export async function handleJoinLegionariesPhone(req: BotRequest) {
+  if (req.message === 'К началу') {
+    await Bot.forward('', req)
+    return;
+  }
+
+  if (!isPhone(req.message)) {
+    const response = `Пожалуйста, введите номер телефона. 
+    Например, +7 (012) 345-67-89`;
+    await Bot.sendMessage(req.user, BasicKeyboard, response)
+    return;
+  }
+
+  const teamsWithVacantSpaces = await findTeamsWithVacantSpace()
+  const daysWithTeamsWithVacantSpaces = teamsWithVacantSpaces
+    .map(t => t.participationDate.getTime())
+    .filter((v, i, arr)=>arr.indexOf(v)===i)
+    .map(t => new Date(t))
+  console.log(daysWithTeamsWithVacantSpaces)
 
   await Prisma.user.update({
     where: {
@@ -60,29 +73,12 @@ export async function handleJoinLegionariesDate(req: BotRequest) {
     return;
   }
 
-  const teams = await Prisma.team.findMany({
-    include: {
-      _count: {
-        select: { members: true, }
-      }
-    },
-    where: {
-      legionariesAllowed: true,
-      participationDate: {
-        lt: new Date(),
-      },
-    },
-  });
-
-  const teamsWithVacantSpaces = teams.filter(t => t._count.members < MAX_PLAYERS_IN_TEAM);
-  console.log(teamsWithVacantSpaces);
-  
+  const teamsWithVacantSpaces = await findTeamsWithVacantSpace()
   const daysWithTeamsWithVacantSpaces = teamsWithVacantSpaces
     .map(t => t.participationDate.getTime())
     .filter((v, i, arr)=>arr.indexOf(v)===i)
     .map(t => new Date(t))
-
-  console.log(daysWithTeamsWithVacantSpaces);
+  console.log(daysWithTeamsWithVacantSpaces)
 
   let date;
   switch (req.message) {
@@ -98,7 +94,7 @@ export async function handleJoinLegionariesDate(req: BotRequest) {
     return;
   }
 
-  const teamsWithVacantSpacesChosenDay = teamsWithVacantSpaces.filter(t=>t.participationDate===date)
+  const teamsWithVacantSpacesChosenDay = teamsWithVacantSpaces.filter(t=>t.participationDate.getTime()===date.getTime())
   if(teamsWithVacantSpacesChosenDay.length === 0) {
     await Bot.sendMessage(req.user, ChooseDateKeyboard(daysWithTeamsWithVacantSpaces), 
       "На эту дату уже не осталось команд, выбери новую дату: ");
