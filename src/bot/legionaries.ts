@@ -20,7 +20,7 @@ async function findTeamsWithVacantSpace() {
     where: {
       legionariesAllowed: true,
       participationDate: {
-        lt: new Date(),
+        gt: new Date(),
       },
     },
   });
