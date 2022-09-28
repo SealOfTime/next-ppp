@@ -27,9 +27,6 @@ async function findTeamsWithVacantSpace() {
 
   const teamsWithVacantSpaces = teams.filter(t => t._count.members < MAX_PLAYERS_IN_TEAM);
 
-  console.log(teams);
-  console.log(teamsWithVacantSpaces);
-
   return teamsWithVacantSpaces
 }
 
@@ -51,7 +48,6 @@ export async function handleJoinLegionariesPhone(req: BotRequest) {
     .map(t => t.participationDate.getTime())
     .filter((v, i, arr)=>arr.indexOf(v)===i)
     .map(t => new Date(t))
-  console.log(daysWithTeamsWithVacantSpaces)
 
   await Prisma.user.update({
     where: {
