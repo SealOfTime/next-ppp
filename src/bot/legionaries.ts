@@ -74,7 +74,6 @@ export async function handleJoinLegionariesDate(req: BotRequest) {
     .map(t => t.participationDate.getTime())
     .filter((v, i, arr)=>arr.indexOf(v)===i)
     .map(t => new Date(t))
-  console.log(daysWithTeamsWithVacantSpaces)
 
   let date;
   switch (req.message) {
