@@ -27,7 +27,7 @@ async function handleUserWithTeam(req: BotRequest) {
   
     const response=  `
     Ты ${req.user.role === 'CAPTAIN' ? 'капитан' : 'член'} команды "${team.name}".
-    Вы участвуете ${formatDate(team.participationDate)}
+    Вы участвуете ${formatDate(team.participationDateID)}
     ${req.user.role === 'CAPTAIN' ? `Код приглашения ${team.code}` : ''}
     
     Участники команды [${team.members.length}/6]:

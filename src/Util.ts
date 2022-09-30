@@ -19,7 +19,7 @@ export function formatDate(date: Date): string {
     'декабря',
   ];
   const day = date.getDate() <= 9 ? `0${date.getDate()}` : `${date.getDate()}`;
-  const month = months[date.getMonth() - 1];
+  const month = months[date.getMonth()];
   return `${day} ${month}`;
 }
 

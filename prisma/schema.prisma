@@ -23,13 +23,24 @@ model User {
   botData  Json?
 }
 
+model QuestDate {
+  date DateTime @id
+  registrationStart DateTime
+  registrationEnd DateTime
+  participatingTeams Team[] @relation("teamParticipationDate")
+}
+
 model Team {
   id                 String   @id @default(uuid())
   code               String
   name               String
   legionariesAllowed Boolean
-  participationDate  DateTime
+  
+  participationDate  QuestDate @relation("teamParticipationDate", fields: [participationDateID], references: [date])
+  participationDateID DateTime
+
   members            User[]   @relation("teamRelation")
+  route              RoutePoint[] @relation("teamRoute")
 }
 
 enum Role {
@@ -37,4 +48,32 @@ enum Role {
   CAPTAIN
   ZOOKEEPER
   ADMIN
+}
+
+
+model Station {
+  id String    @id @default(uuid())
+  name String
+  lat Float
+  lng Float
+  participants RoutePoint[] @relation("stationTeams")
+}
+
+model RoutePoint {
+  // Время прибытия на станцию командой
+  supposedArrival DateTime
+
+  // Команда, которая должна прибыть на точку маршрута
+  team Team @relation("teamRoute", fields: [teamID], references: [id])
+  teamID String 
+
+  // Станция, на которой происходит точка маршрута
+  station Station @relation("stationTeams", fields: [stationID], references: [id ])
+  stationID String
+
+  arrivedAt DateTime?
+  finishedAt DateTime?
+  completed Boolean @default(false)
+
+  @@id([supposedArrival, teamID, stationID])
 }

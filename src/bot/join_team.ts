@@ -51,7 +51,7 @@ export async function handleJoinTeamCode(req: BotRequest) {
   });
   const response = `
 Добро пожаловать в команду "${team.name}"!
-Вы участвуете ${formatDate(team.participationDate)}
+Вы участвуете ${formatDate(team.participationDateID)}
 
 Участники команды [${team.members.length}/6]:
 ${team.members.map((u) => `${u.firstName} ${u.lastName}`).join("\n")}

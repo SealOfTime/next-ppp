@@ -1,9 +1,10 @@
 import slug from 'limax';
 import Prisma from "../Prisma";
-import { isPhone, makeid, unicodeLength } from "../Util";
+import { formatDate, isPhone, makeid, unicodeLength } from "../Util";
 import Bot, { BotRequest } from "./bot";
 import { BasicKeyboard, ConfirmationKeyboard, ChooseDateKeyboard, UserWithTeamInitialKeyboard } from "./keyboard/keyboard";
 
+export const MAX_TEAMS_PER_DAY = 32;
 export const TeamCodeLength = 8;
 
 export async function handleNewTeamName(req: BotRequest) {
@@ -63,12 +64,6 @@ export async function handleNewTeamPhone(req: BotRequest) {
   });
 }
 
-// TODO: replace
-const HardcodedDates = [
-  new Date(2022, 10, 2),
-  new Date(2022, 10, 9),
-]
-
 export async function handleNewTeamLegionaries(req: BotRequest) {
   if (req.message === 'К началу') {
     await Bot.forward('', req);
@@ -88,23 +83,14 @@ export async function handleNewTeamLegionaries(req: BotRequest) {
     return;
   }
 
+  const days = await findDaysOpenForRegistartion();
   const response = `
   ${withLegionaries
     ? 'Вы согласились принимать в свои ряды легионеров!'
     : 'Вы отказались принимать в свои ряды легионеров 😔'}
 Теперь выберите дату, в которую готовы принять участие:`;
 
-  const teamsByDays = await Prisma.team.groupBy({
-    by: ['participationDate'],
-    _count: true,
-  })
-
-  //TODO: предусмотреть отсутствие дней
-
-  const occupiedDays = teamsByDays.filter(d=>d._count >= 32).map(d=>d.participationDate)
-  const freeDays = HardcodedDates.filter((d) => !occupiedDays.includes(d))
-
-  await Bot.sendMessage(req.user, ChooseDateKeyboard(freeDays), response, )
+  await Bot.sendMessage(req.user, ChooseDateKeyboard(days.map(d=>d.date)), response)
   await Bot.changeState(req.user, 'NEW_TEAM/DATE', {
     name: (req.user.botData as any).name,
     withLegionaries,
@@ -118,32 +104,13 @@ export async function handleNewTeamDate(req: BotRequest) {
     return;
   }
 
-  const dateString = req.message;
-  let date;
-  switch (req.message) {
-  case '02 октября':
-    date = new Date(2022, 10, 2);
-    break;
-  case '09 октября':
-    date = new Date(2022, 10, 9);
-    break;
-  default:
-    await Bot.sendMessage(req.user, ChooseDateKeyboard(HardcodedDates),
-      'Выбор прост: "02 октября" или "09 октября"')
-    return;
-  }
+  const days = await findDaysOpenForRegistartion()
+  const daysByHumanReadableName = new Map(days.map(d => [formatDate(d.date), d]))
 
-  const teamsByDays = await Prisma.team.groupBy({
-    by: ['participationDate'],
-    _count: true,
-  }) || []
-  const teamsAtSelectedDay = teamsByDays.find(td=>td.participationDate===date)?._count || 0;
-
-  if(teamsByDays.length > 0 && teamsAtSelectedDay >= 32) {
-    const occupiedDays = teamsByDays.filter(d=>d._count >= 32).map(d=>d.participationDate)
-    const freeDays = HardcodedDates.filter((d) => !occupiedDays.includes(d))
-    await Bot.sendMessage(req.user, ChooseDateKeyboard(freeDays),
-      'Извини, в этот день участвует уже слишком много команд, попробуй выбрать другой')
+  const chosenDay = daysByHumanReadableName.get(req.message);
+  if(chosenDay === undefined){
+    await Bot.sendMessage(req.user, ChooseDateKeyboard(days.map(d=>d.date)),
+      'Прости, на эту дату уже закрыта регистрация, попробуй выбрать другую')
     return;
   }
 
@@ -154,7 +121,7 @@ export async function handleNewTeamDate(req: BotRequest) {
       id: makeTeamID(name),
       name,
       legionariesAllowed: withLegionaries,
-      participationDate: date,
+      participationDateID: chosenDay.date,
       code: makeid(TeamCodeLength),
     },
   });
@@ -173,7 +140,7 @@ export async function handleNewTeamDate(req: BotRequest) {
 
   const response =`
   Твоя команда "${team.name}" зарегистрирована! 
-  Вы будете принимать участие ${dateString}.
+  Вы будете принимать участие ${formatDate(chosenDay.date)}.
   Отправь этот код участникам своей команды, чтобы они могли присоединиться: 
   ${team.code}
   
@@ -184,6 +151,25 @@ export async function handleNewTeamDate(req: BotRequest) {
   Ищи списки своей команды на сайте - https://ppp.itmo.online`;
 
   await Bot.sendMessage(req.user, UserWithTeamInitialKeyboard(req.user.role), response);
+}
+
+async function findDaysOpenForRegistartion() {
+  const today = new Date();
+  const days = (await Prisma.questDate.findMany({
+    where: {
+      registrationStart: {
+        lte: today,
+      },
+      registrationEnd: {
+        gte: today,
+      },
+    },
+    include: {
+      participatingTeams: true,
+    },
+  })).filter(d => d.participatingTeams.length < MAX_TEAMS_PER_DAY);
+
+  return days
 }
 
 const makeTeamID = (teamName: string) => {

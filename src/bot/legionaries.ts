@@ -10,24 +10,33 @@ export async function handleJoinLegionaries(req: BotRequest) {
   await Bot.changeState(req.user, 'JOIN_LEGIONARIES/PHONE');
 }
 
-async function findTeamsWithVacantSpace() {
-  const teams = await Prisma.team.findMany({
-    include: {
-      _count: {
-        select: { members: true, }
-      }
-    },
+async function findDaysWithVacantPlaces() {
+  const today = new Date();
+  const days = await Prisma.questDate.findMany({
     where: {
-      legionariesAllowed: true,
-      participationDate: {
-        gt: new Date(),
+      registrationStart: {
+        lte: today,
+      },
+      registrationEnd: {
+        gte: today,
       },
     },
-  });
+    include: {
+      participatingTeams: {
+        include: {
+          members: true,
+        },
+      },
+    },
+  })
+  days.forEach(d => 
+    d.participatingTeams = d.participatingTeams.filter(
+      t => t.members.length < MAX_PLAYERS_IN_TEAM,
+    )
+  );
+  const daysWithTeamsWithVacantPlaces = days.filter(d => d.participatingTeams.length !== 0)
 
-  const teamsWithVacantSpaces = teams.filter(t => t._count.members < MAX_PLAYERS_IN_TEAM);
-
-  return teamsWithVacantSpaces
+  return daysWithTeamsWithVacantPlaces
 }
 
 export async function handleJoinLegionariesPhone(req: BotRequest) {
@@ -43,11 +52,7 @@ export async function handleJoinLegionariesPhone(req: BotRequest) {
     return;
   }
 
-  const teamsWithVacantSpaces = await findTeamsWithVacantSpace()
-  const daysWithTeamsWithVacantSpaces = teamsWithVacantSpaces
-    .map(t => t.participationDate.getTime())
-    .filter((v, i, arr)=>arr.indexOf(v)===i)
-    .map(t => new Date(t))
+  const daysWithTeamsWithVacantSpaces = await findDaysWithVacantPlaces()
 
   await Prisma.user.update({
     where: {
@@ -59,7 +64,7 @@ export async function handleJoinLegionariesPhone(req: BotRequest) {
     },
   })
 
-  await Bot.sendMessage(req.user, ChooseDateKeyboard(daysWithTeamsWithVacantSpaces), 
+  await Bot.sendMessage(req.user, ChooseDateKeyboard(daysWithTeamsWithVacantSpaces.map(d=>d.date)), 
     "Выбери дату участия: ");
 }
 
@@ -69,34 +74,19 @@ export async function handleJoinLegionariesDate(req: BotRequest) {
     return;
   }
 
-  const teamsWithVacantSpaces = await findTeamsWithVacantSpace()
-  const daysWithTeamsWithVacantSpaces = teamsWithVacantSpaces
-    .map(t => t.participationDate.getTime())
-    .filter((v, i, arr)=>arr.indexOf(v)===i)
-    .map(t => new Date(t))
+  const daysWithTeamsWithVacantSpaces = await findDaysWithVacantPlaces()
 
-  let date;
-  switch (req.message) {
-  case '02 октября':
-    date = new Date(2022, 10, 2);
-    break;
-  case '09 октября':
-    date = new Date(2022, 10, 9);
-    break;
-  default:
-    await Bot.sendMessage(req.user, ChooseDateKeyboard(daysWithTeamsWithVacantSpaces),
-      'Выбор прост: "02 октября" или "09 октября"')
+  const daysByHumanReadableName = new Map(daysWithTeamsWithVacantSpaces.map(d => [formatDate(d.date), d]))
+
+  const chosenDay = daysByHumanReadableName.get(req.message);
+  if(chosenDay === undefined){
+    await Bot.sendMessage(req.user, ChooseDateKeyboard(daysWithTeamsWithVacantSpaces.map(d=>d.date)),
+      'Прости, на эту дату нету свободных команд, попробуй выбрать другую')
     return;
   }
 
-  const teamsWithVacantSpacesChosenDay = teamsWithVacantSpaces.filter(t=>t.participationDate.getTime()===date.getTime())
-  if(teamsWithVacantSpacesChosenDay.length === 0) {
-    await Bot.sendMessage(req.user, ChooseDateKeyboard(daysWithTeamsWithVacantSpaces), 
-      "На эту дату уже не осталось команд, выбери новую дату: ");
-    return;
-  }
-
-  const team = teamsWithVacantSpacesChosenDay[Math.floor(Math.random()*teamsWithVacantSpacesChosenDay.length)]
+  const randomTeamIdx = Math.floor(Math.random()*chosenDay.participatingTeams.length);
+  const team = chosenDay.participatingTeams[randomTeamIdx];
   const captain = await Prisma.user.findFirst({
     where: {
       teamID: team.id,
@@ -116,7 +106,7 @@ export async function handleJoinLegionariesDate(req: BotRequest) {
 
   const response = `
 Добро пожаловать в команду "${team.name}"!
-Вы участвуете ${formatDate(team.participationDate)}
+Вы участвуете ${formatDate(team.participationDateID)}
 
 Твой капитан: @id${captain.vkId} (${captain.firstName} ${captain.lastName})
 `
