@@ -15,7 +15,7 @@ export const getServerSideProps: GetServerSideProps<Props> = async({params}) => 
       teams: teams.map(team => ({
         id: team.id,
         name: team.name,
-        participationDate: formatDate(team.participationDate),
+        participationDate: formatDate(team.participationDateID),
         members: team.members.map(m=>({
           name: `${m.firstName} ${m.lastName}`,
           vkUrl: m.vkUrl,
