@@ -35,7 +35,7 @@ export const getServerSideProps: GetServerSideProps<Props> = async ({params}) =>
     props: {
       team: {
         name: team.name,
-        participationDate: formatDate(team.participationDate),
+        participationDate: formatDate(team.participationDateID),
         captain: {
           name: `${captain.firstName} ${captain.lastName}`,
           vkUrl: captain.vkUrl,
