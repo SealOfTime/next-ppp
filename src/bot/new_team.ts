@@ -1,6 +1,6 @@
 import slug from 'limax';
 import Prisma from "../Prisma";
-import { formatDate, isPhone, makeid, unicodeLength } from "../Util";
+import { formatDate, isPhone, makeid, makeSlugID, unicodeLength } from "../Util";
 import Bot, { BotRequest } from "./bot";
 import { BasicKeyboard, ConfirmationKeyboard, ChooseDateKeyboard, UserWithTeamInitialKeyboard } from "./keyboard/keyboard";
 
@@ -118,7 +118,7 @@ export async function handleNewTeamDate(req: BotRequest) {
 
   const team = await Prisma.team.create({
     data: {
-      id: makeTeamID(name),
+      id: makeSlugID(name),
       name,
       legionariesAllowed: withLegionaries,
       participationDateID: chosenDay.date,
@@ -170,13 +170,4 @@ async function findDaysOpenForRegistartion() {
   })).filter(d => d.participatingTeams.length < MAX_TEAMS_PER_DAY);
 
   return days
-}
-
-const makeTeamID = (teamName: string) => {
-  const s = slug(teamName);
-  if(s !== "") {
-    return s;
-  }
-
-  return makeid(12);
 }

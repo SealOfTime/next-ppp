@@ -3,6 +3,9 @@ import { timeStamp } from 'console';
 import { KeyboardBuilder } from 'vk-io';
 import Prisma from '../Prisma';
 import Vk from '../Vk';
+import { handleTeamRoutesBroadcast } from './admin/broadcast';
+import { handleSetTeamRoute, handleSetTeamRouteName } from './admin/routes';
+import { handleAddStation } from './admin/stations';
 import { handleHelpMe, initHelpMe } from './help_me';
 import { handleJoinTeamCode } from './join_team';
 import { HelpMeButton } from './keyboard/buttons';
@@ -26,6 +29,10 @@ const botHandlers: Record<string, (req: BotRequest) => void> = {
   'JOIN_LEGIONARIES/PHONE': handleJoinLegionariesPhone,
   'JOIN_LEGIONARIES/DATE': handleJoinLegionariesDate,
   'LEAVE_TEAM/CONFIRMATION': handleConfirmLeaving,
+  'ADMIN/TEAM_ROUTES_BROADCAST': handleTeamRoutesBroadcast,
+  'ADMIN/SET_TEAM_ROUTE/NAME': handleSetTeamRouteName, 
+  'ADMIN/SET_TEAM_ROUTE': handleSetTeamRoute,
+  'ADMIN/ADD_STATION': handleAddStation,
 };
 
 export type BotRequest = {

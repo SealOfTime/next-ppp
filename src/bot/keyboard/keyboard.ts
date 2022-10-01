@@ -1,7 +1,7 @@
 import { Role } from "@prisma/client";
 import { Keyboard } from "vk-io";
 import { formatDate } from "../../Util";
-import { ResetButton, HelpMeButton, JoinTeamButton, LeaveTeamButton, MyTeamButton, NewTeamButton, NoButton, YesButton, BackButton, JoinLegionariesButton } from "./buttons";
+import { ResetButton, HelpMeButton, JoinTeamButton, LeaveTeamButton, MyTeamButton, NewTeamButton, NoButton, YesButton, BackButton, JoinLegionariesButton, AddStationButton, SetTeamRouteButton, BroadcastRoutesButton } from "./buttons";
 
 export const BasicKeyboard = Keyboard.keyboard([
   [HelpMeButton, ResetButton],
@@ -40,3 +40,10 @@ export const ChooseDateKeyboard = (dates: Date[]) => Keyboard.keyboard([
   ],
   [ResetButton],
 ]).oneTime(true);
+
+
+export const AdminKeyboard = Keyboard.keyboard([
+  [BroadcastRoutesButton], 
+  [SetTeamRouteButton], 
+  [AddStationButton],
+]);

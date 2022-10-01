@@ -3,8 +3,14 @@ import { formatDate } from "../Util";
 import { BasicKeyboard, ConfirmationKeyboard, UserWithoutTeamInitialKeyboard, UserWithTeamInitialKeyboard } from "./keyboard/keyboard";
 import Bot, { BotRequest } from "./bot";
 import { handleJoinLegionaries } from "./legionaries";
+import { handleAdmin } from "./admin";
 
 export default async function handleInitial(req: BotRequest) {
+  if (req.user.role === 'ADMIN') {
+    handleAdmin(req)
+    return;
+  }
+
   if (req.user.teamID !== null) {
     handleUserWithTeam(req)
     return;

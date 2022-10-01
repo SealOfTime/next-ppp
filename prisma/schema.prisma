@@ -27,6 +27,7 @@ model QuestDate {
   date DateTime @id
   registrationStart DateTime
   registrationEnd DateTime
+  //broadcastSent Boolean @default(false)
   participatingTeams Team[] @relation("teamParticipationDate")
 }
 
@@ -53,6 +54,7 @@ enum Role {
 
 model Station {
   id String    @id @default(uuid())
+  internalName String
   name String
   lat Float
   lng Float
@@ -73,6 +75,7 @@ model RoutePoint {
 
   arrivedAt DateTime?
   finishedAt DateTime?
+  missed Boolean @default(false)
   completed Boolean @default(false)
 
   @@id([supposedArrival, teamID, stationID])

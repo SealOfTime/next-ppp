@@ -81,3 +81,30 @@ export const NoButton = Keyboard.textButton({
   color: Keyboard.NEGATIVE_COLOR,
 });
   
+
+// ADMIN
+
+
+export const AddStationButton = Keyboard.textButton({
+  label: 'Добавить станцию',
+  payload: {
+    button: 'add_station',
+  },
+  color: Keyboard.SECONDARY_COLOR,
+});
+
+export const SetTeamRouteButton = Keyboard.textButton({
+  label: 'Задать маршрут команде',
+  payload: {
+    button: 'set_team_route',
+  },
+  color: Keyboard.SECONDARY_COLOR,
+})
+
+export const BroadcastRoutesButton = Keyboard.textButton({
+  label: 'Рассылка маршрутов',
+  payload: {
+    button: 'broadcast_routes',
+  },
+  color: Keyboard.SECONDARY_COLOR,
+})

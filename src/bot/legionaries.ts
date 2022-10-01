@@ -111,7 +111,7 @@ export async function handleJoinLegionariesDate(req: BotRequest) {
 Твой капитан: @id${captain.vkId} (${captain.firstName} ${captain.lastName})
 `
   await Bot.sendMessage(req.user, UserWithTeamInitialKeyboard(req.user.role), response);
-  await Bot.sendMessage(captain, BasicKeyboard, `
+  await Bot.sendMessage(captain, UserWithTeamInitialKeyboard(req.user.role), `
 К твоей команде присоединился легионер: @id${req.user.vkId}(${req.user.firstName} ${req.user.lastName})!
 
 Поприветствуй его ;-)`)

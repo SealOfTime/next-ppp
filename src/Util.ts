@@ -1,3 +1,4 @@
+import slug from "limax";
 
 
 const PhoneRegex = /^((8|\+7)[\- ]?)?(\(?\d{3}\)?[\- ]?)?[\d\- ]{7,10}$/;
@@ -32,4 +33,13 @@ export function makeid(length: number) {
     result += characters.charAt(Math.floor(Math.random() * charactersLength));
   }
   return result;
+}
+
+export function makeSlugID(src: string){
+  const s = slug(src);
+  if(s !== "") {
+    return s;
+  }
+
+  return makeid(12);
 }
