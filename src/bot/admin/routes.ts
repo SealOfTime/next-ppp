@@ -78,7 +78,12 @@ export async function handleSetTeamRoute(req: BotRequest) {
         throw "неправильные числа";
       }
 
-      time = new Date(team.participationDateID.getDate());
+      time = new Date(
+        team.participationDateID.getFullYear(),
+        team.participationDateID.getMonth(),
+        team.participationDateID.getDate(),
+        team.participationDateID.getFullYear(),
+      );
       time.setHours(hours);
       time.setMinutes(minutes);
     } catch(err) {

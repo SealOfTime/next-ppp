@@ -86,7 +86,7 @@ export async function handleTeamRoutesBroadcast(req: BotRequest) {
 
 Номера станций и их геолокация:
 
-${team.route.map((r, i)=>`${i}. ${r.station.name} (${r.station.lat}, ${r.station.lng})`)
+${team.route.map((r, i)=>`${i+1}. ${r.station.name} (${r.station.lat}, ${r.station.lng})`)
     .join("\n")}`
     const captain = team.members[0]
     if(captain === undefined) {
