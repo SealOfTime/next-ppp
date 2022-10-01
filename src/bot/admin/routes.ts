@@ -82,10 +82,9 @@ export async function handleSetTeamRoute(req: BotRequest) {
         team.participationDateID.getFullYear(),
         team.participationDateID.getMonth(),
         team.participationDateID.getDate(),
-        team.participationDateID.getFullYear(),
+        hours,
+        minutes
       );
-      time.setHours(hours);
-      time.setMinutes(minutes);
     } catch(err) {
       error=true;
       errors.push(`Некорректное время: "${rawTime}", timeStr: "${timeStr?.join(", ")}", ошибка: ${err}`)
