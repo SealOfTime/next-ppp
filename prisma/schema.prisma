@@ -16,7 +16,7 @@ model User {
 
   role Role @default(PLAYER)
 
-  team   Team?   @relation("teamRelation", fields: [teamID], references: [id])
+  team   Team?   @relation("teamRelation", fields: [teamID], references: [id], onDelete: SetNull)
   teamID String?
 
   botState String @default("")
@@ -37,7 +37,7 @@ model Team {
   name               String
   legionariesAllowed Boolean
   
-  participationDate  QuestDate @relation("teamParticipationDate", fields: [participationDateID], references: [date])
+  participationDate  QuestDate @relation("teamParticipationDate", fields: [participationDateID], references: [date], onUpdate: Cascade)
   participationDateID DateTime
 
   members            User[]   @relation("teamRelation")
@@ -66,11 +66,11 @@ model RoutePoint {
   supposedArrival DateTime
 
   // Команда, которая должна прибыть на точку маршрута
-  team Team @relation("teamRoute", fields: [teamID], references: [id])
+  team Team @relation("teamRoute", fields: [teamID], references: [id], onDelete: Cascade)
   teamID String 
 
   // Станция, на которой происходит точка маршрута
-  station Station @relation("stationTeams", fields: [stationID], references: [id ])
+  station Station @relation("stationTeams", fields: [stationID], references: [id ], onUpdate: Cascade )
   stationID String
 
   arrivedAt DateTime?

@@ -73,7 +73,6 @@ export async function handleSetTeamRoute(req: BotRequest) {
       rawTime = line.slice(0, 5);
       timeStr = rawTime.split(":").map(s=>s[0]==='0' ? s.slice(1) : s);
       const [hours, minutes] = timeStr.map(s=>parseInt(s as string));
-      console.log(timeStr, hours, minutes)
       if(Number.isNaN(hours) || Number.isNaN(minutes)) {
         throw "неправильные числа";
       }
