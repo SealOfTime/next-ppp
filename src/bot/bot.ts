@@ -13,6 +13,7 @@ import { handleJoinLegionaries, handleJoinLegionariesDate, handleJoinLegionaries
 import handleInitial, { handleConfirmLeaving } from './main';
 import { handleNewTeamDate, handleNewTeamLegionaries, handleNewTeamName, handleNewTeamPhone } from './new_team';
 import handlePreInitial from './welcome';
+import { handleZookeeperNextTeam, handleZookeeperRecord, handleZookeperChooseStation } from './zookeeper/flow';
 
 const MAX_RANDOM_ID = 2 ** 32 - 1;
 
@@ -33,6 +34,8 @@ const botHandlers: Record<string, (req: BotRequest) => void> = {
   'ADMIN/SET_TEAM_ROUTE/NAME': handleSetTeamRouteName, 
   'ADMIN/SET_TEAM_ROUTE': handleSetTeamRoute,
   'ADMIN/ADD_STATION': handleAddStation,
+  'ZOOKEEPER/CHOOSE_STATION': handleZookeperChooseStation,
+  'ZOOKEEPER/WORK': handleZookeeperRecord,
 };
 
 export type BotRequest = {

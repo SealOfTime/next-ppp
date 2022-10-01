@@ -11,6 +11,12 @@ export function unicodeLength(s: string): number {
   return UnicodeCharacterRegex.exec(s).length
 }
 
+export function formatTime(time: Date): string {
+  const hours = time.getHours()
+  const minutes = time.getMinutes()
+  return `${hours > 10 ? hours : `0${hours}`}:${minutes > 10 ? minutes : `0${minutes}`}`
+}
+
 export function formatDate(date: Date): string {
   const months = [
     'января', 'февраля',

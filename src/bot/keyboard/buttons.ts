@@ -108,3 +108,43 @@ export const BroadcastRoutesButton = Keyboard.textButton({
   },
   color: Keyboard.SECONDARY_COLOR,
 })
+
+export const ZookeeperBeginWorkButton = Keyboard.textButton({
+  label: 'Приступить к работе',
+  payload: {
+    button: 'zookeeper_begin_work',
+  },
+  color: Keyboard.PRIMARY_COLOR,
+})
+
+export const ArrivedButton = Keyboard.textButton({
+  label: 'Пришли',
+  payload: {
+    button: 'arrived',
+  },
+  color: Keyboard.POSITIVE_COLOR,
+})
+
+export const MissedButton = Keyboard.textButton({
+  label: 'Не пришли',
+  payload: {
+    button: 'missed',
+  },
+  color: Keyboard.NEGATIVE_COLOR,
+})
+
+export const WellDoneButton = Keyboard.textButton({
+  label: 'Справились',
+  payload: {
+    button: 'well_done',
+  },
+  color: Keyboard.POSITIVE_COLOR,
+})
+
+export const FailedButton = Keyboard.textButton({
+  label: "Не справились",
+  payload: {
+    button: 'failed',
+  },
+  color: Keyboard.NEGATIVE_COLOR,
+})

@@ -1,7 +1,7 @@
-import { Role } from "@prisma/client";
+import { Role, Station } from "@prisma/client";
 import { Keyboard } from "vk-io";
 import { formatDate } from "../../Util";
-import { ResetButton, HelpMeButton, JoinTeamButton, LeaveTeamButton, MyTeamButton, NewTeamButton, NoButton, YesButton, BackButton, JoinLegionariesButton, AddStationButton, SetTeamRouteButton, BroadcastRoutesButton } from "./buttons";
+import { ResetButton, HelpMeButton, JoinTeamButton, LeaveTeamButton, MyTeamButton, NewTeamButton, NoButton, YesButton, BackButton, JoinLegionariesButton, AddStationButton, SetTeamRouteButton, BroadcastRoutesButton, ZookeeperBeginWorkButton, ArrivedButton, MissedButton, WellDoneButton, FailedButton } from "./buttons";
 
 export const BasicKeyboard = Keyboard.keyboard([
   [HelpMeButton, ResetButton],
@@ -47,3 +47,27 @@ export const AdminKeyboard = Keyboard.keyboard([
   [SetTeamRouteButton], 
   [AddStationButton],
 ]);
+
+export const ZookeeperKeyboard = Keyboard.keyboard([[ZookeeperBeginWorkButton]])
+
+export const ChooseStationKeyboard = (stations: Station[]) => Keyboard.keyboard([...stations.map(s=>
+  [Keyboard.textButton({
+    label: s.internalName,
+    payload: {
+      button: 'choose_station',
+      station: s.id,
+    },
+    color: Keyboard.SECONDARY_COLOR,
+  })]),
+[BackButton]
+])
+
+export const AttendanceKeyboard = Keyboard.keyboard([
+  [ArrivedButton, MissedButton], 
+  [ResetButton],
+])
+
+export const CompletionKeyboard = Keyboard.keyboard([
+  [WellDoneButton, FailedButton],
+  [ResetButton],
+])

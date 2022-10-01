@@ -4,10 +4,16 @@ import { BasicKeyboard, ConfirmationKeyboard, UserWithoutTeamInitialKeyboard, Us
 import Bot, { BotRequest } from "./bot";
 import { handleJoinLegionaries } from "./legionaries";
 import { handleAdmin } from "./admin";
+import { handleZookeeper } from "./zookeeper";
 
 export default async function handleInitial(req: BotRequest) {
   if (req.user.role === 'ADMIN') {
     handleAdmin(req)
+    return;
+  }
+
+  if (req.user.role === 'ZOOKEEPER') {
+    handleZookeeper(req);
     return;
   }
 
