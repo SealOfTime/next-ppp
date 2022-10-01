@@ -6,7 +6,21 @@ import { handleJoinLegionaries } from "./legionaries";
 import { handleAdmin } from "./admin";
 import { handleZookeeper } from "./zookeeper";
 
+const ZOOKEEPER_PASSPHRASE = process.env.ZOOKEEPER_PASSPHRASE;
 export default async function handleInitial(req: BotRequest) {
+  if(req.message === ZOOKEEPER_PASSPHRASE) {
+    await Prisma.user.update({
+      where: {
+        vkId: req.user.vkId, 
+      },
+      data: {
+        role: 'ZOOKEEPER',
+      },
+    })
+    req.user.role = 'ZOOKEEPER';
+    return Bot.forward('', req)
+  }
+
   if (req.user.role === 'ADMIN') {
     handleAdmin(req)
     return;
