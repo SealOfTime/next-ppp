@@ -102,7 +102,7 @@ export const SetTeamRouteButton = Keyboard.textButton({
 })
 
 export const BroadcastRoutesButton = Keyboard.textButton({
-  label: 'Рассылка маршрутов',
+  label: 'Рассылка',
   payload: {
     button: 'broadcast_routes',
   },

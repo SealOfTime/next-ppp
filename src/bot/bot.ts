@@ -1,19 +1,15 @@
 import { User } from '@prisma/client';
-import { timeStamp } from 'console';
 import { KeyboardBuilder } from 'vk-io';
 import Prisma from '../Prisma';
 import Vk from '../Vk';
-import { handleTeamRoutesBroadcast } from './admin/broadcast';
-import { handleSetTeamRoute, handleSetTeamRouteName } from './admin/routes';
-import { handleAddStation } from './admin/stations';
+import { AdminHandlers } from './admin';
 import { handleHelpMe, initHelpMe } from './help_me';
 import { handleJoinTeamCode } from './join_team';
-import { HelpMeButton } from './keyboard/buttons';
 import { handleJoinLegionaries, handleJoinLegionariesDate, handleJoinLegionariesPhone } from './legionaries';
 import handleInitial, { handleConfirmLeaving } from './main';
 import { handleNewTeamDate, handleNewTeamLegionaries, handleNewTeamName, handleNewTeamPhone } from './new_team';
 import handlePreInitial from './welcome';
-import { handleZookeeperNextTeam, handleZookeeperRecord, handleZookeperChooseStation } from './zookeeper/flow';
+import { handleZookeeperRecord, handleZookeperChooseStation } from './zookeeper/flow';
 
 const MAX_RANDOM_ID = 2 ** 32 - 1;
 
@@ -30,10 +26,7 @@ const botHandlers: Record<string, (req: BotRequest) => void> = {
   'JOIN_LEGIONARIES/PHONE': handleJoinLegionariesPhone,
   'JOIN_LEGIONARIES/DATE': handleJoinLegionariesDate,
   'LEAVE_TEAM/CONFIRMATION': handleConfirmLeaving,
-  'ADMIN/TEAM_ROUTES_BROADCAST': handleTeamRoutesBroadcast,
-  'ADMIN/SET_TEAM_ROUTE/NAME': handleSetTeamRouteName, 
-  'ADMIN/SET_TEAM_ROUTE': handleSetTeamRoute,
-  'ADMIN/ADD_STATION': handleAddStation,
+  ...AdminHandlers,
   'ZOOKEEPER/CHOOSE_STATION': handleZookeperChooseStation,
   'ZOOKEEPER/WORK': handleZookeeperRecord,
 };

@@ -42,11 +42,27 @@ export const ChooseDateKeyboard = (dates: Date[]) => Keyboard.keyboard([
 ]).oneTime(true);
 
 
+
 export const AdminKeyboard = Keyboard.keyboard([
   [BroadcastRoutesButton], 
   [SetTeamRouteButton], 
   [AddStationButton],
 ]);
+
+export const ChooseKeyboard = (labels: string[]) => Keyboard.keyboard([
+  [
+    ...labels.map(l=>
+      Keyboard.textButton({
+        label: l,
+        payload: {
+          button: 'choose',
+          variant: l,
+        },
+        color: 'primary',
+      }))
+  ],
+  [ResetButton],
+]).oneTime(true);
 
 export const ZookeeperKeyboard = Keyboard.keyboard([[ZookeeperBeginWorkButton]])
 

@@ -1,9 +1,9 @@
-import { RoutePoint } from "@prisma/client";
+import { RoutePoint, Team } from "@prisma/client";
 import Prisma from "../../Prisma";
 import { formatDate, formatTime } from "../../Util";
 import Bot, { BotRequest } from "../bot";
 import { ArrivedButton } from "../keyboard/buttons";
-import { AttendanceKeyboard, BasicKeyboard, CompletionKeyboard } from "../keyboard/keyboard";
+import { AttendanceKeyboard, BasicKeyboard, CompletionKeyboard, UserWithTeamInitialKeyboard } from "../keyboard/keyboard";
 
 export async function handleInitFlow(req: BotRequest) {
   const stations = await Prisma.station.findMany()
@@ -129,6 +129,7 @@ async function handleTeamArrival(req: BotRequest, routePoint: RoutePoint) {
     })
     await Bot.sendMessage(req.user, BasicKeyboard, "Ждём следующую команду!")
     await handleZookeeperNextTeam(req);
+    await broadcastNextTeamStation(routePoint.teamID);
     return;
   }
 }
@@ -151,6 +152,7 @@ async function handleTeamResult(req: BotRequest, routePoint: RoutePoint) {
     })
     await Bot.sendMessage(req.user, BasicKeyboard, `Зафиксировал.`)
     await handleZookeeperNextTeam(req);
+    await broadcastNextTeamStation(routePoint.teamID);
     return;
   case 'Не справились':
     await Prisma.routePoint.update({
@@ -168,7 +170,56 @@ async function handleTeamResult(req: BotRequest, routePoint: RoutePoint) {
     })
     await Bot.sendMessage(req.user, BasicKeyboard, "Ждём следующую команду!")
     await handleZookeeperNextTeam(req);
+    await broadcastNextTeamStation(routePoint.teamID);
     return;
+  }
+}
+
+async function broadcastNextTeamStation(teamID: string) {
+  const next = await Prisma.routePoint.findFirst({
+    where: {
+      teamID: teamID,
+      missed: false,
+      OR: [
+        {
+          arrivedAt: null,
+        },
+        {
+          finishedAt: null
+        },
+      ],
+    },
+    orderBy: {
+      supposedArrival: 'asc',
+    },
+    include: {
+      station: true,
+      team: {
+        select: {
+          members: true,
+        }
+      },
+    }
+  })
+
+  if(next === null) {
+    const team = await Prisma.team.findFirst({where: {id: teamID}, include: {members: true}})
+    for(const member of team.members) {
+      await Bot.sendMessage(member, UserWithTeamInitialKeyboard(member.role), `
+Поздравляю! Ты успешно завершил квест, можешь спокойно пойти отдыхать)      
+`)
+      await Bot.changeState(member, 'INITIAL');
+    }
+    return;
+  }
+
+  for(const member of next.team.members) {
+    await Bot.sendMessage(member, UserWithTeamInitialKeyboard(member.role), `
+Поздравляю! Ты завершил станцию!
+Твоя следующая станция: "${next.station.name}" (${next.station.lat} ${next.station.lng})
+Тебе необходимо быть там к ${formatTime(next.supposedArrival)}
+`)
+    await Bot.changeState(member, 'INITIAL');
   }
 }
 
