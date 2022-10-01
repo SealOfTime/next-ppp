@@ -50,18 +50,6 @@ export const AdminKeyboard = Keyboard.keyboard([
 
 export const ZookeeperKeyboard = Keyboard.keyboard([[ZookeeperBeginWorkButton]])
 
-export const ChooseStationKeyboard = (stations: Station[]) => Keyboard.keyboard([...stations.map(s=>
-  [Keyboard.textButton({
-    label: s.internalName,
-    payload: {
-      button: 'choose_station',
-      station: s.id,
-    },
-    color: Keyboard.SECONDARY_COLOR,
-  })]),
-[BackButton]
-])
-
 export const AttendanceKeyboard = Keyboard.keyboard([
   [ArrivedButton, MissedButton], 
   [ResetButton],

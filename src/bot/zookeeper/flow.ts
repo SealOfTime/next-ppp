@@ -3,15 +3,18 @@ import Prisma from "../../Prisma";
 import { formatDate, formatTime } from "../../Util";
 import Bot, { BotRequest } from "../bot";
 import { ArrivedButton } from "../keyboard/buttons";
-import { AttendanceKeyboard, BasicKeyboard, ChooseStationKeyboard, CompletionKeyboard } from "../keyboard/keyboard";
+import { AttendanceKeyboard, BasicKeyboard, CompletionKeyboard } from "../keyboard/keyboard";
 
 export async function handleInitFlow(req: BotRequest) {
   const stations = await Prisma.station.findMany()
-  await Bot.sendMessage(req.user, ChooseStationKeyboard(stations), `
-Привет! Выбери станцию, для которой ты хочешь фиксировать результаты.
+  await Bot.sendMessage(req.user, BasicKeyboard, `
+Привет! Напиши имя станции, для которой ты хочешь фиксировать результаты.
 
 Обрати внимание, что станции представлены в двух вариантах А и Б - это потоки участников. Т.е. в одно время на одной станции может участвовать сразу 2 команды. 
-Если ты стоишь один, то это полный пиздец, пиши Ане. Если ты не один, то решите, кто из вас отвечает за поток А, а кто за поток Б и старайтесь не меняться. 
+Решите, кто из вас отвечает за поток А, а кто за поток Б и старайтесь не меняться.
+
+Доступные станции:
+${stations.map(s=>s.internalName).join('\n')}
 `)
   await Bot.changeState(req.user, 'ZOOKEEPER/CHOOSE_STATION')
 }
@@ -26,8 +29,7 @@ export async function handleZookeperChooseStation(req: BotRequest) {
   const stationsByName = new Map(stations.map(s=>[s.internalName, s]))
   const chosen = stationsByName.get(req.message)
   if(chosen === undefined) {
-    await Bot.sendMessage(req.user, ChooseStationKeyboard(stations), 
-      `Станции "${req.message}" не существует`)
+    await Bot.sendMessage(req.user, BasicKeyboard, `Станции "${req.message}" не существует`)
     return;
   }
 
