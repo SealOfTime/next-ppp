@@ -13,6 +13,8 @@ export const BroadcastHandlers: Record<string, (req: BotRequest) => void> = {
 }
 export async function handleInitiateBroadcast(req: BotRequest) {
   const today = new Date();
+  today.setHours(0,0,0,0); // отсчитываем от 00:00:00.000
+  
   const dates  = await Prisma.questDate.findMany({
     where: {
       date: {
