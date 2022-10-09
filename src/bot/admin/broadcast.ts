@@ -1,4 +1,4 @@
-import { User } from "@prisma/client";
+import { QuestDate, User } from "@prisma/client";
 import Prisma from "../../Prisma";
 import { formatDate, formatTime } from "../../Util";
 import Bot, { BotRequest } from "../bot";
@@ -11,10 +11,11 @@ export const BroadcastHandlers: Record<string, (req: BotRequest) => void> = {
   'ADMIN/BROADCAST_MESSAGE': handleBroadcastContent,
   'ADMIN/BROADCAST_MESSAGE_CONFIRM': handleBroadcastContentConfirm,
 }
-export async function handleInitiateBroadcast(req: BotRequest) {
+
+async function getAvailableBroadcastDates(): Promise<QuestDate[]> {
   const today = new Date();
   today.setHours(0,0,0,0); // отсчитываем от 00:00:00.000
-  
+
   const dates  = await Prisma.questDate.findMany({
     where: {
       date: {
@@ -22,7 +23,11 @@ export async function handleInitiateBroadcast(req: BotRequest) {
       },
     }
   })
-  
+
+  return dates
+}
+export async function handleInitiateBroadcast(req: BotRequest) {
+  const dates = await getAvailableBroadcastDates()
   await Bot.sendMessage(req.user, ChooseDateKeyboard(dates.map(d=>d.date)), 
     'Выбери дату квеста, для которой провести рассылку')
   await Bot.changeState(req.user, 'ADMIN/BROADCAST_DATE');
@@ -33,16 +38,8 @@ export async function handleBroadcastDate(req: BotRequest) {
     await Bot.forward('', req)
     return;
   }
-
-  const today = new Date();
-  const dates  = await Prisma.questDate.findMany({
-    where: {
-      date: {
-        gte: today, 
-      },
-    },
-  })
   
+  const dates = await getAvailableBroadcastDates()
   const datesHumanReadable = new Map(dates.map(d => [formatDate(d.date), d]))
   
   const chosenDay = datesHumanReadable.get(req.message);
